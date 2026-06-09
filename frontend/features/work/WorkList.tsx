@@ -110,7 +110,7 @@ export default function WorkList({ content, locale }: { content: LocaleContent; 
               <ProjectCard
                 key={p.slug}
                 project={p}
-                href={`/${locale}/work/side/${p.slug}`}
+                href={`/${locale}/work/${p.slug}`}
                 ui={content.ui}
               />
             ))}
