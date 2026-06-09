@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { LOCALES, type Locale } from "@/lib/i18n";
 
-function detectLocale(request: NextRequest): Locale {
+export function detectLocale(request: NextRequest): Locale {
   const saved = request.cookies.get("rf-lang")?.value as Locale | undefined;
   if (saved && LOCALES.includes(saved)) return saved;
 
@@ -18,7 +18,7 @@ function generateNonce(): string {
   return btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join(""));
 }
 
-function buildCsp(nonce: string): string {
+export function buildCsp(nonce: string): string {
   return [
     `default-src 'self'`,
     `script-src 'self' 'nonce-${nonce}'`,
