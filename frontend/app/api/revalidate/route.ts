@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import type { NextRequest } from "next/server";
 
 const SECRET = process.env.REVALIDATE_SECRET ?? "";
@@ -11,8 +11,11 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const paths: string[] = body.paths ?? ["/"];
+  const tags: string[] = body.tags ?? [];
+  const paths: string[] = body.paths ?? [];
+
+  tags.forEach((t) => revalidateTag(t, "default"));
   paths.forEach((p) => revalidatePath(p));
 
-  return Response.json({ revalidated: paths });
+  return Response.json({ revalidated: { tags, paths } });
 }

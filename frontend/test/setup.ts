@@ -10,7 +10,16 @@ vi.mock("server-only", () => ({}));
 
 vi.mock("next/cache", () => ({
   revalidatePath: vi.fn(),
+  revalidateTag: vi.fn(),
 }));
+
+vi.mock("react-markdown", async () => {
+  const { createElement } = await import("react");
+  return {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    default: ({ children }: any) => createElement("div", { "data-testid": "markdown" }, children),
+  };
+});
 
 vi.mock("next/link", async () => {
   const { createElement } = await import("react");

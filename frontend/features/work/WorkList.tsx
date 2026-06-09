@@ -1,10 +1,23 @@
-import type { LocaleContent, Locale } from "@/lib/i18n";
+import type { LocaleContent, Locale, Project, SideProject } from "@/lib/i18n";
 import { accentColors } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
+import EmptyState from "@/components/ui/EmptyState";
 import ProjectCard from "./ProjectCard";
 
-export default function WorkList({ content, locale }: { content: LocaleContent; locale: Locale }) {
+export default function WorkList({
+  content,
+  locale,
+  projects,
+  sideProjects,
+}: {
+  content: LocaleContent;
+  locale: Locale;
+  projects?: Project[];
+  sideProjects?: SideProject[];
+}) {
+  const displayProjects = projects ?? content.projects;
+  const displaySideProjects = sideProjects ?? content.sideProjects;
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 32px" }}>
       <SectionHeading
@@ -79,20 +92,24 @@ export default function WorkList({ content, locale }: { content: LocaleContent; 
         >
           {content.ui.selectedWork}
         </h3>
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          {content.projects.map((p) => (
-            <ProjectCard
-              key={p.slug ?? p.title}
-              project={p}
-              href={`/${locale}/work/${p.slug ?? ""}`}
-              ui={content.ui}
-            />
-          ))}
-        </div>
+        {displayProjects.length === 0 && displaySideProjects.length === 0 ? (
+          <EmptyState message={content.ui.noProjects} />
+        ) : displayProjects.length > 0 ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {displayProjects.map((p) => (
+              <ProjectCard
+                key={p.slug ?? p.title}
+                project={p}
+                href={`/${locale}/work/${p.slug ?? ""}`}
+                ui={content.ui}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
 
       {/* Side projects */}
-      {content.sideProjects.length > 0 && (
+      {displaySideProjects.length > 0 && (
         <div>
           <h3
             style={{
@@ -106,7 +123,7 @@ export default function WorkList({ content, locale }: { content: LocaleContent; 
             {content.ui.sideProjectsTitle}
           </h3>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {content.sideProjects.map((p) => (
+            {displaySideProjects.map((p) => (
               <ProjectCard
                 key={p.slug}
                 project={p}

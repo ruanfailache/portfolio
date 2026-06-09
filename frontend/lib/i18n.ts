@@ -41,6 +41,8 @@ export interface Project {
   outcome?: string;
   tags: string[];
   slug?: string;
+  markdown?: string;
+  order?: number;
 }
 
 export interface SideProject {
@@ -52,17 +54,8 @@ export interface SideProject {
   outcome?: string;
   tags: string[];
   body?: BodyBlock[];
-}
-
-export interface Post {
-  title: string;
-  date: string;
-  read: string;
-  tag: string;
-  color: AccentColor;
-  summary: string;
-  body: BodyBlock[];
-  slug?: string;
+  markdown?: string;
+  order?: number;
 }
 
 export interface Contact {
@@ -102,6 +95,8 @@ export interface UI {
   blogKicker: string;
   blogTitle: string;
   blogSubtitle: string;
+  noPosts: string;
+  noProjects: string;
   backToPosts: string;
   readWord: string;
   workWithMe: string;
@@ -177,7 +172,6 @@ export interface LocaleContent {
   experience: ExperienceEntry[];
   projects: Project[];
   sideProjects: SideProject[];
-  posts: Post[];
   contact: Contact;
   ui: UI;
 }
@@ -317,78 +311,6 @@ const en: LocaleContent = {
       ],
     },
   ],
-  posts: [
-    {
-      title: "Shipping AI Agents to a Skeptical Enterprise Team",
-      slug: "shipping-ai-agents-enterprise",
-      date: "May 2026",
-      read: "6 min",
-      tag: "AI & Agents",
-      color: "amber",
-      summary: "How I brought agent based workflows and Spec Driven Development to an international BMW team that had never trusted AI with production code, and what actually moved the needle.",
-      body: [
-        { p: "Most attempts at AI adoption inside enterprise teams fail for the same reason. They arrive as a mandate instead of a workflow people can reach for on a Tuesday afternoon. When I joined the BMW modernisation effort, the team was fast and disciplined, and very skeptical that an agent could touch their code without leaving cleanup behind." },
-        { h: "Start with the boring wins" },
-        { p: "I did not start with autonomous feature development. I started with the work nobody wanted: scaffolding tests, writing repetitive DTO mappers, drafting migration notes. Agents are reliable there, and one reliable small win buys you the trust to try a bigger one." },
-        { h: "The spec is the real product" },
-        { p: "The breakthrough was treating the specification, not the generated code, as the thing we reviewed. Once the team wrote specs precise enough for an agent to execute, those same specs made human review faster too. The AI was almost a side effect of writing things down clearly." },
-        { quote: "The teams that win with agents are the ones that were already good at writing things down. The agent simply rewards the discipline." },
-        { p: "Three months in, throughput was up by a clear margin, and just as important, nobody saw the agents as a threat. They were just part of how the team shipped." },
-      ],
-    },
-    {
-      title: "Spec Driven Development: Writing Specs Agents Can Actually Execute",
-      slug: "spec-driven-development",
-      date: "Apr 2026",
-      read: "8 min",
-      tag: "SDD",
-      color: "indigo",
-      summary: "A practical look at how I structure specs so an agent produces code you would actually merge, along with the failure modes that taught me the format.",
-      body: [
-        { p: "Spec Driven Development is not about prompting better. It is a discipline. You describe intent, constraints, and acceptance criteria precisely enough that a person and an agent can both work from the same document and agree on what done means." },
-        { h: "The anatomy of a spec that works" },
-        { p: "Every spec I write has four parts: the intent in one sentence, the explicit boundaries of what not to touch, the contract with its inputs, outputs and error cases, and the acceptance checks. The boundaries section is the one most people skip, and it is the one that stops an agent from helpfully refactoring half your module." },
-        { h: "Failure modes I learned the hard way" },
-        { p: "Vague acceptance criteria produce confidently wrong code. Implicit context, the kind where you assume the agent knows how you handle auth, produces plausible code that breaks your conventions. The fix for both is the same. Write the thing down, even when it feels obvious." },
-        { p: "Done well, SDD makes the agent feel like a careful junior engineer who never gets tired. Done badly, it makes a very fast mess. The difference lives entirely in the spec." },
-      ],
-    },
-    {
-      title: "Migrating AngularJS to Angular 17 Without a Big Bang Rewrite",
-      slug: "angularjs-to-angular-17-migration",
-      date: "Feb 2026",
-      read: "7 min",
-      tag: "Modernisation",
-      color: "rose",
-      summary: "The step by step strategy I used to modernise a government system from AngularJS and Java 8 to Angular 17 and Java 17, shipping the whole time and never freezing the codebase.",
-      body: [
-        { p: "Big bang rewrites are tempting and almost always wrong. On the SEFAZ PA systems, a freeze and rewrite would have meant months of zero delivery and a frightening cutover. We modernised step by step instead, and the lights stayed on the entire time." },
-        { h: "Strangle, do not replace" },
-        { p: "We wrapped the legacy app in a shell that could route between old AngularJS views and new Angular 17 modules. New features shipped in the modern stack from day one, and old screens moved over one at a time, in the order of how often they broke." },
-        { h: "The backend moved in lockstep" },
-        { p: "Java 8 to Java 17 followed the same logic. Extract a clean module, put a contract around it, then migrate behind that contract. No single change was scary, because no single change was large." },
-        { quote: "Step by step migration looks slower on a slide and turns out far faster in real life, because you never stop shipping." },
-        { p: "The result was a clear drop in how often bugs appeared, and a team that understood the new stack because they had built it gradually rather than inheriting it overnight." },
-      ],
-    },
-    {
-      title: "How I Cut Rework to Almost Zero with Structured Code Reviews",
-      slug: "structured-code-reviews-rework",
-      date: "Dec 2025",
-      read: "5 min",
-      tag: "Team Quality",
-      color: "sage",
-      summary: "At Bradesco, rework was the silent tax on delivery. Here is the lightweight review and QA discipline that took it to almost nothing across a team of twenty to thirty people.",
-      body: [
-        { p: "Rework almost never shows up on a dashboard, and yet it is the most expensive thing a team does. At Bradesco, work was being redone not because people were careless, but because expectations were implicit and reviews were inconsistent." },
-        { h: "Make the review checklist boring and shared" },
-        { p: "We agreed on a short explicit checklist covering the contract, the tests, the edge cases, and accessibility, and every pull request met the same standard. The boring part is the point. Consistency removes negotiation from every review." },
-        { h: "Catch it before the pull request" },
-        { p: "Proactive QA and a quick technical alignment before coding caught the misunderstandings that would show up in review or, worse, in production. A ten minute conversation at the start often saved a day of rework." },
-        { p: "None of this is glamorous. It is just the discipline of agreeing on what good looks like and staying true to it, and that is what turned rework from a constant drag into a rounding error." },
-      ],
-    },
-  ],
   contact: {
     email: "ruanfailache@gmail.com",
     linkedin: "linkedin.com/in/ruanfailache",
@@ -422,6 +344,8 @@ const en: LocaleContent = {
     blogTitle: "Writing.",
     blogSubtitle:
       "Field notes on AI agents, spec driven development, and how to modernise enterprise systems without breaking them.",
+    noPosts: "No posts yet.",
+    noProjects: "No projects yet.",
     backToPosts: "Back to all posts",
     readWord: "read",
     workWithMe: "Work with me",
@@ -602,78 +526,6 @@ const pt: LocaleContent = {
       ],
     },
   ],
-  posts: [
-    {
-      title: "Levando Agentes de IA para um Time Corporativo Cético",
-      slug: "shipping-ai-agents-enterprise",
-      date: "Mai 2026",
-      read: "6 min",
-      tag: "IA e Agentes",
-      color: "amber",
-      summary: "Como levei fluxos baseados em agentes e Desenvolvimento Orientado a Especificação para um time internacional da BMW que nunca tinha confiado código de produção a uma IA, e o que de fato fez diferença.",
-      body: [
-        { p: "A maioria das tentativas de adotar IA dentro de times corporativos falha pelo mesmo motivo. Elas chegam como uma ordem, e não como um fluxo que as pessoas usam numa terça à tarde. Quando entrei no esforço de modernização da BMW, o time era rápido e disciplinado, e bem cético de que um agente pudesse mexer no código sem deixar bagunça para limpar." },
-        { h: "Comece pelas vitórias chatas" },
-        { p: "Eu não comecei pelo desenvolvimento autônomo de funcionalidades. Comecei pelo trabalho que ninguém queria: montar testes, escrever mapeadores de DTO repetitivos, rascunhar notas de migração. Os agentes são confiáveis nisso, e uma pequena vitória confiável te dá a confiança para tentar algo maior." },
-        { h: "A especificação é o produto de verdade" },
-        { p: "A virada foi tratar a especificação, e não o código gerado, como aquilo que a gente revisava. Quando o time passou a escrever especificações precisas o bastante para um agente executar, essas mesmas especificações também tornaram a revisão humana mais rápida. A IA virou quase um efeito colateral de escrever as coisas com clareza." },
-        { quote: "Os times que vencem com agentes são os que já eram bons em registrar as coisas por escrito. O agente só recompensa essa disciplina." },
-        { p: "Três meses depois, a produtividade tinha subido de forma clara e, mais importante, ninguém enxergava os agentes como uma ameaça. Eles eram só parte de como o time entregava." },
-      ],
-    },
-    {
-      title: "Desenvolvimento Orientado a Especificação: Especificações que o Agente Consegue Executar",
-      slug: "spec-driven-development",
-      date: "Abr 2026",
-      read: "8 min",
-      tag: "SDD",
-      color: "indigo",
-      summary: "Um olhar prático sobre como eu estruturo especificações para que um agente produza código que você realmente daria merge, junto com os erros que me ensinaram esse formato.",
-      body: [
-        { p: "Desenvolvimento Orientado a Especificação não é sobre escrever prompts melhores. É uma disciplina. Você descreve intenção, restrições e critérios de aceite com precisão suficiente para que uma pessoa e um agente trabalhem a partir do mesmo documento e concordem sobre o que significa pronto." },
-        { h: "A anatomia de uma boa especificação" },
-        { p: "Toda especificação que eu escrevo tem quatro partes: a intenção em uma frase, os limites explícitos do que não pode ser tocado, o contrato com suas entradas, saídas e casos de erro, e os critérios de aceite. A parte dos limites é a que a maioria pula, e é justamente a que impede o agente de, gentilmente, refatorar metade do seu módulo." },
-        { h: "Erros que aprendi na prática" },
-        { p: "Critérios de aceite vagos produzem código errado com toda a confiança. O contexto implícito, aquele em que você supõe que o agente sabe como você cuida da autenticação, produz código plausível que quebra as suas convenções. A solução para os dois é a mesma. Escreva, mesmo quando parece óbvio." },
-        { p: "Bem feito, o SDD faz o agente parecer um desenvolvedor júnior cuidadoso que nunca cansa. Mal feito, ele cria uma bagunça muito rápida. A diferença está inteira na especificação." },
-      ],
-    },
-    {
-      title: "Migrando de AngularJS para Angular 17 sem Reescrita do Zero",
-      slug: "angularjs-to-angular-17-migration",
-      date: "Fev 2026",
-      read: "7 min",
-      tag: "Modernização",
-      color: "rose",
-      summary: "A estratégia passo a passo que usei para modernizar um sistema de governo de AngularJS e Java 8 para Angular 17 e Java 17, entregando o tempo todo e sem nunca congelar o código.",
-      body: [
-        { p: "Reescritas do zero são tentadoras e quase sempre erradas. Nos sistemas da SEFAZ PA, congelar e reescrever significaria meses de entrega zero e uma virada de chave assustadora. Em vez disso, modernizamos passo a passo, e a luz ficou acesa o tempo todo." },
-        { h: "Estrangule, não substitua" },
-        { p: "Envolvemos a aplicação legada em uma casca capaz de rotear entre as telas antigas em AngularJS e os novos módulos em Angular 17. As funcionalidades novas já nasciam no stack moderno, e as telas antigas migravam uma de cada vez, na ordem de quanto cada uma quebrava." },
-        { h: "O backend andou junto" },
-        { p: "De Java 8 para Java 17 a lógica foi a mesma. Extrair um módulo limpo, colocar um contrato em volta dele e migrar por trás desse contrato. Nenhuma mudança era assustadora, porque nenhuma mudança era grande." },
-        { quote: "A migração passo a passo parece mais lenta no slide e se mostra bem mais rápida na vida real, porque você nunca para de entregar." },
-        { p: "O resultado foi uma queda clara na frequência de bugs, e um time que entendia o novo stack porque o construiu aos poucos, em vez de herdá-lo de uma hora para outra." },
-      ],
-    },
-    {
-      title: "Como Reduzi o Retrabalho a Quase Zero com Revisões de Código Estruturadas",
-      slug: "structured-code-reviews-rework",
-      date: "Dez 2025",
-      read: "5 min",
-      tag: "Qualidade do Time",
-      color: "sage",
-      summary: "No Bradesco, o retrabalho era o imposto silencioso da entrega. Aqui está a disciplina leve de revisão e QA que o levou a quase nada em um grupo de vinte a trinta pessoas.",
-      body: [
-        { p: "O retrabalho quase nunca aparece em um painel, e ainda assim é a coisa mais cara que um time faz. No Bradesco, o trabalho era refeito não por falta de cuidado, mas porque as expectativas eram implícitas e as revisões eram inconsistentes." },
-        { h: "Deixe o checklist de revisão chato e compartilhado" },
-        { p: "Combinamos um checklist curto e explícito cobrindo o contrato, os testes, os casos de borda e a acessibilidade, e todo pull request atendia ao mesmo padrão. O chato é justamente o ponto. A consistência tira a negociação de cada revisão." },
-        { h: "Pegue antes do pull request" },
-        { p: "QA proativo e um alinhamento técnico rápido antes de começar a codar pegavam os mal-entendidos que apareceriam na revisão ou, pior, em produção. Uma conversa de dez minutos no começo costumava economizar um dia de retrabalho." },
-        { p: "Nada disso é glamuroso. É só a disciplina de combinar o que é bom e se manter fiel a isso, e foi o que transformou o retrabalho de um peso constante em um detalhe sem importância." },
-      ],
-    },
-  ],
   contact: {
     email: "ruanfailache@gmail.com",
     linkedin: "linkedin.com/in/ruanfailache",
@@ -707,6 +559,8 @@ const pt: LocaleContent = {
     blogTitle: "Escritos.",
     blogSubtitle:
       "Anotações de campo sobre agentes de IA, desenvolvimento orientado a especificação e como modernizar sistemas corporativos sem quebrá-los.",
+    noPosts: "Ainda não há posts.",
+    noProjects: "Ainda não há projetos.",
     backToPosts: "Voltar para todos os posts",
     readWord: "de leitura",
     workWithMe: "Trabalhe comigo",
@@ -886,78 +740,6 @@ const ja: LocaleContent = {
       ],
     },
   ],
-  posts: [
-    {
-      title: "懐疑的なエンタープライズチームにAIエージェントを届ける",
-      slug: "shipping-ai-agents-enterprise",
-      date: "2026年5月",
-      read: "6分",
-      tag: "AIとエージェント",
-      color: "amber",
-      summary: "本番コードをAIに任せたことのない国際的なBMWのチームに、エージェントのワークフローと仕様駆動開発をどう持ち込んだか。そして実際に効いたのは何だったか。",
-      body: [
-        { p: "エンタープライズのチームでAI導入が失敗するとき、その理由はだいたい同じです。ワークフローとしてではなく、命令として降ってくるからです。火曜の午後に自然と手が伸びるものになっていないのです。BMWのモダナイゼーションに加わったとき、チームは速くて規律正しく、そしてエージェントが後始末を残さずにコードへ触れられるとは、まるで信じていませんでした。" },
-        { h: "まずは地味な勝ちから" },
-        { p: "私は自律的な機能開発からは始めませんでした。誰もやりたがらない仕事、つまりテストの土台づくり、繰り返しのDTOマッパー、移行メモの下書きから始めました。エージェントはそこでは頼りになります。小さくても確かな勝ちが、次のもう少し大きな挑戦への信頼を買ってくれます。" },
-        { h: "本当の成果物は仕様書" },
-        { p: "転機は、生成されたコードではなく仕様書こそをレビュー対象として扱ったことでした。エージェントが実行できるほど精密な仕様をチームが書くようになると、その同じ仕様が人間のレビューも速くしてくれました。AIは、物事を明確に書き出すことのほとんど副産物でした。" },
-        { quote: "エージェントで成果を出すチームは、もともと物事を書き残すのが得意なチームです。エージェントはその規律に報いるだけなのです。" },
-        { p: "3か月後には処理量がはっきりと増え、さらに大事なことに、誰もエージェントを脅威とは見ていませんでした。それは、チームがものを届けるやり方の一部になっていました。" },
-      ],
-    },
-    {
-      title: "仕様駆動開発：エージェントが本当に実行できる仕様の書き方",
-      slug: "spec-driven-development",
-      date: "2026年4月",
-      read: "8分",
-      tag: "SDD",
-      color: "indigo",
-      summary: "実際にマージしたくなるコードをエージェントが生み出すように、私が仕様をどう組み立てているか。そして、その形に行き着くまでに教えてくれた失敗の数々を実践的に紹介します。",
-      body: [
-        { p: "仕様駆動開発は、プロンプトを上手くすることではありません。これは規律です。意図、制約、受け入れ基準を十分に精密に書き、人とエージェントが同じ文書から作業して、完了の意味について合意できるようにします。" },
-        { h: "機能する仕様の解剖図" },
-        { p: "私が書く仕様にはいつも四つの要素があります。一文での意図、触れてはいけない範囲の明示、入力と出力とエラーケースを含む契約、そして受け入れの確認項目です。範囲の明示は多くの人が飛ばす部分であり、まさにエージェントが親切心であなたのモジュールを半分書き換えてしまうのを防ぐ部分です。" },
-        { h: "痛い目で覚えた失敗" },
-        { p: "曖昧な受け入れ基準は、自信たっぷりに間違ったコードを生みます。暗黙の文脈、つまり認証の扱い方をエージェントが知っているはずだと思い込むようなものは、もっともらしく見えて規約を壊すコードを生みます。どちらの直し方も同じです。当たり前に思えても、書き出すことです。" },
-        { p: "うまくやれば、SDDはエージェントを、決して疲れない丁寧なジュニアエンジニアのように感じさせます。下手にやれば、とても速い散らかりを生みます。その違いは、丸ごと仕様の中にあります。" },
-      ],
-    },
-    {
-      title: "一括書き換えなしでAngularJSをAngular 17へ移行する",
-      slug: "angularjs-to-angular-17-migration",
-      date: "2026年2月",
-      read: "7分",
-      tag: "モダナイゼーション",
-      color: "rose",
-      summary: "行政システムをAngularJSとJava 8から、Angular 17とJava 17へ段階的にモダナイズした方法。その間ずっとリリースを続け、コードを一度も凍結しませんでした。",
-      body: [
-        { p: "一括書き換えは魅力的に見えて、ほとんどの場合は誤りです。SEFAZ PAのシステムで凍結して書き直していたら、数か月のあいだリリースがゼロになり、恐ろしい切り替えが待っていたはずです。代わりに段階的にモダナイズし、その間ずっと明かりは灯ったままでした。" },
-        { h: "置き換えではなく、締め上げる" },
-        { p: "私たちはレガシーアプリを、古いAngularJSの画面と新しいAngular 17のモジュールの間でルーティングできる外殻で包みました。新しい機能は初日からモダンなスタックで動き、古い画面は壊れる頻度の順に、一つずつ移していきました。" },
-        { h: "バックエンドも歩調を合わせて動いた" },
-        { p: "Java 8からJava 17への移行も同じ理屈でした。きれいなモジュールを切り出し、その周りに契約を置き、契約の裏側で移行する。一つひとつの変更が大きくなかったので、一つひとつの変更が怖くありませんでした。" },
-        { quote: "段階的な移行はスライドの上では遅く見えて、現実でははるかに速い。なぜなら、リリースを止めないからです。" },
-        { p: "結果として、バグの出る頻度ははっきりと下がり、チームは新しいスタックを理解していました。ある日いきなり引き継いだのではなく、少しずつ自分たちで作ったからです。" },
-      ],
-    },
-    {
-      title: "体系立てたコードレビューで手戻りをほぼゼロにした方法",
-      slug: "structured-code-reviews-rework",
-      date: "2025年12月",
-      read: "5分",
-      tag: "チーム品質",
-      color: "sage",
-      summary: "Bradescoでは、手戻りは提供にかかる見えない税金でした。20名から30名のグループで、それをほぼゼロまで下げた軽量なレビューとQAの規律を紹介します。",
-      body: [
-        { p: "手戻りはダッシュボードにはほとんど現れませんが、チームがやることの中で最も高くつきます。Bradescoでやり直しが起きていたのは、人が不注意だったからではなく、期待が暗黙のままで、レビューが一貫していなかったからです。" },
-        { h: "レビューのチェックリストは退屈に、そして共有する" },
-        { p: "契約、テスト、エッジケース、アクセシビリティをカバーする短く明確なチェックリストを合意し、すべてのプルリクエストが同じ基準を満たすようにしました。退屈であることこそが狙いです。一貫性が、毎回のレビューから駆け引きを取り除いてくれます。" },
-        { h: "プルリクエストの前に捕まえる" },
-        { p: "先回りのQAと、コーディングを始める前の手早い技術的な目線合わせが、そうでなければレビューで、もっと悪ければ本番で表面化していた誤解を捕まえました。最初の10分の会話が、たびたび一日分の手戻りを節約しました。" },
-        { p: "どれも華やかではありません。良い状態とは何かを合意し、それを守り続けるという規律にすぎません。それが手戻りを、絶え間ない足かせから、無視できる端数へと変えました。" },
-      ],
-    },
-  ],
   contact: {
     email: "ruanfailache@gmail.com",
     linkedin: "linkedin.com/in/ruanfailache",
@@ -991,6 +773,8 @@ const ja: LocaleContent = {
     blogTitle: "記事。",
     blogSubtitle:
       "AIエージェント、仕様駆動開発、そしてエンタープライズシステムを壊さずにモダナイズすることについての現場メモ。",
+    noPosts: "まだ記事がありません。",
+    noProjects: "まだプロジェクトがありません。",
     backToPosts: "記事一覧へ戻る",
     readWord: "",
     workWithMe: "一緒に働く",

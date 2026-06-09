@@ -1,12 +1,21 @@
 import Link from "next/link";
 import type { LocaleContent, Locale } from "@/lib/i18n";
+import type { Post } from "@/lib/types";
 import { accentColors } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import Arrow from "@/components/ui/Arrow";
 
-export default function LatestPosts({ content, locale }: { content: LocaleContent; locale: Locale }) {
-  const preview = content.posts.slice(0, 3);
+export default function LatestPosts({
+  content,
+  locale,
+  posts = [],
+}: {
+  content: LocaleContent;
+  locale: Locale;
+  posts?: Post[];
+}) {
+  const preview = posts.slice(0, 3);
 
   return (
     <section style={{ background: "var(--bg)", padding: "72px 0" }}>

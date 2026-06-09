@@ -1,5 +1,7 @@
 import Link from "next/link";
-import type { Post, LocaleContent, Locale } from "@/lib/i18n";
+import ReactMarkdown from "react-markdown";
+import type { LocaleContent, Locale } from "@/lib/i18n";
+import type { Post } from "@/lib/types";
 import { accentColors } from "@/components/ui/Tag";
 import { PrimaryButton } from "@/components/ui/Button";
 import Arrow from "@/components/ui/Arrow";
@@ -65,23 +67,70 @@ export default function PostView({
       <div style={{ height: 1, background: "var(--border)", marginBottom: 36 }} />
 
       <article>
-        {post.body.map((block, i) => {
-          if (block.h) return (
-            <h3 key={i} style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 22, color: "var(--fg)", margin: "36px 0 14px", letterSpacing: "-0.01em" }}>
-              {block.h}
-            </h3>
-          );
-          if (block.quote) return (
-            <blockquote key={i} style={{ borderLeft: `3px solid ${fg}`, background: bg, borderRadius: "0 12px 12px 0", padding: "18px 24px", margin: "28px 0", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 19, fontWeight: 500, color: "var(--fg)", lineHeight: 1.5, fontStyle: "italic" }}>
-              {block.quote}
-            </blockquote>
-          );
-          return (
-            <p key={i} style={{ fontSize: 17, color: "var(--fg-mid)", lineHeight: 1.75, marginBottom: 20 }}>
-              {block.p}
-            </p>
-          );
-        })}
+        {post.markdown ? (
+          <ReactMarkdown
+            components={{
+              h2: ({ children }) => (
+                <h2 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 26, color: "var(--fg)", margin: "40px 0 16px", letterSpacing: "-0.015em" }}>
+                  {children}
+                </h2>
+              ),
+              h3: ({ children }) => (
+                <h3 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 22, color: "var(--fg)", margin: "36px 0 14px", letterSpacing: "-0.01em" }}>
+                  {children}
+                </h3>
+              ),
+              p: ({ children }) => (
+                <p style={{ fontSize: 17, color: "var(--fg-mid)", lineHeight: 1.75, marginBottom: 20 }}>
+                  {children}
+                </p>
+              ),
+              blockquote: ({ children }) => (
+                <blockquote style={{ borderLeft: `3px solid ${fg}`, background: bg, borderRadius: "0 12px 12px 0", padding: "18px 24px", margin: "28px 0", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 19, fontWeight: 500, color: "var(--fg)", lineHeight: 1.5, fontStyle: "italic" }}>
+                  {children}
+                </blockquote>
+              ),
+              code: ({ children }) => (
+                <code style={{ fontFamily: "monospace", background: "var(--panel)", color: "var(--indigo)", padding: "2px 6px", borderRadius: 4, fontSize: 15 }}>
+                  {children}
+                </code>
+              ),
+              pre: ({ children }) => (
+                <pre style={{ background: "var(--panel)", border: "1px solid var(--border)", borderRadius: 10, padding: "20px 24px", overflowX: "auto", marginBottom: 20 }}>
+                  {children}
+                </pre>
+              ),
+              strong: ({ children }) => (
+                <strong style={{ fontWeight: 700, color: "var(--fg)" }}>{children}</strong>
+              ),
+              a: ({ href, children }) => (
+                <a href={href} style={{ color: "var(--indigo)", textDecoration: "underline" }} target="_blank" rel="noopener noreferrer">
+                  {children}
+                </a>
+              ),
+            }}
+          >
+            {post.markdown}
+          </ReactMarkdown>
+        ) : (
+          post.body.map((block, i) => {
+            if (block.h) return (
+              <h3 key={i} style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 22, color: "var(--fg)", margin: "36px 0 14px", letterSpacing: "-0.01em" }}>
+                {block.h}
+              </h3>
+            );
+            if (block.quote) return (
+              <blockquote key={i} style={{ borderLeft: `3px solid ${fg}`, background: bg, borderRadius: "0 12px 12px 0", padding: "18px 24px", margin: "28px 0", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 19, fontWeight: 500, color: "var(--fg)", lineHeight: 1.5, fontStyle: "italic" }}>
+                {block.quote}
+              </blockquote>
+            );
+            return (
+              <p key={i} style={{ fontSize: 17, color: "var(--fg-mid)", lineHeight: 1.75, marginBottom: 20 }}>
+                {block.p}
+              </p>
+            );
+          })
+        )}
       </article>
 
       <div

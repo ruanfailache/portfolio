@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { Post, LocaleContent, Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import type { Post } from "@/lib/types";
 import { accentColors } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
 import Arrow from "@/components/ui/Arrow";
