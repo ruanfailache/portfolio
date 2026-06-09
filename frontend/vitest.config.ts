@@ -9,7 +9,15 @@ export default defineConfig({
     setupFiles: ["./test/setup.ts"],
     coverage: {
       provider: "v8",
-      include: ["lib/i18n.ts", "app/api/**/*.ts", "proxy.ts"],
+      include: [
+        "lib/i18n.ts",
+        "app/api/**/*.ts",
+        "proxy.ts",
+        "components/ui/Card.tsx",
+        "components/controls/ThemeToggle.tsx",
+        "components/controls/LangSwitcher.tsx",
+        "features/contact/ContactForm.tsx",
+      ],
       exclude: ["**/*.d.ts"],
       thresholds: {
         lines: 80,
