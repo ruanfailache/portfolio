@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Inter } from "next/font/google";
-import { headers, cookies } from "next/headers";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -47,11 +47,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [nonce, cookieStore] = await Promise.all([
-    headers().then((h) => h.get("x-nonce") ?? ""),
-    cookies(),
-  ]);
-  const locale = cookieStore.get("rf-lang")?.value ?? "en";
+  const reqHeaders = await headers();
+  const nonce = reqHeaders.get("x-nonce") ?? "";
+  const locale = reqHeaders.get("x-locale") ?? "en";
 
   return (
     <html

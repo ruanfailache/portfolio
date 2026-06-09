@@ -50,8 +50,13 @@ export function proxy(request: NextRequest) {
     return res;
   }
 
+  const localeInPath = LOCALES.find(
+    (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
+  ) ?? "en";
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
+  requestHeaders.set("x-locale", localeInPath);
 
   const res = NextResponse.next({ request: { headers: requestHeaders } });
   res.headers.set("Content-Security-Policy", csp);
