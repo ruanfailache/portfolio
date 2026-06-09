@@ -22,8 +22,14 @@ export default async function LangLayout({
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1000] focus:px-4 focus:py-2 focus:bg-indigo focus:text-white focus:rounded-lg focus:font-sans focus:text-sm focus:font-semibold focus:no-underline"
+      >
+        Skip to content
+      </a>
       <Header content={content} locale={locale} />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1">{children}</main>
       <Footer content={content} locale={locale} />
     </>
   );

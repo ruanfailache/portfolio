@@ -2,13 +2,16 @@ export default function Card({
   children,
   hoverable,
   className,
+  onClick,
 }: {
   children: React.ReactNode;
   hoverable?: boolean;
   className?: string;
+  onClick?: () => void;
 }) {
   return (
     <div
+      onClick={onClick}
       className={[
         "bg-card border-[1.5px] border-border rounded-[20px] p-7",
         "shadow-[0_1px_4px_var(--card-shadow-soft)]",

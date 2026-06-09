@@ -50,8 +50,9 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
           <h3 className="font-display font-bold text-xl mb-[22px] text-fg">{ui.sendTitle}</h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.formAbout}</label>
+              <label htmlFor="contact-about" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.formAbout}</label>
               <select
+                id="contact-about"
                 value={form.type}
                 required
                 onChange={(e) => setForm((v) => ({ ...v, type: e.target.value }))}
@@ -61,8 +62,9 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
               </select>
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.nameLabel}</label>
+              <label htmlFor="contact-name" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.nameLabel}</label>
               <input
+                id="contact-name"
                 type="text"
                 placeholder={ui.namePlaceholder}
                 value={form.name}
@@ -72,8 +74,9 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
               />
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.emailLabel}</label>
+              <label htmlFor="contact-email" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.emailLabel}</label>
               <input
+                id="contact-email"
                 type="email"
                 placeholder={ui.emailPlaceholder}
                 value={form.email}
@@ -83,8 +86,9 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
               />
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.subjectLabel}</label>
+              <label htmlFor="contact-subject" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.subjectLabel}</label>
               <input
+                id="contact-subject"
                 type="text"
                 placeholder={ui.subjectPlaceholder}
                 value={form.subject}
@@ -97,8 +101,9 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
               </p>
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.messageLabel}</label>
+              <label htmlFor="contact-message" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.messageLabel}</label>
               <textarea
+                id="contact-message"
                 rows={4}
                 placeholder={ui.messagePlaceholder}
                 value={form.message}

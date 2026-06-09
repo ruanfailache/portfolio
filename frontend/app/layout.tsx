@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Inter } from "next/font/google";
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -47,10 +47,15 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const nonce = (await headers()).get("x-nonce") ?? "";
+  const [nonce, cookieStore] = await Promise.all([
+    headers().then((h) => h.get("x-nonce") ?? ""),
+    cookies(),
+  ]);
+  const locale = cookieStore.get("rf-lang")?.value ?? "en";
 
   return (
     <html
+      lang={locale}
       suppressHydrationWarning
       className={`${dmSans.variable} ${inter.variable}`}
     >

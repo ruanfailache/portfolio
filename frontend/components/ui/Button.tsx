@@ -4,17 +4,20 @@ export function PrimaryButton({
   children,
   onClick,
   className,
+  style,
   type = "button",
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
   type?: "button" | "submit";
 }) {
   return (
     <button
       type={type}
       onClick={onClick}
+      style={style}
       className={`bg-indigo text-white border-none rounded-[10px] px-6 py-3 font-sans font-semibold text-[15px] cursor-pointer inline-flex items-center gap-2 transition-[filter] duration-150 hover:brightness-90 ${className ?? ""}`}
     >
       {children}
