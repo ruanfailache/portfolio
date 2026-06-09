@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const locale = lang as Locale;
   const content = getContent(locale);
   return {
-    title: `${content.name} | ${content.role}`,
+    title: { absolute: `${content.name} | ${content.role}` },
     description: content.headline,
     openGraph: {
       type: "website",
