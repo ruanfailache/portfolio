@@ -14,22 +14,11 @@ describe("getContent", () => {
     expect(typeof content.name).toBe("string");
     expect(typeof content.role).toBe("string");
     expect(typeof content.headline).toBe("string");
-    expect(Array.isArray(content.posts)).toBe(true);
     expect(Array.isArray(content.projects)).toBe(true);
     expect(Array.isArray(content.experience)).toBe(true);
     expect(Array.isArray(content.capabilities)).toBe(true);
     expect(Array.isArray(content.stack)).toBe(true);
     expect(Array.isArray(content.tags)).toBe(true);
-  });
-
-  it.each(LOCALES)("posts have required fields for locale %s", (locale) => {
-    const { posts } = getContent(locale);
-    for (const post of posts) {
-      expect(typeof post.title).toBe("string");
-      expect(typeof post.slug).toBe("string");
-      expect(typeof post.date).toBe("string");
-      expect(Array.isArray(post.body)).toBe(true);
-    }
   });
 
   it.each(LOCALES)("projects have required fields for locale %s", (locale) => {

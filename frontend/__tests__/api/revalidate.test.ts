@@ -52,21 +52,32 @@ describe("POST /api/revalidate", () => {
     const body = await res.json();
 
     expect(res.status).toBe(200);
-    expect(body.revalidated).toEqual(["/en", "/pt"]);
+    expect(body.revalidated.paths).toEqual(["/en", "/pt"]);
     expect(revalidatePath).toHaveBeenCalledWith("/en");
     expect(revalidatePath).toHaveBeenCalledWith("/pt");
   });
 
-  it("revalidates / by default when no paths are provided", async () => {
+  it("revalidates by tag when tags are provided", async () => {
     process.env.REVALIDATE_SECRET = "correct-secret";
     const { POST } = await import("@/app/api/revalidate/route");
-    const { revalidatePath } = await import("next/cache");
+    const { revalidateTag } = await import("next/cache");
+
+    const res = await POST(makeRequest("correct-secret", { tags: ["posts"] }));
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.revalidated.tags).toEqual(["posts"]);
+    expect(revalidateTag).toHaveBeenCalledWith("posts", "default");
+  });
+
+  it("returns empty arrays when no paths or tags are provided", async () => {
+    process.env.REVALIDATE_SECRET = "correct-secret";
+    const { POST } = await import("@/app/api/revalidate/route");
 
     const res = await POST(makeRequest("correct-secret"));
     const body = await res.json();
 
     expect(res.status).toBe(200);
-    expect(body.revalidated).toEqual(["/"]);
-    expect(revalidatePath).toHaveBeenCalledWith("/");
+    expect(body.revalidated).toEqual({ tags: [], paths: [] });
   });
 });

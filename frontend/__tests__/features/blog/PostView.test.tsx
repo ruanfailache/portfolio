@@ -3,9 +3,9 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import PostView from "@/features/blog/PostView";
 import { getContent } from "@/lib/i18n";
+import { mockPost as post } from "../../fixtures/post";
 
 const content = getContent("en");
-const post = content.posts[0];
 
 describe("PostView", () => {
   it("renders the post title", () => {

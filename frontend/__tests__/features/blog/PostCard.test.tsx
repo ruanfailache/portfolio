@@ -2,10 +2,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import PostCard from "@/features/blog/PostCard";
-import { getContent } from "@/lib/i18n";
-
-const content = getContent("en");
-const post = content.posts[0];
+import { mockPost as post } from "../../fixtures/post";
 
 describe("PostCard", () => {
   it("renders the post title", () => {

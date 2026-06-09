@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { NextRequest } from "next/server";
 import { proxy, detectLocale, buildCsp } from "@/proxy";
 
-function makeRequest(url: string, opts: RequestInit = {}): NextRequest {
+function makeRequest(url: string, opts: Omit<RequestInit, "signal"> & { signal?: AbortSignal } = {}): NextRequest {
   return new NextRequest(`http://localhost${url}`, opts);
 }
 

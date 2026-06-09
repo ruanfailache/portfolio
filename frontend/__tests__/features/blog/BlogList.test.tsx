@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import BlogList from "@/features/blog/BlogList";
 import { getContent } from "@/lib/i18n";
+import { mockPosts } from "../../fixtures/post";
 
 const content = getContent("en");
 
@@ -22,18 +23,23 @@ describe("BlogList", () => {
     expect(screen.getByText(content.ui.blogSubtitle)).toBeInTheDocument();
   });
 
-  it("renders a card for each post", () => {
+  it("renders empty state when no posts passed", () => {
     render(<BlogList content={content} locale="en" />);
-    for (const post of content.posts) {
+    expect(screen.getByText(content.ui.noPosts)).toBeInTheDocument();
+  });
+
+  it("renders a card for each post when posts are passed", () => {
+    render(<BlogList content={content} locale="en" posts={mockPosts} />);
+    for (const post of mockPosts) {
       expect(screen.getByText(post.title)).toBeInTheDocument();
     }
   });
 
-  it("renders post links with locale prefix", () => {
-    render(<BlogList content={content} locale="en" />);
+  it("renders post links with locale prefix when posts are passed", () => {
+    render(<BlogList content={content} locale="en" posts={mockPosts} />);
     const postLinks = screen
       .getAllByRole("link")
       .filter((l) => l.getAttribute("href")?.startsWith("/en/blog/"));
-    expect(postLinks.length).toBe(content.posts.length);
+    expect(postLinks.length).toBe(mockPosts.length);
   });
 });
