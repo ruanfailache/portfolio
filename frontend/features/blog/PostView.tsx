@@ -2,7 +2,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import type { LocaleContent, Locale } from "@/lib/i18n";
 import type { Post } from "@/lib/types";
-import { accentColors } from "@/components/ui/Tag";
+import { textColorMap, bgPaleMap, borderLMap } from "@/components/ui/Tag";
 import { PrimaryButton } from "@/components/ui/Button";
 import Arrow from "@/components/ui/Arrow";
 
@@ -15,96 +15,73 @@ export default function PostView({
   content: LocaleContent;
   locale: Locale;
 }) {
-  const { bg, fg } = accentColors(post.color);
+  const color = post.color;
 
   return (
-    <div style={{ maxWidth: 760, margin: "0 auto", padding: "48px 32px 0" }}>
+    <div className="max-w-[760px] mx-auto px-8 pt-12">
       <Link
         href={`/${locale}/blog`}
-        style={{
-          color: "var(--fg-mid)",
-          fontFamily: "var(--font-inter), sans-serif",
-          fontWeight: 600,
-          fontSize: 14,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 6,
-          marginBottom: 32,
-          textDecoration: "none",
-          transition: "color 0.15s",
-        }}
+        className="text-fg-mid font-sans font-semibold text-sm inline-flex items-center gap-1.5 mb-8 no-underline transition-colors duration-150 hover:text-indigo"
       >
         ← {content.ui.backToPosts}
       </Link>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-        <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: fg, whiteSpace: "nowrap" }}>
+      <div className="flex items-center gap-[10px] mb-[18px]">
+        <span className={`text-[11px] font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[color]}`}>
           {post.tag}
         </span>
-        <span style={{ fontSize: 13, color: "var(--fg-soft)" }}>
+        <span className="text-[13px] text-fg-soft">
           {post.date} · {post.read} {content.ui.readWord}
         </span>
       </div>
 
-      <h1
-        style={{
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontWeight: 700,
-          fontSize: "clamp(30px, 4.5cqw, 44px)",
-          letterSpacing: "-0.025em",
-          lineHeight: 1.15,
-          color: "var(--fg)",
-          marginBottom: 18,
-        }}
-      >
+      <h1 className="font-display font-bold text-[clamp(30px,4.5cqw,44px)] tracking-[-0.025em] leading-[1.15] text-fg mb-[18px]">
         {post.title}
       </h1>
 
-      <p style={{ fontSize: 19, color: "var(--fg-mid)", lineHeight: 1.6, marginBottom: 36, fontWeight: 400 }}>
+      <p className="text-[19px] text-fg-mid leading-relaxed mb-9 font-normal">
         {post.summary}
       </p>
 
-      <div style={{ height: 1, background: "var(--border)", marginBottom: 36 }} />
+      <div className="h-px bg-border mb-9" />
 
       <article>
         {post.markdown ? (
           <ReactMarkdown
             components={{
               h2: ({ children }) => (
-                <h2 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 26, color: "var(--fg)", margin: "40px 0 16px", letterSpacing: "-0.015em" }}>
+                <h2 className="font-display font-bold text-[26px] text-fg mt-10 mb-4 tracking-[-0.015em]">
                   {children}
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 22, color: "var(--fg)", margin: "36px 0 14px", letterSpacing: "-0.01em" }}>
+                <h3 className="font-display font-bold text-[22px] text-fg mt-9 mb-[14px] tracking-[-0.01em]">
                   {children}
                 </h3>
               ),
               p: ({ children }) => (
-                <p style={{ fontSize: 17, color: "var(--fg-mid)", lineHeight: 1.75, marginBottom: 20 }}>
-                  {children}
-                </p>
+                <p className="text-[17px] text-fg-mid leading-[1.75] mb-5">{children}</p>
               ),
               blockquote: ({ children }) => (
-                <blockquote style={{ borderLeft: `3px solid ${fg}`, background: bg, borderRadius: "0 12px 12px 0", padding: "18px 24px", margin: "28px 0", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 19, fontWeight: 500, color: "var(--fg)", lineHeight: 1.5, fontStyle: "italic" }}>
+                <blockquote className={`${borderLMap[color]} ${bgPaleMap[color]} border-l-[3px] rounded-[0_12px_12px_0] px-6 py-[18px] my-7 font-display text-[19px] font-medium text-fg leading-[1.5] italic`}>
                   {children}
                 </blockquote>
               ),
               code: ({ children }) => (
-                <code style={{ fontFamily: "monospace", background: "var(--panel)", color: "var(--indigo)", padding: "2px 6px", borderRadius: 4, fontSize: 15 }}>
+                <code className="font-mono bg-panel text-indigo px-1.5 py-[2px] rounded text-[15px]">
                   {children}
                 </code>
               ),
               pre: ({ children }) => (
-                <pre style={{ background: "var(--panel)", border: "1px solid var(--border)", borderRadius: 10, padding: "20px 24px", overflowX: "auto", marginBottom: 20 }}>
+                <pre className="bg-panel border border-border rounded-[10px] px-6 py-5 overflow-x-auto mb-5">
                   {children}
                 </pre>
               ),
               strong: ({ children }) => (
-                <strong style={{ fontWeight: 700, color: "var(--fg)" }}>{children}</strong>
+                <strong className="font-bold text-fg">{children}</strong>
               ),
               a: ({ href, children }) => (
-                <a href={href} style={{ color: "var(--indigo)", textDecoration: "underline" }} target="_blank" rel="noopener noreferrer">
+                <a href={href} className="text-indigo underline" target="_blank" rel="noopener noreferrer">
                   {children}
                 </a>
               ),
@@ -115,17 +92,17 @@ export default function PostView({
         ) : (
           post.body.map((block, i) => {
             if (block.h) return (
-              <h3 key={i} style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 22, color: "var(--fg)", margin: "36px 0 14px", letterSpacing: "-0.01em" }}>
+              <h3 key={i} className="font-display font-bold text-[22px] text-fg mt-9 mb-[14px] tracking-[-0.01em]">
                 {block.h}
               </h3>
             );
             if (block.quote) return (
-              <blockquote key={i} style={{ borderLeft: `3px solid ${fg}`, background: bg, borderRadius: "0 12px 12px 0", padding: "18px 24px", margin: "28px 0", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 19, fontWeight: 500, color: "var(--fg)", lineHeight: 1.5, fontStyle: "italic" }}>
+              <blockquote key={i} className={`${borderLMap[color]} ${bgPaleMap[color]} border-l-[3px] rounded-[0_12px_12px_0] px-6 py-[18px] my-7 font-display text-[19px] font-medium text-fg leading-[1.5] italic`}>
                 {block.quote}
               </blockquote>
             );
             return (
-              <p key={i} style={{ fontSize: 17, color: "var(--fg-mid)", lineHeight: 1.75, marginBottom: 20 }}>
+              <p key={i} className="text-[17px] text-fg-mid leading-[1.75] mb-5">
                 {block.p}
               </p>
             );
@@ -133,27 +110,13 @@ export default function PostView({
         )}
       </article>
 
-      <div
-        style={{
-          marginTop: 48,
-          paddingTop: 32,
-          borderTop: "1.5px solid var(--border)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 16,
-          marginBottom: 8,
-        }}
-      >
+      <div className="mt-12 pt-8 border-t-[1.5px] border-border flex justify-between items-center flex-wrap gap-4 mb-2">
         <div>
-          <div style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 16, color: "var(--fg)" }}>
-            Ruan Failache
-          </div>
-          <div style={{ fontSize: 13, color: "var(--fg-soft)" }}>{content.ui.postFooterTagline}</div>
+          <div className="font-display font-bold text-base text-fg">Ruan Failache</div>
+          <div className="text-[13px] text-fg-soft">{content.ui.postFooterTagline}</div>
         </div>
-        <Link href={`/${locale}/contact`} style={{ textDecoration: "none" }}>
-          <PrimaryButton style={{ padding: "10px 20px", fontSize: 14 }}>
+        <Link href={`/${locale}/contact`} className="no-underline">
+          <PrimaryButton className="py-[10px] px-5 text-sm">
             {content.ui.workWithMe} <Arrow />
           </PrimaryButton>
         </Link>

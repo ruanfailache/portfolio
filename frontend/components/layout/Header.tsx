@@ -51,73 +51,34 @@ export default function Header({
 
   return (
     <header
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-        background: scrolled ? "var(--header-bg-scroll)" : "var(--header-bg)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1.5px solid var(--border)",
-        transition: "background 0.3s, box-shadow 0.3s",
-        boxShadow: scrolled ? "0 2px 16px var(--header-shadow)" : "none",
-      }}
+      className={[
+        "sticky top-0 z-[100] backdrop-blur-[12px] border-b border-border",
+        "transition-[background,box-shadow] duration-300",
+        scrolled
+          ? "bg-header-bg-scroll shadow-[0_2px_16px_var(--header-shadow)]"
+          : "bg-header-bg shadow-none",
+      ].join(" ")}
     >
       <div
-        style={{
-          maxWidth: 1100,
-          margin: "0 auto",
-          padding: mobile ? "0 14px" : "0 32px",
-          height: 64,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: mobile ? 8 : 12,
-        }}
+        className={[
+          "max-w-[1100px] mx-auto h-16 flex items-center justify-between",
+          mobile ? "px-[14px] gap-2" : "px-8 gap-3",
+        ].join(" ")}
       >
         {/* Logo */}
-        <Link
-          href={`/${locale}`}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            textDecoration: "none",
-            flexShrink: 0,
-          }}
-        >
-          <span
-            style={{
-              width: 34,
-              height: 34,
-              background: "var(--indigo)",
-              borderRadius: 10,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              fontWeight: 700,
-              fontSize: 15,
-            }}
-          >
+        <Link href={`/${locale}`} className="flex items-center gap-[10px] no-underline shrink-0">
+          <span className="w-[34px] h-[34px] bg-indigo rounded-[10px] flex items-center justify-center text-white font-display font-bold text-[15px]">
             R
           </span>
           {!mobile && (
-            <span
-              style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                fontWeight: 600,
-                fontSize: 16,
-                color: "var(--fg)",
-              }}
-            >
+            <span className="font-display font-semibold text-base text-fg">
               Ruan Failache
             </span>
           )}
         </Link>
 
         {/* Nav */}
-        <nav style={{ display: "flex", gap: mobile ? 1 : 6 }}>
+        <nav className={`flex ${mobile ? "gap-px" : "gap-1.5"}`}>
           {NAV_PAGES.map((page) => {
             const active = isPageActive(page, pathname, locale);
             return (
@@ -125,20 +86,11 @@ export default function Header({
                 key={page}
                 href={pageHref(page, locale)}
                 aria-current={active ? "page" : undefined}
-                style={{
-                  border: "none",
-                  cursor: "pointer",
-                  fontFamily: "var(--font-inter), sans-serif",
-                  fontSize: mobile ? 13 : 14,
-                  fontWeight: 500,
-                  color: active ? "var(--indigo)" : "var(--fg-mid)",
-                  padding: mobile ? "6px 8px" : "6px 14px",
-                  borderRadius: 8,
-                  background: active ? "var(--indigo-pale)" : "transparent",
-                  transition: "color 0.15s, background 0.15s",
-                  whiteSpace: "nowrap",
-                  textDecoration: "none",
-                }}
+                className={[
+                  "font-sans font-medium rounded-lg whitespace-nowrap no-underline transition-[color,background] duration-150",
+                  mobile ? "text-[13px] px-2 py-1.5" : "text-sm px-[14px] py-1.5",
+                  active ? "text-indigo bg-indigo-pale" : "text-fg-mid bg-transparent",
+                ].join(" ")}
               >
                 {content.ui.nav[page]}
               </Link>
@@ -147,35 +99,23 @@ export default function Header({
         </nav>
 
         {/* Actions */}
-        <div style={{ display: "flex", alignItems: "center", gap: mobile ? 6 : 8, flexShrink: 0 }}>
+        <div className={`flex items-center shrink-0 ${mobile ? "gap-1.5" : "gap-2"}`}>
           {!mobile && (
             <Link
               href={`/${locale}/resume`}
-              style={{
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: 14,
-                fontWeight: 500,
-                color: pathname.startsWith(`/${locale}/resume`) ? "var(--indigo)" : "var(--fg-mid)",
-                padding: "6px 10px",
-                borderRadius: 8,
-                whiteSpace: "nowrap",
-                textDecoration: "none",
-                transition: "color 0.15s",
-              }}
+              className={[
+                "font-sans text-sm font-medium px-[10px] py-1.5 rounded-lg whitespace-nowrap no-underline transition-colors duration-150",
+                pathname.startsWith(`/${locale}/resume`) ? "text-indigo" : "text-fg-mid",
+              ].join(" ")}
             >
               {content.ui.resumeNav}
             </Link>
           )}
           <LangSwitcher currentLocale={locale} ariaLabel={content.ui.language} />
-          <ThemeToggle
-            ariaLabels={{ toLight: content.ui.themeToLight, toDark: content.ui.themeToDark }}
-          />
+          <ThemeToggle ariaLabels={{ toLight: content.ui.themeToLight, toDark: content.ui.themeToDark }} />
           {!mobile && (
-            <Link href={`/${locale}/contact`} style={{ textDecoration: "none" }}>
-              <PrimaryButton style={{ padding: "9px 20px", fontSize: 14 }}>
+            <Link href={`/${locale}/contact`} className="no-underline">
+              <PrimaryButton className="py-[9px] px-5 text-sm">
                 {content.ui.hireMe}
               </PrimaryButton>
             </Link>

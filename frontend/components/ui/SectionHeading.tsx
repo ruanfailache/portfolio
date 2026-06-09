@@ -12,31 +12,13 @@ export default function SectionHeading({
   align?: "left" | "center";
 }) {
   return (
-    <div style={{ marginBottom: 44, textAlign: align }}>
+    <div className={`mb-11 ${align === "center" ? "text-center" : ""}`}>
       {label && <SectionLabel>{label}</SectionLabel>}
-      <h2
-        style={{
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "clamp(28px, 4cqw, 40px)",
-          fontWeight: 700,
-          letterSpacing: "-0.02em",
-          lineHeight: 1.15,
-          color: "var(--fg)",
-          marginBottom: subtitle ? 14 : 0,
-        }}
-      >
+      <h2 className={`font-display font-bold text-[clamp(28px,4cqw,40px)] tracking-[-0.02em] leading-[1.15] text-fg ${subtitle ? "mb-3.5" : ""}`}>
         {title}
       </h2>
       {subtitle && (
-        <p
-          style={{
-            fontSize: 17,
-            color: "var(--fg-mid)",
-            lineHeight: 1.6,
-            maxWidth: 580,
-            margin: align === "center" ? "0 auto" : undefined,
-          }}
-        >
+        <p className={`text-[17px] text-fg-mid leading-relaxed max-w-[580px] ${align === "center" ? "mx-auto" : ""}`}>
           {subtitle}
         </p>
       )}

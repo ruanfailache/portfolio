@@ -2,35 +2,23 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function BlogLoading() {
   return (
-    <div style={{ maxWidth: 860, margin: "0 auto", padding: "64px 32px" }}>
-      {/* Section heading */}
-      <div style={{ marginBottom: 48 }}>
-        <Skeleton width={60} height={12} style={{ marginBottom: 12 }} />
-        <Skeleton width={180} height={36} style={{ marginBottom: 14 }} />
-        <Skeleton width="80%" height={16} />
+    <div className="max-w-[860px] mx-auto px-8 py-16">
+      <div className="mb-12">
+        <Skeleton className="w-[60px] h-3 mb-3" />
+        <Skeleton className="w-[180px] h-9 mb-[14px]" />
+        <Skeleton className="w-[80%] h-4" />
       </div>
 
-      {/* Post cards */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <div className="flex flex-col gap-5">
         {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            style={{
-              border: "1.5px solid var(--border)",
-              borderRadius: 16,
-              padding: "24px 28px",
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-            }}
-          >
-            <div style={{ display: "flex", gap: 8 }}>
-              <Skeleton width={60} height={22} style={{ borderRadius: 99 }} />
-              <Skeleton width={50} height={22} style={{ borderRadius: 99 }} />
+          <div key={i} className="border-[1.5px] border-border rounded-2xl px-7 py-6 flex flex-col gap-3">
+            <div className="flex gap-2">
+              <Skeleton className="w-[60px] h-[22px] rounded-full" />
+              <Skeleton className="w-[50px] h-[22px] rounded-full" />
             </div>
-            <Skeleton width="70%" height={24} />
-            <Skeleton width="90%" height={15} />
-            <Skeleton width="60%" height={15} />
+            <Skeleton className="w-[70%] h-6" />
+            <Skeleton className="w-[90%] h-[15px]" />
+            <Skeleton className="w-[60%] h-[15px]" />
           </div>
         ))}
       </div>

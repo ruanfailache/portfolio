@@ -1,5 +1,40 @@
 @import "tailwindcss";
 
+/* ─── TAILWIND THEME ALIASES ─── */
+@theme {
+  --color-bg:               var(--bg);
+  --color-bg-alt:           var(--bg-alt);
+  --color-fg:               var(--fg);
+  --color-fg-mid:           var(--fg-mid);
+  --color-fg-soft:          var(--fg-soft);
+  --color-border:           var(--border);
+  --color-card:             var(--card);
+  --color-panel:            var(--panel);
+  --color-panel-fg:         var(--panel-fg);
+  --color-panel-soft:       var(--panel-soft);
+  --color-panel-faint:      var(--panel-faint);
+  --color-panel-line:       var(--panel-line);
+  --color-panel-foot:       var(--panel-foot);
+  --color-panel-foot-line:  var(--panel-foot-line);
+  --color-indigo:           var(--indigo);
+  --color-indigo-pale:      var(--indigo-pale);
+  --color-indigo-mid:       var(--indigo-mid);
+  --color-sage:             var(--sage);
+  --color-sage-pale:        var(--sage-pale);
+  --color-rose:             var(--rose);
+  --color-rose-pale:        var(--rose-pale);
+  --color-amber:            var(--amber);
+  --color-amber-pale:       var(--amber-pale);
+  --color-header-bg:        var(--header-bg);
+  --color-header-bg-scroll: var(--header-bg-scroll);
+  --color-header-shadow:    var(--header-shadow);
+  --color-card-shadow:      var(--card-shadow);
+  --color-card-shadow-soft: var(--card-shadow-soft);
+
+  --font-sans:    var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), sans-serif;
+}
+
 /* ─── OKLCH DESIGN TOKENS ─── */
 :root {
   --accent-hue: 264;

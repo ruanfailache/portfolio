@@ -2,50 +2,37 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function CaseStudyLoading() {
   return (
-    <div style={{ maxWidth: 920, margin: "0 auto", padding: "48px 32px 0" }}>
-      {/* Back link */}
-      <Skeleton width={140} height={14} style={{ marginBottom: 32 }} />
+    <div className="max-w-[920px] mx-auto px-8 pt-12">
+      <Skeleton className="w-[140px] h-[14px] mb-8" />
 
-      {/* Kicker + status */}
-      <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-        <Skeleton width={80} height={12} />
-        <Skeleton width={70} height={12} />
+      <div className="flex gap-[10px] mb-4">
+        <Skeleton className="w-20 h-3" />
+        <Skeleton className="w-[70px] h-3" />
       </div>
 
-      {/* Title */}
-      <Skeleton width="70%" height={44} style={{ marginBottom: 12 }} />
+      <Skeleton className="w-[70%] h-11 mb-3" />
+      <Skeleton className="w-[140px] h-4 mb-8" />
+      <Skeleton className="w-full aspect-video mb-9 rounded-2xl" />
 
-      {/* Company */}
-      <Skeleton width={140} height={16} style={{ marginBottom: 32 }} />
-
-      {/* 16:9 image placeholder */}
-      <Skeleton
-        width="100%"
-        height={0}
-        style={{ aspectRatio: "16/9", height: "auto", paddingBottom: "56.25%", marginBottom: 36, borderRadius: 16 }}
-      />
-
-      {/* Two-column content */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 240px", gap: 48 }}>
+      <div className="grid grid-cols-[1fr_240px] gap-12">
         <div>
-          <Skeleton width={100} height={22} style={{ marginBottom: 16 }} />
-          <Skeleton width="100%" height={16} style={{ marginBottom: 10 }} />
-          <Skeleton width="95%" height={16} style={{ marginBottom: 10 }} />
-          <Skeleton width="85%" height={16} style={{ marginBottom: 10 }} />
-          <Skeleton width="90%" height={16} style={{ marginBottom: 10 }} />
-          <Skeleton width="70%" height={16} style={{ marginBottom: 32 }} />
-
-          <div style={{ height: 80, border: "1.5px solid var(--border)", borderRadius: 12 }} />
+          <Skeleton className="w-[100px] h-[22px] mb-4" />
+          <Skeleton className="w-full h-4 mb-[10px]" />
+          <Skeleton className="w-[95%] h-4 mb-[10px]" />
+          <Skeleton className="w-[85%] h-4 mb-[10px]" />
+          <Skeleton className="w-[90%] h-4 mb-[10px]" />
+          <Skeleton className="w-[70%] h-4 mb-8" />
+          <div className="h-20 border-[1.5px] border-border rounded-xl" />
         </div>
 
-        <div style={{ borderLeft: "1.5px solid var(--border)", paddingLeft: 28 }}>
-          <Skeleton width={80} height={12} style={{ marginBottom: 12 }} />
-          <Skeleton width="90%" height={14} style={{ marginBottom: 24 }} />
-          <Skeleton width={80} height={12} style={{ marginBottom: 12 }} />
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-            <Skeleton width={60} height={22} style={{ borderRadius: 99 }} />
-            <Skeleton width={70} height={22} style={{ borderRadius: 99 }} />
-            <Skeleton width={55} height={22} style={{ borderRadius: 99 }} />
+        <div className="border-l-[1.5px] border-border pl-7">
+          <Skeleton className="w-20 h-3 mb-3" />
+          <Skeleton className="w-[90%] h-[14px] mb-6" />
+          <Skeleton className="w-20 h-3 mb-3" />
+          <div className="flex flex-wrap gap-1.5">
+            <Skeleton className="w-[60px] h-[22px] rounded-full" />
+            <Skeleton className="w-[70px] h-[22px] rounded-full" />
+            <Skeleton className="w-[55px] h-[22px] rounded-full" />
           </div>
         </div>
       </div>

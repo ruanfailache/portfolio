@@ -46,28 +46,7 @@ export default function ThemeToggle({ ariaLabels }: { ariaLabels: { toLight: str
       onClick={toggle}
       aria-label={isDark ? ariaLabels.toLight : ariaLabels.toDark}
       title={isDark ? ariaLabels.toLight : ariaLabels.toDark}
-      style={{
-        width: 36,
-        height: 36,
-        flexShrink: 0,
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "transparent",
-        border: "1.5px solid var(--border)",
-        borderRadius: 9,
-        color: "var(--fg-mid)",
-        transition: "border-color 0.15s, color 0.15s",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = "var(--indigo)";
-        e.currentTarget.style.borderColor = "var(--indigo)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = "var(--fg-mid)";
-        e.currentTarget.style.borderColor = "var(--border)";
-      }}
+      className="w-9 h-9 shrink-0 cursor-pointer flex items-center justify-center bg-transparent border-[1.5px] border-border rounded-[9px] text-fg-mid transition-[border-color,color] duration-150 hover:text-indigo hover:border-indigo"
     >
       {isDark ? (
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

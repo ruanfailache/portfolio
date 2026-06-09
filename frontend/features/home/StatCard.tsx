@@ -1,4 +1,4 @@
-import { accentColors } from "@/components/ui/Tag";
+import { textColorMap, bgPaleMap, borderPaleMap } from "@/components/ui/Tag";
 import type { AccentColor } from "@/lib/i18n";
 
 export default function StatCard({
@@ -10,31 +10,12 @@ export default function StatCard({
   label: string;
   color?: AccentColor;
 }) {
-  const { bg, fg } = accentColors(color);
   return (
-    <div
-      style={{
-        background: bg,
-        border: `1.5px solid ${fg}33`,
-        borderRadius: 16,
-        padding: "26px 22px",
-        display: "flex",
-        flexDirection: "column",
-        gap: 4,
-      }}
-    >
-      <div
-        style={{
-          fontSize: 44,
-          fontWeight: 700,
-          color: fg,
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          lineHeight: 1,
-        }}
-      >
+    <div className={`${bgPaleMap[color]} border-[1.5px] ${borderPaleMap[color]} rounded-2xl py-[26px] px-[22px] flex flex-col gap-1`}>
+      <div className={`text-[44px] font-bold font-display leading-none ${textColorMap[color]}`}>
         {value}
       </div>
-      <div style={{ fontSize: 13, fontWeight: 600, color: "var(--fg)", marginTop: 6 }}>
+      <div className="text-[13px] font-semibold text-fg mt-1.5">
         {label}
       </div>
     </div>

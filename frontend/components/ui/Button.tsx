@@ -3,36 +3,19 @@
 export function PrimaryButton({
   children,
   onClick,
-  style,
+  className,
   type = "button",
 }: {
   children: React.ReactNode;
   onClick?: () => void;
-  style?: React.CSSProperties;
+  className?: string;
   type?: "button" | "submit";
 }) {
   return (
     <button
       type={type}
       onClick={onClick}
-      style={{
-        background: "var(--indigo)",
-        color: "#fff",
-        border: "none",
-        borderRadius: 10,
-        padding: "12px 24px",
-        fontFamily: "var(--font-inter), sans-serif",
-        fontWeight: 600,
-        fontSize: 15,
-        cursor: "pointer",
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 8,
-        transition: "filter 0.15s",
-        ...style,
-      }}
-      onMouseEnter={(e) => (e.currentTarget.style.filter = "brightness(0.9)")}
-      onMouseLeave={(e) => (e.currentTarget.style.filter = "none")}
+      className={`bg-indigo text-white border-none rounded-[10px] px-6 py-3 font-sans font-semibold text-[15px] cursor-pointer inline-flex items-center gap-2 transition-[filter] duration-150 hover:brightness-90 ${className ?? ""}`}
     >
       {children}
     </button>
@@ -42,32 +25,17 @@ export function PrimaryButton({
 export function GhostButton({
   children,
   onClick,
-  style,
+  className,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
-  style?: React.CSSProperties;
+  className?: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      style={{
-        background: "transparent",
-        color: "var(--fg)",
-        border: "1.5px solid var(--border)",
-        borderRadius: 10,
-        padding: "12px 24px",
-        fontFamily: "var(--font-inter), sans-serif",
-        fontWeight: 600,
-        fontSize: 15,
-        cursor: "pointer",
-        transition: "border-color 0.15s",
-        whiteSpace: "nowrap",
-        ...style,
-      }}
-      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--indigo)")}
-      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+      className={`bg-transparent text-fg border-[1.5px] border-border rounded-[10px] px-6 py-3 font-sans font-semibold text-[15px] cursor-pointer transition-[border-color] duration-150 whitespace-nowrap hover:border-indigo ${className ?? ""}`}
     >
       {children}
     </button>

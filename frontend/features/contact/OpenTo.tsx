@@ -1,14 +1,15 @@
 import type { LocaleContent } from "@/lib/i18n";
-import { accentColors } from "@/components/ui/Tag";
+import { bgMap } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
+import type { AccentColor } from "@/lib/i18n";
 
-const OPEN_TO_COLORS = ["indigo", "sage", "rose"] as const;
+const OPEN_TO_COLORS: AccentColor[] = ["indigo", "sage", "rose"];
 
 const CONTACT_INFO = [
-  { key: "email", value: "ruanfailache@gmail.com", href: "mailto:ruanfailache@gmail.com" },
-  { key: "linkedin", value: "linkedin.com/in/ruanfailache", href: "https://linkedin.com/in/ruanfailache" },
-  { key: "github", value: "github.com/ruanfailache", href: "https://github.com/ruanfailache" },
-  { key: "location", value: null, href: null },
+  { key: "email", href: "mailto:ruanfailache@gmail.com" },
+  { key: "linkedin", href: "https://linkedin.com/in/ruanfailache" },
+  { key: "github", href: "https://github.com/ruanfailache" },
+  { key: "location", href: null },
 ] as const;
 
 export default function OpenTo({ content }: { content: LocaleContent }) {
@@ -21,20 +22,18 @@ export default function OpenTo({ content }: { content: LocaleContent }) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <Card style={{ padding: 24 }}>
-        <h3 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 15, marginBottom: 14, color: "var(--fg)" }}>
-          {ui.openTo}
-        </h3>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="flex flex-col gap-4">
+      <Card className="p-6">
+        <h3 className="font-display font-bold text-[15px] mb-[14px] text-fg">{ui.openTo}</h3>
+        <div className="flex flex-col gap-3">
           {ui.openToItems.map((item, i) => {
-            const { fg } = accentColors(OPEN_TO_COLORS[i] ?? "indigo");
+            const color = OPEN_TO_COLORS[i] ?? "indigo";
             return (
-              <div key={item.label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ width: 10, height: 10, borderRadius: 3, background: fg, flexShrink: 0 }} />
+              <div key={item.label} className="flex items-center gap-3">
+                <span className={`w-[10px] h-[10px] rounded-[3px] shrink-0 ${bgMap[color]}`} />
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--fg)" }}>{item.label}</div>
-                  <div style={{ fontSize: 12, color: "var(--fg-soft)" }}>{item.note}</div>
+                  <div className="text-sm font-semibold text-fg">{item.label}</div>
+                  <div className="text-xs text-fg-soft">{item.note}</div>
                 </div>
               </div>
             );
@@ -42,14 +41,12 @@ export default function OpenTo({ content }: { content: LocaleContent }) {
         </div>
       </Card>
 
-      <Card style={{ padding: 24 }}>
-        <h3 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 15, marginBottom: 12, color: "var(--fg)" }}>
-          {ui.findMe}
-        </h3>
-        <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+      <Card className="p-6">
+        <h3 className="font-display font-bold text-[15px] mb-3 text-fg">{ui.findMe}</h3>
+        <div className="flex flex-col gap-[9px]">
           {CONTACT_INFO.map((item) => (
-            <div key={item.key} style={{ display: "flex", gap: 10 }}>
-              <span style={{ fontSize: 11, fontWeight: 700, color: "var(--fg-soft)", textTransform: "uppercase", letterSpacing: "0.06em", width: 60, flexShrink: 0, paddingTop: 2 }}>
+            <div key={item.key} className="flex gap-[10px]">
+              <span className="text-[11px] font-bold text-fg-soft uppercase tracking-[0.06em] w-[60px] shrink-0 pt-[2px]">
                 {ui.contactLabels[item.key]}
               </span>
               {item.href ? (
@@ -57,12 +54,12 @@ export default function OpenTo({ content }: { content: LocaleContent }) {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ fontSize: 13, color: "var(--indigo)", textDecoration: "none" }}
+                  className="text-[13px] text-indigo no-underline"
                 >
                   {contactValues[item.key]}
                 </a>
               ) : (
-                <span style={{ fontSize: 13, color: "var(--fg-mid)" }}>{contactValues[item.key]}</span>
+                <span className="text-[13px] text-fg-mid">{contactValues[item.key]}</span>
               )}
             </div>
           ))}

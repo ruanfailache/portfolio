@@ -5,66 +5,29 @@ import Arrow from "@/components/ui/Arrow";
 
 export default function CTA({ content, locale }: { content: LocaleContent; locale: Locale }) {
   return (
-    <section style={{ background: "var(--bg)", padding: "24px 0 80px" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 32px" }}>
-        <div
-          style={{
-            background: "var(--panel)",
-            borderRadius: 24,
-            padding: "48px 40px",
-            display: "grid",
-            gridTemplateColumns: "1fr auto",
-            gap: 32,
-            alignItems: "center",
-            transition: "background 0.3s",
-          }}
-        >
+    <section className="bg-bg pt-6 pb-20">
+      <div className="max-w-[1100px] mx-auto px-8">
+        <div className="bg-panel rounded-3xl px-10 py-12 grid grid-cols-[1fr_auto] gap-8 items-center transition-[background] duration-300">
           <div>
-            <div
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--indigo-mid)",
-                marginBottom: 12,
-                fontFamily: "var(--font-inter), sans-serif",
-              }}
-            >
+            <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-indigo-mid mb-3 font-sans">
               {content.ui.ctaKicker}
             </div>
-            <h3
-              style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                fontWeight: 700,
-                fontSize: 28,
-                color: "var(--panel-fg)",
-                lineHeight: 1.2,
-                marginBottom: 12,
-              }}
-            >
+            <h3 className="font-display font-bold text-[28px] text-panel-fg leading-[1.2] mb-3">
               {content.ui.ctaTitle}
             </h3>
-            <p style={{ fontSize: 15, color: "var(--panel-soft)", lineHeight: 1.65, maxWidth: 440 }}>
+            <p className="text-[15px] text-panel-soft leading-[1.65] max-w-[440px]">
               {content.ui.ctaBody}
             </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
-            <Link href={`/${locale}/contact`} style={{ textDecoration: "none" }}>
-              <PrimaryButton style={{ padding: "13px 28px", whiteSpace: "nowrap" }}>
+          <div className="flex flex-col gap-3 shrink-0">
+            <Link href={`/${locale}/contact`} className="no-underline">
+              <PrimaryButton className="py-[13px] px-7 whitespace-nowrap">
                 {content.ui.getInTouch} <Arrow />
               </PrimaryButton>
             </Link>
             <a
               href="mailto:ruanfailache@gmail.com"
-              style={{
-                textAlign: "center",
-                fontSize: 13,
-                color: "var(--panel-faint)",
-                textDecoration: "none",
-                fontFamily: "var(--font-inter), sans-serif",
-                transition: "color 0.15s",
-              }}
+              className="text-center text-[13px] text-panel-faint no-underline font-sans transition-colors duration-150"
             >
               ruanfailache@gmail.com
             </a>

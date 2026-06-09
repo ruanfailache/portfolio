@@ -2,40 +2,37 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function WorkLoading() {
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 32px" }}>
-      {/* Section heading */}
-      <div style={{ marginBottom: 48 }}>
-        <Skeleton width={60} height={12} style={{ marginBottom: 12 }} />
-        <Skeleton width={180} height={36} style={{ marginBottom: 14 }} />
-        <Skeleton width="75%" height={16} />
+    <div className="max-w-[1100px] mx-auto px-8 py-16">
+      <div className="mb-12">
+        <Skeleton className="w-[60px] h-3 mb-3" />
+        <Skeleton className="w-[180px] h-9 mb-[14px]" />
+        <Skeleton className="w-[75%] h-4" />
       </div>
 
-      {/* Tech stack grid */}
-      <div style={{ marginBottom: 64 }}>
-        <Skeleton width={140} height={22} style={{ marginBottom: 20 }} />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
+      <div className="mb-16">
+        <Skeleton className="w-[140px] h-[22px] mb-5" />
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
           {[0, 1, 2].map((i) => (
-            <div key={i} style={{ border: "1.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
-              <Skeleton width={80} height={12} style={{ marginBottom: 16 }} />
-              <Skeleton width="90%" height={14} style={{ marginBottom: 10 }} />
-              <Skeleton width="80%" height={14} style={{ marginBottom: 10 }} />
-              <Skeleton width="70%" height={14} />
+            <div key={i} className="border-[1.5px] border-border rounded-2xl p-6">
+              <Skeleton className="w-20 h-3 mb-4" />
+              <Skeleton className="w-[90%] h-[14px] mb-[10px]" />
+              <Skeleton className="w-[80%] h-[14px] mb-[10px]" />
+              <Skeleton className="w-[70%] h-[14px]" />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Project cards */}
-      <div style={{ marginBottom: 64 }}>
-        <Skeleton width={160} height={22} style={{ marginBottom: 20 }} />
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div className="mb-16">
+        <Skeleton className="w-[160px] h-[22px] mb-5" />
+        <div className="flex flex-col gap-4">
           {[0, 1, 2].map((i) => (
-            <div key={i} style={{ border: "1.5px solid var(--border)", borderRadius: 16, padding: "24px 28px" }}>
-              <Skeleton width="60%" height={22} style={{ marginBottom: 10 }} />
-              <Skeleton width="85%" height={15} style={{ marginBottom: 10 }} />
-              <div style={{ display: "flex", gap: 8, marginTop: 14 }}>
-                <Skeleton width={60} height={22} style={{ borderRadius: 99 }} />
-                <Skeleton width={70} height={22} style={{ borderRadius: 99 }} />
+            <div key={i} className="border-[1.5px] border-border rounded-2xl px-7 py-6">
+              <Skeleton className="w-[60%] h-[22px] mb-[10px]" />
+              <Skeleton className="w-[85%] h-[15px] mb-[10px]" />
+              <div className="flex gap-2 mt-[14px]">
+                <Skeleton className="w-[60px] h-[22px] rounded-full" />
+                <Skeleton className="w-[70px] h-[22px] rounded-full" />
               </div>
             </div>
           ))}

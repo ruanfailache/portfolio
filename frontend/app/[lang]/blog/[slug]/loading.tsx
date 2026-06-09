@@ -2,31 +2,25 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function PostLoading() {
   return (
-    <div style={{ maxWidth: 720, margin: "0 auto", padding: "48px 32px" }}>
-      {/* Back link */}
-      <Skeleton width={140} height={14} style={{ marginBottom: 32 }} />
+    <div className="max-w-[720px] mx-auto px-8 py-12">
+      <Skeleton className="w-[140px] h-[14px] mb-8" />
 
-      {/* Tags + meta */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-        <Skeleton width={60} height={22} style={{ borderRadius: 99 }} />
-        <Skeleton width={50} height={22} style={{ borderRadius: 99 }} />
+      <div className="flex gap-2 mb-5">
+        <Skeleton className="w-[60px] h-[22px] rounded-full" />
+        <Skeleton className="w-[50px] h-[22px] rounded-full" />
       </div>
 
-      {/* Title */}
-      <Skeleton width="85%" height={44} style={{ marginBottom: 12 }} />
-      <Skeleton width="65%" height={44} style={{ marginBottom: 24 }} />
+      <Skeleton className="w-[85%] h-11 mb-3" />
+      <Skeleton className="w-[65%] h-11 mb-6" />
 
-      {/* Summary */}
-      <Skeleton width="100%" height={16} style={{ marginBottom: 10 }} />
-      <Skeleton width="90%" height={16} style={{ marginBottom: 10 }} />
-      <Skeleton width="75%" height={16} style={{ marginBottom: 40 }} />
+      <Skeleton className="w-full h-4 mb-[10px]" />
+      <Skeleton className="w-[90%] h-4 mb-[10px]" />
+      <Skeleton className="w-[75%] h-4 mb-10" />
 
-      {/* Divider */}
-      <div style={{ height: 1, background: "var(--border)", marginBottom: 40 }} />
+      <div className="h-px bg-border mb-10" />
 
-      {/* Article body lines */}
       {[100, 95, 88, 92, 70, 80, 96, 85, 60].map((w, i) => (
-        <Skeleton key={i} width={`${w}%`} height={16} style={{ marginBottom: 14 }} />
+        <Skeleton key={i} className={`w-[${w}%] h-4 mb-[14px]`} />
       ))}
     </div>
   );

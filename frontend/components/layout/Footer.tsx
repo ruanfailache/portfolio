@@ -42,75 +42,32 @@ export default function Footer({
   locale: Locale;
 }) {
   return (
-    <footer
-      style={{
-        background: "var(--panel)",
-        padding: "40px 0 28px",
-        marginTop: 80,
-        transition: "background 0.3s",
-      }}
-    >
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 32px" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 28,
-            flexWrap: "wrap",
-            gap: 16,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              fontWeight: 700,
-              fontSize: 18,
-              color: "var(--panel-fg)",
-            }}
-          >
+    <footer className="bg-panel pt-10 pb-7 mt-20 transition-[background] duration-300">
+      <div className="max-w-[1100px] mx-auto px-8">
+        <div className="flex justify-between items-center mb-7 flex-wrap gap-4">
+          <span className="font-display font-bold text-[18px] text-panel-fg">
             Ruan Failache
           </span>
 
-          <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+          <div className="flex gap-1 flex-wrap">
             {NAV_PAGES.map((page) => (
               <Link
                 key={page}
                 href={pageHref(page, locale)}
-                style={{
-                  background: "none",
-                  color: "var(--panel-soft)",
-                  fontFamily: "var(--font-inter), sans-serif",
-                  fontSize: 13,
-                  padding: "4px 10px",
-                  borderRadius: 6,
-                  whiteSpace: "nowrap",
-                  textDecoration: "none",
-                  transition: "color 0.15s",
-                }}
+                className="text-panel-soft font-sans text-[13px] px-[10px] py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
               >
                 {content.ui.nav[page]}
               </Link>
             ))}
             <Link
               href={`/${locale}/resume`}
-              style={{
-                background: "none",
-                color: "var(--panel-soft)",
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: 13,
-                padding: "4px 10px",
-                borderRadius: 6,
-                whiteSpace: "nowrap",
-                textDecoration: "none",
-                transition: "color 0.15s",
-              }}
+              className="text-panel-soft font-sans text-[13px] px-[10px] py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
             >
               {content.ui.resumeNav}
             </Link>
           </div>
 
-          <div style={{ display: "flex", gap: 12 }}>
+          <div className="flex gap-3">
             {SOCIALS.map((s) => (
               <a
                 key={s.label}
@@ -118,16 +75,7 @@ export default function Footer({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                style={{
-                  color: "var(--panel-faint)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 36,
-                  height: 36,
-                  borderRadius: 8,
-                  transition: "color 0.15s",
-                }}
+                className="text-panel-faint flex items-center justify-center w-9 h-9 rounded-lg transition-colors duration-150"
               >
                 {s.icon}
               </a>
@@ -135,21 +83,11 @@ export default function Footer({
           </div>
         </div>
 
-        <div
-          style={{
-            borderTop: "1px solid var(--panel-foot-line)",
-            paddingTop: 20,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 8,
-          }}
-        >
-          <span style={{ fontSize: 13, color: "var(--panel-foot)" }}>
+        <div className="border-t border-panel-foot-line pt-5 flex justify-between items-center flex-wrap gap-2">
+          <span className="text-[13px] text-panel-foot">
             {content.ui.footerCopyright}
           </span>
-          <span style={{ fontSize: 13, color: "var(--panel-foot)" }}>
+          <span className="text-[13px] text-panel-foot">
             {content.ui.footerOpenToWork}
           </span>
         </div>

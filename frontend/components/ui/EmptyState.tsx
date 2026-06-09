@@ -1,19 +1,7 @@
 export default function EmptyState({ message }: { message: string }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "80px 32px",
-        color: "var(--fg-soft)",
-        fontFamily: "var(--font-inter), sans-serif",
-        fontSize: 15,
-        gap: 12,
-      }}
-    >
-      <span style={{ fontSize: 32 }}>✦</span>
+    <div className="flex flex-col items-center justify-center py-20 px-8 text-fg-soft font-sans text-[15px] gap-3">
+      <span className="text-[32px]">✦</span>
       <p>{message}</p>
     </div>
   );

@@ -1,9 +1,11 @@
 import type { LocaleContent, Locale, Project, SideProject } from "@/lib/i18n";
-import { accentColors } from "@/components/ui/Tag";
+import { textColorMap, bgMap } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import EmptyState from "@/components/ui/EmptyState";
 import ProjectCard from "./ProjectCard";
+
+const STACK_COLORS = ["indigo", "sage", "amber"] as const;
 
 export default function WorkList({
   content,
@@ -18,8 +20,9 @@ export default function WorkList({
 }) {
   const displayProjects = projects ?? [];
   const displaySideProjects = sideProjects ?? [];
+
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 32px" }}>
+    <div className="max-w-[1100px] mx-auto px-8 py-16">
       <SectionHeading
         label={content.ui.workKicker}
         title={content.ui.workTitle}
@@ -27,49 +30,23 @@ export default function WorkList({
       />
 
       {/* Tech stack */}
-      <div style={{ marginBottom: 64 }}>
-        <h3
-          style={{
-            fontFamily: "var(--font-dm-sans), sans-serif",
-            fontWeight: 700,
-            fontSize: 22,
-            marginBottom: 20,
-            color: "var(--fg)",
-          }}
-        >
+      <div className="mb-16">
+        <h3 className="font-display font-bold text-[22px] mb-5 text-fg">
           {content.ui.techStack}
         </h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
           {content.stack.map((s, i) => {
-            const { fg } = accentColors(["indigo", "sage", "amber"][i % 3] as "indigo" | "sage" | "amber");
+            const color = STACK_COLORS[i % 3];
             return (
-              <Card key={s.label} style={{ padding: 24 }}>
-                <div
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: fg,
-                    marginBottom: 12,
-                  }}
-                >
+              <Card key={s.label} className="p-6">
+                <div className={`text-xs font-bold tracking-[0.08em] uppercase mb-3 ${textColorMap[color]}`}>
                   {s.label}
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div className="flex flex-col gap-2">
                   {s.items.map((item) => (
-                    <div key={item} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span
-                        style={{
-                          width: 6,
-                          height: 6,
-                          borderRadius: "50%",
-                          background: fg,
-                          flexShrink: 0,
-                          display: "inline-block",
-                        }}
-                      />
-                      <span style={{ fontSize: 14, color: "var(--fg-mid)" }}>{item}</span>
+                    <div key={item} className="flex items-center gap-2">
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 inline-block ${bgMap[color]}`} />
+                      <span className="text-sm text-fg-mid">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -80,22 +57,14 @@ export default function WorkList({
       </div>
 
       {/* Client projects */}
-      <div style={{ marginBottom: 64 }}>
-        <h3
-          style={{
-            fontFamily: "var(--font-dm-sans), sans-serif",
-            fontWeight: 700,
-            fontSize: 22,
-            marginBottom: 20,
-            color: "var(--fg)",
-          }}
-        >
+      <div className="mb-16">
+        <h3 className="font-display font-bold text-[22px] mb-5 text-fg">
           {content.ui.selectedWork}
         </h3>
         {displayProjects.length === 0 ? (
           <EmptyState message={content.ui.noProjects} />
         ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="flex flex-col gap-4">
             {displayProjects.map((p) => (
               <ProjectCard
                 key={p.slug ?? p.title}
@@ -110,21 +79,13 @@ export default function WorkList({
 
       {/* Side projects */}
       <div>
-        <h3
-          style={{
-            fontFamily: "var(--font-dm-sans), sans-serif",
-            fontWeight: 700,
-            fontSize: 22,
-            marginBottom: 20,
-            color: "var(--fg)",
-          }}
-        >
+        <h3 className="font-display font-bold text-[22px] mb-5 text-fg">
           {content.ui.sideProjectsTitle}
         </h3>
         {displaySideProjects.length === 0 ? (
           <EmptyState message={content.ui.noProjects} />
         ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="flex flex-col gap-4">
             {displaySideProjects.map((p) => (
               <ProjectCard
                 key={p.slug}

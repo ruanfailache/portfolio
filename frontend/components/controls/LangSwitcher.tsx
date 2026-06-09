@@ -38,27 +38,16 @@ export default function LangSwitcher({
   };
 
   return (
-    <div ref={ref} style={{ position: "relative" }}>
+    <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={ariaLabel}
         aria-expanded={open}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 5,
-          height: 36,
-          padding: "0 10px",
-          cursor: "pointer",
-          background: open ? "var(--indigo-pale)" : "transparent",
-          border: "1.5px solid var(--border)",
-          borderRadius: 9,
-          color: "var(--fg-mid)",
-          fontFamily: "var(--font-inter), sans-serif",
-          fontSize: 13,
-          fontWeight: 600,
-          transition: "background 0.15s, border-color 0.15s",
-        }}
+        className={[
+          "flex items-center gap-[5px] h-9 px-[10px] cursor-pointer border-[1.5px] border-border rounded-[9px]",
+          "text-fg-mid font-sans text-[13px] font-semibold transition-[background,border-color] duration-150",
+          open ? "bg-indigo-pale" : "bg-transparent",
+        ].join(" ")}
       >
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="9" />
@@ -68,50 +57,22 @@ export default function LangSwitcher({
       </button>
 
       {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: 44,
-            right: 0,
-            minWidth: 150,
-            background: "var(--card)",
-            border: "1.5px solid var(--border)",
-            borderRadius: 12,
-            boxShadow: "0 12px 32px var(--card-shadow)",
-            padding: 6,
-            zIndex: 200,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-          }}
-        >
+        <div className="absolute top-11 right-0 min-w-[150px] bg-card border-[1.5px] border-border rounded-xl shadow-[0_12px_32px_var(--card-shadow)] p-1.5 z-[200] flex flex-col gap-0.5">
           {LOCALES.map((locale) => {
             const active = locale === currentLocale;
             return (
               <button
                 key={locale}
                 onClick={() => switchLocale(locale)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  cursor: "pointer",
-                  background: active ? "var(--indigo-pale)" : "transparent",
-                  border: "none",
-                  borderRadius: 8,
-                  padding: "8px 12px",
-                  color: active ? "var(--indigo)" : "var(--fg-mid)",
-                  fontFamily: "var(--font-inter), sans-serif",
-                  fontSize: 14,
-                  fontWeight: active ? 600 : 500,
-                  textAlign: "left",
-                }}
-                onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "var(--bg-alt)"; }}
-                onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
+                className={[
+                  "flex items-center justify-between gap-3 cursor-pointer border-none rounded-lg px-3 py-2 font-sans text-sm text-left transition-colors duration-100",
+                  active
+                    ? "bg-indigo-pale text-indigo font-semibold"
+                    : "bg-transparent text-fg-mid font-medium hover:bg-bg-alt",
+                ].join(" ")}
               >
                 <span>{strings[locale].label}</span>
-                <span style={{ fontSize: 11, fontWeight: 700, opacity: 0.6 }}>
+                <span className="text-[11px] font-bold opacity-60">
                   {strings[locale].code}
                 </span>
               </button>

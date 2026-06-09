@@ -39,6 +39,19 @@ const SOCIALS = [
   },
 ];
 
+const varToBorderL: Record<string, string> = {
+  "var(--indigo)": "border-l-indigo",
+  "var(--sage)":   "border-l-sage",
+  "var(--rose)":   "border-l-rose",
+  "var(--amber)":  "border-l-amber",
+};
+const varToText: Record<string, string> = {
+  "var(--indigo)": "text-indigo",
+  "var(--sage)":   "text-sage",
+  "var(--rose)":   "text-rose",
+  "var(--amber)":  "text-amber",
+};
+
 function tagColor(tag: string) {
   if (["Angular", "React"].includes(tag)) return "indigo" as const;
   if (["Java", "Spring Boot"].includes(tag)) return "rose" as const;
@@ -50,62 +63,37 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
   return (
     <>
       {/* Hero section */}
-      <section style={{ background: "var(--bg)", paddingTop: 72, paddingBottom: 80 }}>
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: "0 auto",
-            padding: "0 32px",
-            display: "grid",
-            gridTemplateColumns: "1fr 420px",
-            gap: 64,
-            alignItems: "center",
-          }}
-        >
+      <section className="bg-bg pt-[72px] pb-20">
+        <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-[1fr_420px] gap-16 items-center">
           <div>
             <SectionLabel>{content.role}</SectionLabel>
             <h1
-              className="reveal"
-              style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize: "clamp(36px, 5cqw, 60px)",
-                fontWeight: 700,
-                letterSpacing: "-0.03em",
-                lineHeight: 1.1,
-                color: "var(--fg)",
-                marginBottom: 20,
-              }}
+              className="reveal font-display font-bold text-[clamp(36px,5cqw,60px)] tracking-[-0.03em] leading-[1.1] text-fg mb-5"
             >
               Ruan
               <br />
-              <span style={{ color: "var(--indigo)" }}>Failache</span>
+              <span className="text-indigo">Failache</span>
             </h1>
-            <p
-              className="reveal reveal-2"
-              style={{ fontSize: 18, color: "var(--fg-mid)", lineHeight: 1.65, maxWidth: 480, marginBottom: 10 }}
-            >
+            <p className="reveal reveal-2 text-[18px] text-fg-mid leading-[1.65] max-w-[480px] mb-[10px]">
               {content.headline}
             </p>
-            <p
-              className="reveal reveal-2"
-              style={{ fontSize: 14, color: "var(--fg-soft)", lineHeight: 1.6, maxWidth: 460, marginBottom: 28 }}
-            >
+            <p className="reveal reveal-2 text-sm text-fg-soft leading-[1.6] max-w-[460px] mb-7">
               {content.subheadline}
             </p>
-            <div className="reveal reveal-3" style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 32 }}>
+            <div className="reveal reveal-3 flex flex-wrap gap-1.5 mb-8">
               {content.tags.map((t) => <Tag key={t} color={tagColor(t)}>{t}</Tag>)}
             </div>
-            <div className="reveal reveal-4" style={{ display: "flex", gap: 12, marginBottom: 36 }}>
-              <Link href={`/${locale}/work`} style={{ textDecoration: "none" }}>
+            <div className="reveal reveal-4 flex gap-3 mb-9">
+              <Link href={`/${locale}/work`} className="no-underline">
                 <PrimaryButton>
                   {content.ui.viewMyWork} <Arrow />
                 </PrimaryButton>
               </Link>
-              <Link href={`/${locale}/contact`} style={{ textDecoration: "none" }}>
+              <Link href={`/${locale}/contact`} className="no-underline">
                 <GhostButton>{content.ui.letsTalk}</GhostButton>
               </Link>
             </div>
-            <div className="reveal reveal-4" style={{ display: "flex", gap: 16, alignItems: "center" }}>
+            <div className="reveal reveal-4 flex gap-4 items-center">
               {SOCIALS.map((s) => (
                 <a
                   key={s.label}
@@ -113,27 +101,15 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  style={{ color: "var(--fg-soft)", transition: "color 0.15s", display: "flex" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--indigo)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-soft)")}
+                  className="text-fg-soft transition-colors duration-150 flex hover:text-indigo"
                 >
                   {s.icon}
                 </a>
               ))}
-              <span style={{ width: 1, height: 16, background: "var(--border)" }} />
+              <span className="w-px h-4 bg-border" />
               <Link
                 href={`/${locale}/resume`}
-                style={{
-                  color: "var(--fg-mid)",
-                  fontFamily: "var(--font-inter), sans-serif",
-                  fontWeight: 600,
-                  fontSize: 13,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6,
-                  textDecoration: "none",
-                  transition: "color 0.15s",
-                }}
+                className="text-fg-mid font-sans font-semibold text-[13px] flex items-center gap-1.5 no-underline transition-colors duration-150 hover:text-indigo"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -145,7 +121,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
           </div>
 
           {/* Stats grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+          <div className="grid grid-cols-2 gap-[14px]">
             {content.heroStats.map((s, i) => (
               <StatCard key={s.label} value={s.value} label={s.label} color={ACCENT_PALETTE[i]} />
             ))}
@@ -154,45 +130,22 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
       </section>
 
       {/* Delivered at */}
-      <section style={{ background: "var(--panel)", padding: "32px 0", transition: "background 0.3s" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 32px" }}>
-          <div
-            style={{
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--panel-faint)",
-              marginBottom: 18,
-              fontFamily: "var(--font-inter), sans-serif",
-            }}
-          >
+      <section className="bg-panel py-8 transition-[background] duration-300">
+        <div className="max-w-[1100px] mx-auto px-8">
+          <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-panel-faint mb-[18px] font-sans">
             {content.ui.deliveredAt}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "22px 0" }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[22px_0]">
             {CLIENTS.map((c) => (
               <div
                 key={c.client}
-                style={{
-                  padding: "2px 20px",
-                  borderLeft: `2px solid ${c.color}`,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 4,
-                }}
+                className={`py-[2px] px-5 flex flex-col gap-1 border-l-2 ${varToBorderL[c.color] ?? "border-l-indigo"}`}
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                    fontWeight: 700,
-                    fontSize: 16,
-                    color: "var(--panel-fg)",
-                  }}
-                >
+                <span className="font-display font-bold text-base text-panel-fg">
                   {c.client}
                 </span>
                 {c.via && (
-                  <span style={{ fontSize: 11, fontWeight: 500, color: c.color, letterSpacing: "0.02em" }}>
+                  <span className={`text-[11px] font-medium tracking-[0.02em] ${varToText[c.color] ?? "text-indigo"}`}>
                     {content.ui.via} {c.via}
                   </span>
                 )}

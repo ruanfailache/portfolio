@@ -5,19 +5,7 @@ import type { LocaleContent } from "@/lib/i18n";
 import { PrimaryButton } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "12px 14px",
-  fontFamily: "var(--font-inter), sans-serif",
-  fontSize: 14,
-  color: "var(--fg)",
-  background: "var(--bg-alt)",
-  border: "1.5px solid var(--border)",
-  borderRadius: 10,
-  outline: "none",
-  resize: "vertical",
-  transition: "border-color 0.15s",
-};
+const inputClass = "w-full px-[14px] py-3 font-sans text-sm text-fg bg-bg-alt border-[1.5px] border-border rounded-[10px] outline-none resize-y transition-[border-color] duration-150 focus:border-indigo";
 
 export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
   const [sent, setSent] = useState(false);
@@ -28,13 +16,6 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
     subject: "",
     message: "",
   });
-
-  const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    e.currentTarget.style.borderColor = "var(--indigo)";
-  };
-  const blur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    e.currentTarget.style.borderColor = "var(--border)";
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,130 +28,86 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
   };
 
   return (
-    <Card style={{ padding: "32px 28px" }}>
+    <Card className="py-8 px-7">
       {sent ? (
-        <div style={{ textAlign: "center", padding: "40px 0" }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: "50%",
-              background: "var(--sage-pale)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 16px",
-            }}
-          >
+        <div className="text-center py-10">
+          <div className="w-14 h-14 rounded-full bg-sage-pale flex items-center justify-center mx-auto mb-4">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="var(--sage)">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           </div>
-          <h3 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 20, marginBottom: 8 }}>
-            {ui.sentTitle}
-          </h3>
-          <p style={{ fontSize: 14, color: "var(--fg-mid)", marginBottom: 20 }}>{ui.sentBody}</p>
+          <h3 className="font-display font-bold text-xl mb-2">{ui.sentTitle}</h3>
+          <p className="text-sm text-fg-mid mb-5">{ui.sentBody}</p>
           <button
             onClick={() => setSent(false)}
-            style={{
-              background: "none",
-              border: "1.5px solid var(--border)",
-              borderRadius: 8,
-              padding: "8px 16px",
-              fontFamily: "var(--font-inter), sans-serif",
-              fontSize: 13,
-              color: "var(--fg-mid)",
-              cursor: "pointer",
-            }}
+            className="bg-transparent border-[1.5px] border-border rounded-lg px-4 py-2 font-sans text-[13px] text-fg-mid cursor-pointer"
           >
             {ui.sendAnother}
           </button>
         </div>
       ) : (
         <>
-          <h3 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 20, marginBottom: 22, color: "var(--fg)" }}>
-            {ui.sendTitle}
-          </h3>
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <h3 className="font-display font-bold text-xl mb-[22px] text-fg">{ui.sendTitle}</h3>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "var(--fg)", marginBottom: 6 }}>
-                {ui.formAbout}
-              </label>
+              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.formAbout}</label>
               <select
                 value={form.type}
                 required
                 onChange={(e) => setForm((v) => ({ ...v, type: e.target.value }))}
-                onFocus={focus}
-                onBlur={blur}
-                style={{ ...inputStyle, height: 44, cursor: "pointer" }}
+                className={`${inputClass} h-11 cursor-pointer`}
               >
                 {ui.opportunityTypes.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
             <div>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "var(--fg)", marginBottom: 6 }}>
-                {ui.nameLabel}
-              </label>
+              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.nameLabel}</label>
               <input
                 type="text"
                 placeholder={ui.namePlaceholder}
                 value={form.name}
                 required
                 onChange={(e) => setForm((v) => ({ ...v, name: e.target.value }))}
-                onFocus={focus}
-                onBlur={blur}
-                style={{ ...inputStyle, height: 44 }}
+                className={`${inputClass} h-11`}
               />
             </div>
             <div>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "var(--fg)", marginBottom: 6 }}>
-                {ui.emailLabel}
-              </label>
+              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.emailLabel}</label>
               <input
                 type="email"
                 placeholder={ui.emailPlaceholder}
                 value={form.email}
                 required
                 onChange={(e) => setForm((v) => ({ ...v, email: e.target.value }))}
-                onFocus={focus}
-                onBlur={blur}
-                style={{ ...inputStyle, height: 44 }}
+                className={`${inputClass} h-11`}
               />
             </div>
             <div>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "var(--fg)", marginBottom: 6 }}>
-                {ui.subjectLabel}
-              </label>
+              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.subjectLabel}</label>
               <input
                 type="text"
                 placeholder={ui.subjectPlaceholder}
                 value={form.subject}
                 required
                 onChange={(e) => setForm((v) => ({ ...v, subject: e.target.value }))}
-                onFocus={focus}
-                onBlur={blur}
-                style={{ ...inputStyle, height: 44 }}
+                className={`${inputClass} h-11`}
               />
-              <p style={{ fontSize: 11, color: "var(--fg-soft)", marginTop: 4 }}>
+              <p className="text-[11px] text-fg-soft mt-1">
                 {ui.willBeSentAs}: <em>{form.type}: {form.subject || "…"}</em>
               </p>
             </div>
             <div>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "var(--fg)", marginBottom: 6 }}>
-                {ui.messageLabel}
-              </label>
+              <label className="block text-[13px] font-semibold text-fg mb-1.5">{ui.messageLabel}</label>
               <textarea
                 rows={4}
                 placeholder={ui.messagePlaceholder}
                 value={form.message}
                 required
                 onChange={(e) => setForm((v) => ({ ...v, message: e.target.value }))}
-                onFocus={focus}
-                onBlur={blur}
-                style={inputStyle}
+                className={inputClass}
               />
             </div>
-            <PrimaryButton type="submit" style={{ width: "100%", justifyContent: "center", padding: "13px 0" }}>
+            <PrimaryButton type="submit" className="w-full justify-center py-[13px] px-0">
               {ui.sendMessage} →
             </PrimaryButton>
           </form>

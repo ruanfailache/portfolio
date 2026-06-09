@@ -1,49 +1,24 @@
 import type { LocaleContent } from "@/lib/i18n";
 import { ACCENT_PALETTE } from "@/lib/i18n";
-import { accentColors } from "@/components/ui/Tag";
+import { textColorMap } from "@/components/ui/Tag";
 import Tag from "@/components/ui/Tag";
 
-const labelStyle: React.CSSProperties = {
-  fontSize: 11,
-  fontWeight: 800,
-  letterSpacing: "0.1em",
-  textTransform: "uppercase",
-  color: "var(--indigo)",
-  marginBottom: 14,
-};
+const STACK_COLORS = ["indigo", "sage", "amber"] as const;
 
 export default function ResumeDoc({ content }: { content: LocaleContent }) {
   const R = content.ui.resume;
 
   return (
-    <div
-      className="resume-doc"
-      style={{
-        background: "var(--card)",
-        border: "1.5px solid var(--border)",
-        borderRadius: 16,
-        padding: "48px 52px",
-        marginBottom: 40,
-      }}
-    >
+    <div className="resume-doc bg-card border-[1.5px] border-border rounded-2xl px-[52px] py-12 mb-10">
       {/* Header */}
-      <div style={{ borderBottom: "2px solid var(--border)", paddingBottom: 22, marginBottom: 26 }}>
-        <h1
-          style={{
-            fontFamily: "var(--font-dm-sans), sans-serif",
-            fontWeight: 700,
-            fontSize: 34,
-            letterSpacing: "-0.02em",
-            color: "var(--fg)",
-            marginBottom: 4,
-          }}
-        >
+      <div className="border-b-2 border-border pb-[22px] mb-[26px]">
+        <h1 className="font-display font-bold text-[34px] tracking-[-0.02em] text-fg mb-1">
           {content.name}
         </h1>
-        <div style={{ fontSize: 16, fontWeight: 600, color: "var(--indigo)", marginBottom: 14 }}>
+        <div className="text-base font-semibold text-indigo mb-[14px]">
           {content.role}
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 18px", fontSize: 13, color: "var(--fg-mid)" }}>
+        <div className="flex flex-wrap gap-x-[18px] gap-y-1 text-[13px] text-fg-mid">
           <span>{content.contact.email}</span>
           <span>{content.contact.linkedin}</span>
           <span>{content.contact.github}</span>
@@ -52,30 +27,34 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
       </div>
 
       {/* Summary */}
-      <section style={{ marginBottom: 28 }}>
-        <div style={labelStyle}>{R.summary}</div>
-        <p style={{ fontSize: 14.5, color: "var(--fg-mid)", lineHeight: 1.7 }}>{content.intro}</p>
+      <section className="mb-7">
+        <div className="text-[11px] font-[800] tracking-[0.1em] uppercase text-indigo mb-[14px] font-sans">
+          {R.summary}
+        </div>
+        <p className="text-[14.5px] text-fg-mid leading-[1.7]">{content.intro}</p>
       </section>
 
       {/* Experience */}
-      <section style={{ marginBottom: 28 }}>
-        <div style={labelStyle}>{R.experience}</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+      <section className="mb-7">
+        <div className="text-[11px] font-[800] tracking-[0.1em] uppercase text-indigo mb-[14px] font-sans">
+          {R.experience}
+        </div>
+        <div className="flex flex-col gap-[18px]">
           {content.experience.map((e, i) => (
-            <div key={`${e.company}-${i}`} style={{ display: "grid", gridTemplateColumns: "150px 1fr", gap: 18 }}>
-              <div style={{ fontSize: 12.5, color: "var(--fg-soft)", fontWeight: 600, paddingTop: 2 }}>
+            <div key={`${e.company}-${i}`} className="grid grid-cols-[150px_1fr] gap-[18px]">
+              <div className="text-[12.5px] text-fg-soft font-semibold pt-[2px]">
                 {e.period}
               </div>
               <div>
-                <div style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: 15, color: "var(--fg)" }}>
+                <div className="font-display font-bold text-[15px] text-fg">
                   {e.role}
                   {e.client ? (
-                    <span style={{ color: "var(--fg-mid)", fontWeight: 500 }}> · {e.company} → {e.client}</span>
+                    <span className="text-fg-mid font-medium"> · {e.company} → {e.client}</span>
                   ) : (
-                    <span style={{ color: "var(--fg-mid)", fontWeight: 500 }}> · {e.company}</span>
+                    <span className="text-fg-mid font-medium"> · {e.company}</span>
                   )}
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 7 }}>
+                <div className="flex flex-wrap gap-[5px] mt-[7px]">
                   {e.tags.map((t) => <Tag key={t} color={ACCENT_PALETTE[i % 4]}>{t}</Tag>)}
                 </div>
               </div>
@@ -86,14 +65,16 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
 
       {/* Skills */}
       <section>
-        <div style={labelStyle}>{R.skills}</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+        <div className="text-[11px] font-[800] tracking-[0.1em] uppercase text-indigo mb-[14px] font-sans">
+          {R.skills}
+        </div>
+        <div className="grid grid-cols-3 gap-4">
           {content.stack.map((s, i) => {
-            const { fg } = accentColors(["indigo", "sage", "amber"][i % 3] as "indigo" | "sage" | "amber");
+            const color = STACK_COLORS[i % 3];
             return (
               <div key={s.label}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: fg, marginBottom: 6 }}>{s.label}</div>
-                <div style={{ fontSize: 13, color: "var(--fg-mid)", lineHeight: 1.7 }}>{s.items.join(", ")}</div>
+                <div className={`text-xs font-bold mb-1.5 ${textColorMap[color]}`}>{s.label}</div>
+                <div className="text-[13px] text-fg-mid leading-[1.7]">{s.items.join(", ")}</div>
               </div>
             );
           })}

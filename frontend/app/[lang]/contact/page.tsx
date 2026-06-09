@@ -29,13 +29,13 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const content = getContent(lang as Locale);
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 32px" }}>
+    <div className="max-w-[1100px] mx-auto px-8 py-16">
       <SectionHeading
         label={content.ui.contactKicker}
         title={content.ui.contactTitle}
         subtitle={content.ui.contactSubtitle}
       />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+      <div className="grid grid-cols-2 gap-8">
         <OpenTo content={content} />
         <ContactForm ui={content.ui} />
       </div>

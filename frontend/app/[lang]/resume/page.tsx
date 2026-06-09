@@ -24,31 +24,11 @@ export default async function ResumePage({ params }: { params: Promise<{ lang: s
   const R = content.ui.resume;
 
   return (
-    <div style={{ maxWidth: 860, margin: "0 auto", padding: "44px 32px 0" }}>
-      <div
-        className="no-print"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 28,
-          gap: 12,
-          flexWrap: "wrap",
-        }}
-      >
+    <div className="max-w-[860px] mx-auto px-8 pt-11">
+      <div className="no-print flex justify-between items-center mb-7 gap-3 flex-wrap">
         <Link
           href={`/${locale}`}
-          style={{
-            color: "var(--fg-mid)",
-            fontFamily: "var(--font-inter), sans-serif",
-            fontWeight: 600,
-            fontSize: 14,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            textDecoration: "none",
-            transition: "color 0.15s",
-          }}
+          className="text-fg-mid font-sans font-semibold text-sm inline-flex items-center gap-1.5 no-underline transition-colors duration-150 hover:text-indigo"
         >
           ← {R.backHome}
         </Link>

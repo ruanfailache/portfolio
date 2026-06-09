@@ -28,20 +28,17 @@ Split when JSX exceeds ~120 lines. Don't split a self-contained 40-line componen
 - Validate locale at every page/layout entry: `if (!LOCALES.includes(lang as Locale)) notFound()`
 - All copy from `getContent(locale)` — never hardcode user-visible strings
 
-## Design tokens
+## Design tokens & Tailwind
 
-Colors are CSS custom properties — never hardcode, never use Tailwind color utilities:
+All design tokens are CSS custom properties registered as Tailwind theme aliases via `@theme` in `globals.css`. Use Tailwind utilities for everything — layout, spacing, typography, and color.
 
-```
-var(--bg)       var(--fg)         var(--fg-mid)      var(--fg-soft)
-var(--panel)    var(--panel-fg)   var(--panel-faint)
-var(--border)
-var(--indigo)   var(--sage)       var(--rose)         var(--amber)
-```
+Color aliases: `bg-bg`, `bg-bg-alt`, `bg-card`, `bg-panel`, `text-fg`, `text-fg-mid`, `text-fg-soft`, `text-panel-fg`, `text-panel-soft`, `text-panel-faint`, `border-border`, `text-indigo`, `bg-indigo`, `bg-indigo-pale`, `text-sage`, `bg-sage-pale`, `text-rose`, `bg-rose-pale`, `text-amber`, `bg-amber-pale`.
 
-Dark mode is `data-theme="dark"` on `<html>` — no `dark:` Tailwind variants needed.
-Tailwind is for layout, spacing, and responsive utilities only.
-Fonts: headings → `var(--font-dm-sans)` · body/UI → `var(--font-inter)`.
+Font aliases: `font-sans` → Inter · `font-display` → DM Sans.
+
+Dark mode is `data-theme="dark"` on `<html>` — no `dark:` Tailwind variants needed; the CSS vars swap automatically.
+
+Only use `style={{}}` for truly dynamic runtime values (e.g. a CMS-driven accent color, a computed pixel width). Never hardcode color values inline.
 
 ## Strapi
 
