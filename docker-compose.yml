@@ -1,0 +1,39 @@
+services:
+  portfolio:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - STRAPI_URL=http://cms:1337
+      - STRAPI_TOKEN=${STRAPI_TOKEN}
+      - REVALIDATE_SECRET=${REVALIDATE_SECRET}
+    depends_on:
+      cms:
+        condition: service_healthy
+
+  cms:
+    build: ./cms
+    ports:
+      - "1337:1337"
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=${APP_KEYS}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+      - API_TOKEN_SALT=${API_TOKEN_SALT}
+      - JWT_SECRET=${JWT_SECRET}
+      - TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT:-}
+      - DATABASE_FILENAME=.tmp/data.db
+    volumes:
+      - cms_data:/app/.tmp
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:1337/_health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+volumes:
+  cms_data:

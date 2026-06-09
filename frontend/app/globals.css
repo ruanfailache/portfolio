@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* ─── OKLCH DESIGN TOKENS ─── */
+:root {
+  --accent-hue: 264;
+
+  --bg:          oklch(98% 0.008 264);
+  --bg-alt:      oklch(96% 0.012 264);
+  --fg:          oklch(18% 0.012 264);
+  --fg-mid:      oklch(42% 0.010 264);
+  --fg-soft:     oklch(60% 0.008 264);
+  --border:      oklch(88% 0.012 264);
+  --card:        oklch(100% 0 0);
+  --card-shadow:      oklch(18% 0.012 264 / 0.10);
+  --card-shadow-soft: oklch(18% 0.012 264 / 0.04);
+
+  --panel:           oklch(18% 0.012 264);
+  --panel-fg:        oklch(92% 0.006 264);
+  --panel-soft:      oklch(68% 0.008 264);
+  --panel-faint:     oklch(55% 0.008 264);
+  --panel-line:      oklch(30% 0.008 264);
+  --panel-foot:      oklch(50% 0.008 264);
+  --panel-foot-line: oklch(28% 0.010 264);
+
+  --header-bg:        oklch(98% 0.008 264);
+  --header-bg-scroll: oklch(99% 0.006 264 / 0.92);
+  --header-shadow:    oklch(18% 0.012 264 / 0.07);
+
+  --indigo:      oklch(62% 0.14 var(--accent-hue));
+  --indigo-pale: oklch(93% 0.04 var(--accent-hue));
+  --indigo-mid:  oklch(80% 0.08 var(--accent-hue));
+  --sage:        oklch(68% 0.10 155);
+  --sage-pale:   oklch(94% 0.04 155);
+  --rose:        oklch(70% 0.10 15);
+  --rose-pale:   oklch(94% 0.04 15);
+  --amber:       oklch(74% 0.10 85);
+  --amber-pale:  oklch(95% 0.04 85);
+}
+
+[data-theme="dark"] {
+  --bg:          oklch(21% 0.014 264);
+  --bg-alt:      oklch(25% 0.015 264);
+  --fg:          oklch(95% 0.008 264);
+  --fg-mid:      oklch(74% 0.012 264);
+  --fg-soft:     oklch(60% 0.012 264);
+  --border:      oklch(34% 0.014 264);
+  --card:        oklch(26% 0.015 264);
+  --card-shadow:      oklch(0% 0 0 / 0.34);
+  --card-shadow-soft: oklch(0% 0 0 / 0.22);
+
+  --panel:           oklch(15% 0.012 264);
+  --panel-fg:        oklch(93% 0.006 264);
+  --panel-soft:      oklch(72% 0.010 264);
+  --panel-faint:     oklch(60% 0.010 264);
+  --panel-line:      oklch(33% 0.012 264);
+  --panel-foot:      oklch(60% 0.010 264);
+  --panel-foot-line: oklch(32% 0.012 264);
+
+  --header-bg:        oklch(21% 0.014 264);
+  --header-bg-scroll: oklch(23% 0.014 264 / 0.92);
+  --header-shadow:    oklch(0% 0 0 / 0.30);
+
+  --indigo:      oklch(72% 0.14 var(--accent-hue));
+  --indigo-pale: oklch(36% 0.075 var(--accent-hue));
+  --indigo-mid:  oklch(54% 0.11 var(--accent-hue));
+  --sage:        oklch(73% 0.11 155);
+  --sage-pale:   oklch(34% 0.06 155);
+  --rose:        oklch(74% 0.11 15);
+  --rose-pale:   oklch(36% 0.06 15);
+  --amber:       oklch(80% 0.11 85);
+  --amber-pale:  oklch(38% 0.06 85);
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ─── FOCUS RING ─── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+/* ─── ENTRANCE ANIMATION ─── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes riseIn {
+    from { transform: translateY(10px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .reveal   { animation: riseIn 0.45s ease-out both; }
+  .reveal-2 { animation: riseIn 0.45s 60ms  ease-out both; }
+  .reveal-3 { animation: riseIn 0.45s 120ms ease-out both; }
+  .reveal-4 { animation: riseIn 0.45s 180ms ease-out both; }
+}
+
+/* ─── PRINT ─── */
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: #fff !important; }
+  main { padding: 0 !important; }
+  .resume-doc { border: none !important; border-radius: 0 !important; padding: 0 !important; }
+}
