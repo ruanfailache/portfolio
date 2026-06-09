@@ -16,8 +16,8 @@ export default function WorkList({
   projects?: Project[];
   sideProjects?: SideProject[];
 }) {
-  const displayProjects = projects ?? content.projects;
-  const displaySideProjects = sideProjects ?? content.sideProjects;
+  const displayProjects = projects ?? [];
+  const displaySideProjects = sideProjects ?? [];
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 32px" }}>
       <SectionHeading
@@ -92,9 +92,9 @@ export default function WorkList({
         >
           {content.ui.selectedWork}
         </h3>
-        {displayProjects.length === 0 && displaySideProjects.length === 0 ? (
+        {displayProjects.length === 0 ? (
           <EmptyState message={content.ui.noProjects} />
-        ) : displayProjects.length > 0 ? (
+        ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {displayProjects.map((p) => (
               <ProjectCard
@@ -105,23 +105,25 @@ export default function WorkList({
               />
             ))}
           </div>
-        ) : null}
+        )}
       </div>
 
       {/* Side projects */}
-      {displaySideProjects.length > 0 && (
-        <div>
-          <h3
-            style={{
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              fontWeight: 700,
-              fontSize: 22,
-              marginBottom: 20,
-              color: "var(--fg)",
-            }}
-          >
-            {content.ui.sideProjectsTitle}
-          </h3>
+      <div>
+        <h3
+          style={{
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontWeight: 700,
+            fontSize: 22,
+            marginBottom: 20,
+            color: "var(--fg)",
+          }}
+        >
+          {content.ui.sideProjectsTitle}
+        </h3>
+        {displaySideProjects.length === 0 ? (
+          <EmptyState message={content.ui.noProjects} />
+        ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {displaySideProjects.map((p) => (
               <ProjectCard
@@ -132,8 +134,8 @@ export default function WorkList({
               />
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

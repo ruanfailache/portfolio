@@ -5,8 +5,27 @@ import CaseStudy from "@/features/work/CaseStudy";
 import { getContent } from "@/lib/i18n";
 
 const content = getContent("en");
-const project = content.projects[0];
-const nextProject = content.projects[1] ?? content.projects[0];
+
+const project = {
+  title: "Test Project",
+  company: "Test Company",
+  status: "Active",
+  color: "indigo" as const,
+  desc: "A test project description.",
+  outcome: "Great results",
+  tags: ["React", "TypeScript"],
+  slug: "test-project",
+};
+
+const nextProject = {
+  title: "Next Project",
+  company: "Next Company",
+  status: "Completed",
+  color: "sage" as const,
+  desc: "The next project.",
+  tags: ["Angular"],
+  slug: "next-project",
+};
 
 describe("CaseStudy", () => {
   it("renders the project title", () => {
@@ -41,10 +60,8 @@ describe("CaseStudy", () => {
   });
 
   it("renders outcome when present", () => {
-    if (project.outcome) {
-      render(<CaseStudy project={project} backHref="/en/work" content={content} />);
-      expect(screen.getByText(project.outcome)).toBeInTheDocument();
-    }
+    render(<CaseStudy project={project} backHref="/en/work" content={content} />);
+    expect(screen.getByText(project.outcome)).toBeInTheDocument();
   });
 
   it("renders the project tags in the stack sidebar", () => {

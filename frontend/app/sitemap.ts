@@ -1,14 +1,12 @@
 import type { MetadataRoute } from "next";
-import { LOCALES, getContent } from "@/lib/i18n";
-import { fetchPosts } from "@/lib/strapi";
+import { LOCALES } from "@/lib/i18n";
+import { fetchPosts, fetchProjects } from "@/lib/strapi";
 import { SITE_URL } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const locale of LOCALES) {
-    const content = getContent(locale);
-
     entries.push({
       url: `${SITE_URL}/${locale}`,
       changeFrequency: "monthly",
@@ -39,7 +37,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     });
 
-    for (const project of [...content.projects, ...content.sideProjects]) {
+    const projectList = await fetchProjects(locale);
+    for (const project of [...(projectList?.projects ?? []), ...(projectList?.sideProjects ?? [])]) {
       if (project.slug) {
         entries.push({
           url: `${SITE_URL}/${locale}/work/${project.slug}`,

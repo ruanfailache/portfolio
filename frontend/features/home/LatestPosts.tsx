@@ -5,6 +5,7 @@ import { accentColors } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import Arrow from "@/components/ui/Arrow";
+import EmptyState from "@/components/ui/EmptyState";
 
 export default function LatestPosts({
   content,
@@ -62,6 +63,9 @@ export default function LatestPosts({
           </Link>
         </div>
 
+        {preview.length === 0 ? (
+          <EmptyState message={content.ui.noPosts} />
+        ) : null}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
           {preview.map((post) => {
             const { fg } = accentColors(post.color);

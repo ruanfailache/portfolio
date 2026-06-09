@@ -5,8 +5,26 @@ import ProjectCard from "@/features/work/ProjectCard";
 import { getContent } from "@/lib/i18n";
 
 const content = getContent("en");
-const project = content.projects[0];
-const sideProject = content.sideProjects[0];
+
+const project = {
+  title: "Test Project",
+  company: "Test Company",
+  status: "Active",
+  color: "indigo" as const,
+  desc: "A test project description.",
+  outcome: "Great results",
+  tags: ["React", "TypeScript", "Node.js"],
+  slug: "test-project",
+};
+
+const sideProject = {
+  title: "Side Project",
+  slug: "side-project",
+  status: "Shipped",
+  color: "amber" as const,
+  desc: "A side project description.",
+  tags: ["Python", "LangChain"],
+};
 
 describe("ProjectCard", () => {
   it("renders the project title", () => {
@@ -42,9 +60,7 @@ describe("ProjectCard", () => {
   });
 
   it("does not render company for side projects", () => {
-    if (sideProject) {
-      render(<ProjectCard project={sideProject} href="/en/work/side" ui={content.ui} />);
-      expect(screen.queryByText((sideProject as { company?: string }).company ?? "__none__")).not.toBeInTheDocument();
-    }
+    render(<ProjectCard project={sideProject} href="/en/work/side" ui={content.ui} />);
+    expect(screen.queryByText("__none__")).not.toBeInTheDocument();
   });
 });

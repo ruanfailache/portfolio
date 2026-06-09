@@ -35,8 +35,8 @@ export default async function WorkPage({ params }: { params: Promise<{ lang: str
     <WorkList
       content={content}
       locale={locale}
-      projects={strapiProjects?.projects ?? content.projects}
-      sideProjects={strapiProjects?.sideProjects ?? content.sideProjects}
+      projects={strapiProjects?.projects ?? []}
+      sideProjects={strapiProjects?.sideProjects ?? []}
     />
   );
 }

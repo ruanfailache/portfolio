@@ -14,19 +14,10 @@ describe("getContent", () => {
     expect(typeof content.name).toBe("string");
     expect(typeof content.role).toBe("string");
     expect(typeof content.headline).toBe("string");
-    expect(Array.isArray(content.projects)).toBe(true);
     expect(Array.isArray(content.experience)).toBe(true);
     expect(Array.isArray(content.capabilities)).toBe(true);
     expect(Array.isArray(content.stack)).toBe(true);
     expect(Array.isArray(content.tags)).toBe(true);
-  });
-
-  it.each(LOCALES)("projects have required fields for locale %s", (locale) => {
-    const { projects } = getContent(locale);
-    for (const project of projects) {
-      expect(typeof project.title).toBe("string");
-      expect(typeof project.slug).toBe("string");
-    }
   });
 
   it("falls back to English for unknown locale", () => {
