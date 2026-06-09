@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ogLocale } from "@/lib/seo";
 import { blogPostingSchema } from "@/lib/jsonld";
 import { fetchPost } from "@/lib/strapi";
 import PostView from "@/features/blog/PostView";
@@ -33,6 +33,7 @@ export async function generateMetadata({
       type: "article",
       title: post.title,
       description: post.summary,
+      locale: ogLocale(locale),
       ...(post.publishedAt ? { publishedTime: post.publishedAt } : {}),
       authors: [content.name],
       tags: [post.tag],

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ogLocale } from "@/lib/seo";
 import { fetchProjects } from "@/lib/strapi";
 import WorkList from "@/features/work/WorkList";
 
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       title: content.ui.workTitle,
       description: content.ui.workSubtitle,
+      locale: ogLocale(locale),
     },
     alternates: buildAlternates(locale, (l) => `/${l}/work`),
   };

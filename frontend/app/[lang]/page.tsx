@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ogLocale } from "@/lib/seo";
 import { personSchema } from "@/lib/jsonld";
 import { fetchPosts } from "@/lib/strapi";
 import Hero from "@/features/home/Hero";
@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       title: `${content.name} | ${content.role}`,
       description: content.headline,
+      locale: ogLocale(locale),
     },
     alternates: buildAlternates(locale, (l) => `/${l}`),
   };

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ogLocale } from "@/lib/seo";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/features/contact/ContactForm";
 import OpenTo from "@/features/contact/OpenTo";
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       title: content.ui.contactTitle,
       description: content.ui.contactSubtitle,
+      locale: ogLocale(locale),
     },
     alternates: buildAlternates(locale, (l) => `/${l}/contact`),
   };

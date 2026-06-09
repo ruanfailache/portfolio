@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ogLocale } from "@/lib/seo";
 import { fetchPosts } from "@/lib/strapi";
 import BlogList from "@/features/blog/BlogList";
 
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       title: content.ui.blogTitle,
       description: content.ui.blogSubtitle,
+      locale: ogLocale(locale),
     },
     alternates: buildAlternates(locale, (l) => `/${l}/blog`),
   };

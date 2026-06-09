@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ogLocale } from "@/lib/seo";
+import { caseStudySchema } from "@/lib/jsonld";
 import { fetchProject, fetchProjects } from "@/lib/strapi";
 import CaseStudy from "@/features/work/CaseStudy";
 
@@ -27,9 +28,10 @@ export async function generateMetadata({
     description: project.desc,
     keywords: project.tags,
     openGraph: {
-      type: "website",
+      type: "article",
       title: project.title,
       description: project.desc,
+      locale: ogLocale(locale),
     },
     alternates: buildAlternates(locale, (l) => `/${l}/work/${slug}`),
   };
@@ -61,12 +63,20 @@ export default async function CaseStudyPage({
   const nextHref = nextProject?.slug ? `/${locale}/work/${nextProject.slug}` : undefined;
 
   return (
-    <CaseStudy
-      project={project}
-      nextProject={nextProject}
-      nextHref={nextHref}
-      backHref={`/${locale}/work`}
-      content={content}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(caseStudySchema(project, locale, content)),
+        }}
+      />
+      <CaseStudy
+        project={project}
+        nextProject={nextProject}
+        nextHref={nextHref}
+        backHref={`/${locale}/work`}
+        content={content}
+      />
+    </>
   );
 }
