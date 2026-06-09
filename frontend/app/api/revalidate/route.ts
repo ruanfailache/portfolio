@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => ({}));
   const token = request.headers.get("x-revalidate-token");
 
-  if (SECRET && token !== SECRET) {
+  if (!SECRET || token !== SECRET) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 

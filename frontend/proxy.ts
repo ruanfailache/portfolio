@@ -12,16 +12,50 @@ function detectLocale(request: NextRequest): Locale {
   return "en";
 }
 
+function generateNonce(): string {
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  return btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join(""));
+}
+
+function buildCsp(nonce: string): string {
+  return [
+    `default-src 'self'`,
+    `script-src 'self' 'nonce-${nonce}'`,
+    `style-src 'self' 'unsafe-inline'`,
+    `img-src 'self' data: https:`,
+    `font-src 'self'`,
+    `connect-src 'self'`,
+    `object-src 'none'`,
+    `base-uri 'self'`,
+    `form-action 'self'`,
+    `frame-ancestors 'none'`,
+  ].join("; ");
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const hasLocale = LOCALES.some(
     (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
   );
-  if (hasLocale) return;
 
-  const locale = detectLocale(request);
-  request.nextUrl.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  const nonce = generateNonce();
+  const csp = buildCsp(nonce);
+
+  if (!hasLocale) {
+    const locale = detectLocale(request);
+    request.nextUrl.pathname = `/${locale}${pathname}`;
+    const res = NextResponse.redirect(request.nextUrl);
+    res.headers.set("Content-Security-Policy", csp);
+    return res;
+  }
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-nonce", nonce);
+
+  const res = NextResponse.next({ request: { headers: requestHeaders } });
+  res.headers.set("Content-Security-Policy", csp);
+  return res;
 }
 
 export const config = {

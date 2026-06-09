@@ -1,8 +1,22 @@
 services:
+  caddy:
+    build: ./caddy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - portfolio
+    restart: unless-stopped
+
   portfolio:
     build: ./frontend
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - NODE_ENV=production
       - STRAPI_URL=http://cms:1337
@@ -11,11 +25,12 @@ services:
     depends_on:
       cms:
         condition: service_healthy
+    restart: unless-stopped
 
   cms:
     build: ./cms
-    ports:
-      - "1337:1337"
+    expose:
+      - "1337"
     environment:
       - NODE_ENV=production
       - HOST=0.0.0.0
@@ -34,6 +49,9 @@ services:
       timeout: 5s
       retries: 10
       start_period: 60s
+    restart: unless-stopped
 
 volumes:
   cms_data:
+  caddy_data:
+  caddy_config:
