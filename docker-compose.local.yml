@@ -1,0 +1,4 @@
+services:
+  cms:
+    ports:
+      - "1337:1337"
