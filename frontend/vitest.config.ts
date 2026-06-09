@@ -13,10 +13,8 @@ export default defineConfig({
         "lib/i18n.ts",
         "app/api/**/*.ts",
         "proxy.ts",
-        "components/ui/Card.tsx",
-        "components/controls/ThemeToggle.tsx",
-        "components/controls/LangSwitcher.tsx",
-        "features/contact/ContactForm.tsx",
+        "components/**/*.{ts,tsx}",
+        "features/**/*.{ts,tsx}",
       ],
       exclude: ["**/*.d.ts"],
       thresholds: {

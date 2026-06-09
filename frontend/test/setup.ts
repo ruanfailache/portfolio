@@ -12,6 +12,14 @@ vi.mock("next/cache", () => ({
   revalidatePath: vi.fn(),
 }));
 
+vi.mock("next/link", async () => {
+  const { createElement } = await import("react");
+  return {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    default: ({ href, children, ...rest }: any) => createElement("a", { href, ...rest }, children),
+  };
+});
+
 if (typeof window !== "undefined") {
   Object.defineProperty(window, "matchMedia", {
     writable: true,
