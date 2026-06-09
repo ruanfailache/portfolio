@@ -8,7 +8,11 @@ import PrintButton from "@/features/resume/PrintButton";
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const content = getContent(lang as Locale);
-  return { title: `${content.ui.resume.title} | ${content.name}` };
+  return {
+    title: content.ui.resume.title,
+    description: `${content.name} — ${content.role}. ${content.subheadline}`,
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function ResumePage({ params }: { params: Promise<{ lang: string }> }) {

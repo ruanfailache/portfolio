@@ -1,14 +1,25 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LOCALES, getContent, type Locale } from "@/lib/i18n";
+import { buildAlternates } from "@/lib/seo";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/features/contact/ContactForm";
 import OpenTo from "@/features/contact/OpenTo";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const content = getContent(lang as Locale);
-  return { title: `${content.ui.contactTitle} | ${content.name}`, description: content.ui.contactSubtitle };
+  const locale = lang as Locale;
+  const content = getContent(locale);
+  return {
+    title: content.ui.contactTitle,
+    description: content.ui.contactSubtitle,
+    openGraph: {
+      type: "website",
+      title: content.ui.contactTitle,
+      description: content.ui.contactSubtitle,
+    },
+    alternates: buildAlternates(locale, (l) => `/${l}/contact`),
+  };
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ lang: string }> }) {

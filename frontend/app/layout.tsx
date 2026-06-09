@@ -16,9 +16,34 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ruan Failache | Senior Full Stack Developer",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ruanfailache.com"
+  ),
+  title: {
+    default: "Ruan Failache | Senior Full Stack Developer",
+    template: "%s | Ruan Failache",
+  },
   description:
-    "High impact systems that scale, with AI that makes the teams behind them faster.",
+    "I build high impact systems that scale, and I bring AI to the teams behind them so they move faster.",
+  openGraph: {
+    type: "website",
+    siteName: "Ruan Failache",
+    locale: "en_US",
+    images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
