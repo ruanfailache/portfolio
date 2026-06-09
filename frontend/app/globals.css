@@ -113,6 +113,25 @@ select:focus-visible,
   .reveal-4 { animation: riseIn 0.45s 180ms ease-out both; }
 }
 
+/* ─── SKELETON SHIMMER ─── */
+@keyframes shimmer {
+  from { background-position: 200% center; }
+  to   { background-position: -200% center; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    var(--bg-alt) 50%,
+    var(--border) 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 6px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton { animation: shimmer 1.6s ease-in-out infinite; }
+}
+
 /* ─── PRINT ─── */
 @media print {
   header, footer, .no-print { display: none !important; }
