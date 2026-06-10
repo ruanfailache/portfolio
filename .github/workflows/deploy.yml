@@ -66,4 +66,4 @@ jobs:
 
             docker compose up --build -d
             sleep 5
-            curl -fsSL --max-time 10 http://localhost || exit 1
+            curl -fsSL --max-time 10 http://localhost:3000 || exit 1
