@@ -214,7 +214,7 @@ const en: LocaleContent = {
   heroStats: [
     { value: "5+", label: "Years of experience" },
     { value: "150+", label: "Developers mentored" },
-    { value: "6+", label: "Production systems shipped" },
+    { value: "12+", label: "Production systems shipped" },
     { value: "C1", label: "English ready for global teams" },
   ],
   intro:
@@ -487,7 +487,7 @@ const pt: LocaleContent = {
   heroStats: [
     { value: "5+", label: "Anos de experiência" },
     { value: "150+", label: "Pessoas desenvolvedoras mentoradas" },
-    { value: "6+", label: "Sistemas em produção entregues" },
+    { value: "12+", label: "Sistemas em produção entregues" },
     { value: "C1", label: "Inglês pronto para times globais" },
   ],
   intro:
@@ -759,7 +759,7 @@ const ja: LocaleContent = {
   heroStats: [
     { value: "5+", label: "実務経験の年数" },
     { value: "150+", label: "メンタリングした開発者" },
-    { value: "6+", label: "本番リリースしたシステム" },
+    { value: "12+", label: "本番リリースしたシステム" },
     { value: "C1", label: "グローバルチームで通用する英語力" },
   ],
   intro:
