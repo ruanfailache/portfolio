@@ -187,6 +187,11 @@ select:focus-visible,
 }
 
 /* ─── PRINT ─── */
+@page {
+  size: A4 portrait;
+  margin: 1.6cm 2cm;
+}
+
 @media print {
   header,
   footer,

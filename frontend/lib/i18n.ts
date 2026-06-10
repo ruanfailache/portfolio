@@ -24,6 +24,13 @@ export interface StackGroup {
   items: string[];
 }
 
+export interface ResumeProject {
+  title: string;
+  period: string;
+  desc: string;
+  tags: string[];
+}
+
 export interface ExperienceEntry {
   company: string;
   client?: string;
@@ -61,6 +68,7 @@ export interface SideProject {
 
 export interface Contact {
   email: string;
+  phone: string;
   linkedin: string;
   github: string;
   location: string;
@@ -159,6 +167,7 @@ export interface UI {
     backHome: string;
     degree: string;
     languageList: string;
+    projects: string;
   };
 }
 
@@ -175,6 +184,7 @@ export interface LocaleContent {
   capabilities: Capability[];
   stack: StackGroup[];
   experience: ExperienceEntry[];
+  resumeProjects: ResumeProject[];
   contact: Contact;
   ui: UI;
 }
@@ -199,10 +209,10 @@ const en: LocaleContent = {
   role: "Senior Full Stack Developer",
   headline:
     "I build high impact systems that scale, and I bring AI to the teams behind them so they move faster.",
-  subheadline: "Campinas, Brazil · 4 years of experience · Open to contract and full time work",
+  subheadline: "Campinas, Brazil · 5 years of experience · Open to contract and full time work",
   tags: ["Angular", "Java", "Spring Boot", "AWS", "TypeScript", "AI Agents", "CI/CD"],
   heroStats: [
-    { value: "4+", label: "Years of experience" },
+    { value: "5+", label: "Years of experience" },
     { value: "150+", label: "Developers mentored" },
     { value: "6+", label: "Production systems shipped" },
     { value: "C1", label: "English ready for global teams" },
@@ -231,21 +241,44 @@ const en: LocaleContent = {
   ],
   stack: [
     {
+      label: "AI Engineering",
+      items: [
+        "MCP",
+        "LangGraph",
+        "LangChain",
+        "RAG",
+        "Autonomous Agents",
+        "Prompt Engineering",
+        "Python",
+        "Spec-Driven Dev",
+      ],
+    },
+    {
       label: "Frontend",
-      items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"],
+      items: ["Angular 17+", "React", "React Native", "TypeScript", "TailwindCSS"],
     },
     {
       label: "Backend",
-      items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"],
+      items: ["Node.js", "NestJS", "Java 17", "Spring Boot", "Quarkus", "Kotlin"],
     },
     {
-      label: "AI & Infra",
+      label: "Cloud & DevOps",
       items: [
-        "AI Agents & SDD",
-        "AWS (Lambda / SQS / S3)",
-        "Docker / Kubernetes",
-        "CI/CD pipelines",
+        "AWS (Lambda, SQS, S3)",
+        "Docker",
+        "Kubernetes",
+        "OpenTelemetry",
+        "CI/CD",
+        "GitHub Actions",
       ],
+    },
+    {
+      label: "Databases",
+      items: ["PostgreSQL", "Redis", "MySQL", "SQLite"],
+    },
+    {
+      label: "Architecture",
+      items: ["DDD", "Clean Architecture", "Hexagonal", "Micro-frontends"],
     },
   ],
   experience: [
@@ -318,8 +351,23 @@ const en: LocaleContent = {
       ],
     },
   ],
+  resumeProjects: [
+    {
+      title: "Multi-Agent Content Platform",
+      period: "2025",
+      desc: "Autonomous pipeline with specialized agents for research, scripting, peer review, and editing. SEO-aware multi-modal content generation orchestrated with LangGraph.",
+      tags: ["Python", "LangGraph", "LangChain", "AI Agents"],
+    },
+    {
+      title: "Portfolio Website",
+      period: "2025 – 2026",
+      desc: "Multi-locale portfolio built with Next.js 16, Tailwind v4, and Strapi 5 CMS. Features AI-assisted development workflows, WCAG AA accessibility, and print-ready résumé.",
+      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Strapi 5"],
+    },
+  ],
   contact: {
     email: "ruanfailache@gmail.com",
+    phone: "+55 19 99729-7778",
     linkedin: "linkedin.com/in/ruanfailache",
     github: "github.com/ruanfailache",
     location: "Campinas, São Paulo, Brazil",
@@ -338,7 +386,7 @@ const en: LocaleContent = {
     readAll: "Read all",
     readPost: "Read post",
     workKicker: "Work",
-    workTitle: "Four years delivering systems that matter.",
+    workTitle: "Five years delivering systems that matter.",
     workSubtitle:
       "From user-facing micro frontends to cloud infrastructure, with a bias toward clean architecture, quality, and team growth.",
     techStack: "Tech Stack",
@@ -419,7 +467,9 @@ const en: LocaleContent = {
       present: "Present",
       backHome: "Back to site",
       degree: "Bachelor's Degree in Software Engineering",
-      languageList: "Portuguese: Native · English: C1 Professional Proficiency",
+      languageList:
+        "Portuguese: Native · English: C1 Professional Proficiency · Japanese: Elementary (Learning)",
+      projects: "Projects",
     },
   },
 };
@@ -432,10 +482,10 @@ const pt: LocaleContent = {
   headline:
     "Eu construo sistemas de alto impacto que escalam, e levo a IA para os times por trás deles para que entreguem mais rápido.",
   subheadline:
-    "Campinas, Brasil · 4 anos de experiência · Aberto a projetos por contrato e vagas efetivas",
+    "Campinas, Brasil · 5 anos de experiência · Aberto a projetos por contrato e vagas efetivas",
   tags: ["Angular", "Java", "Spring Boot", "AWS", "TypeScript", "Agentes de IA", "CI/CD"],
   heroStats: [
-    { value: "4+", label: "Anos de experiência" },
+    { value: "5+", label: "Anos de experiência" },
     { value: "150+", label: "Pessoas desenvolvedoras mentoradas" },
     { value: "6+", label: "Sistemas em produção entregues" },
     { value: "C1", label: "Inglês pronto para times globais" },
@@ -464,21 +514,44 @@ const pt: LocaleContent = {
   ],
   stack: [
     {
+      label: "Engenharia de IA",
+      items: [
+        "MCP",
+        "LangGraph",
+        "LangChain",
+        "RAG",
+        "Agentes Autônomos",
+        "Prompt Engineering",
+        "Python",
+        "Spec-Driven Dev",
+      ],
+    },
+    {
       label: "Frontend",
-      items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"],
+      items: ["Angular 17+", "React", "React Native", "TypeScript", "TailwindCSS"],
     },
     {
       label: "Backend",
-      items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"],
+      items: ["Node.js", "NestJS", "Java 17", "Spring Boot", "Quarkus", "Kotlin"],
     },
     {
-      label: "IA e Infra",
+      label: "Cloud & DevOps",
       items: [
-        "Agentes de IA e SDD",
-        "AWS (Lambda / SQS / S3)",
-        "Docker / Kubernetes",
-        "Pipelines CI/CD",
+        "AWS (Lambda, SQS, S3)",
+        "Docker",
+        "Kubernetes",
+        "OpenTelemetry",
+        "CI/CD",
+        "GitHub Actions",
       ],
+    },
+    {
+      label: "Bancos de Dados",
+      items: ["PostgreSQL", "Redis", "MySQL", "SQLite"],
+    },
+    {
+      label: "Arquitetura",
+      items: ["DDD", "Clean Architecture", "Hexagonal", "Micro-frontends"],
     },
   ],
   experience: [
@@ -551,8 +624,23 @@ const pt: LocaleContent = {
       ],
     },
   ],
+  resumeProjects: [
+    {
+      title: "Plataforma Multiagente de Conteúdo",
+      period: "2025",
+      desc: "Pipeline autônomo com agentes especializados em pesquisa, roteiro, revisão e edição. Geração de conteúdo multimodal com foco em SEO usando orquestração LangGraph.",
+      tags: ["Python", "LangGraph", "LangChain", "Agentes de IA"],
+    },
+    {
+      title: "Site Portfólio",
+      period: "2025 – 2026",
+      desc: "Portfólio multilíngue construído com Next.js 16, Tailwind v4 e CMS Strapi 5. Cobre fluxos de desenvolvimento assistido por IA, acessibilidade WCAG AA e currículo para impressão.",
+      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Strapi 5"],
+    },
+  ],
   contact: {
     email: "ruanfailache@gmail.com",
+    phone: "+55 19 99729-7778",
     linkedin: "linkedin.com/in/ruanfailache",
     github: "github.com/ruanfailache",
     location: "Campinas, São Paulo, Brasil",
@@ -571,7 +659,7 @@ const pt: LocaleContent = {
     readAll: "Ver todos",
     readPost: "Ler post",
     workKicker: "Trabalho",
-    workTitle: "Quatro anos entregando sistemas que importam.",
+    workTitle: "Cinco anos entregando sistemas que importam.",
     workSubtitle:
       "De micro frontends voltados ao usuário a infraestrutura em nuvem, com uma preferência por arquitetura limpa, qualidade e crescimento do time.",
     techStack: "Stack Técnica",
@@ -652,7 +740,9 @@ const pt: LocaleContent = {
       present: "Atual",
       backHome: "Voltar ao site",
       degree: "Bacharelado em Engenharia de Software",
-      languageList: "Português: Nativo · Inglês: Proficiência profissional (C1)",
+      languageList:
+        "Português: Nativo · Inglês: Proficiência profissional (C1) · Japonês: Iniciante (em aprendizado)",
+      projects: "Projetos",
     },
   },
 };
@@ -664,10 +754,10 @@ const ja: LocaleContent = {
   role: "シニア・フルスタック開発者",
   headline:
     "スケールするインパクトの大きいシステムを作り、その裏側のチームにAIを届けて、開発のスピードを上げます。",
-  subheadline: "ブラジル・カンピーナス在住 · 経験4年 · 業務委託および正社員のお仕事を募集中",
+  subheadline: "ブラジル・カンピーナス在住 · 経験5年 · 業務委託および正社員のお仕事を募集中",
   tags: ["Angular", "Java", "Spring Boot", "AWS", "TypeScript", "AIエージェント", "CI/CD"],
   heroStats: [
-    { value: "4+", label: "実務経験の年数" },
+    { value: "5+", label: "実務経験の年数" },
     { value: "150+", label: "メンタリングした開発者" },
     { value: "6+", label: "本番リリースしたシステム" },
     { value: "C1", label: "グローバルチームで通用する英語力" },
@@ -696,21 +786,44 @@ const ja: LocaleContent = {
   ],
   stack: [
     {
+      label: "AIエンジニアリング",
+      items: [
+        "MCP",
+        "LangGraph",
+        "LangChain",
+        "RAG",
+        "自律エージェント",
+        "Prompt Engineering",
+        "Python",
+        "Spec-Driven Dev",
+      ],
+    },
+    {
       label: "フロントエンド",
-      items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"],
+      items: ["Angular 17+", "React", "React Native", "TypeScript", "TailwindCSS"],
     },
     {
       label: "バックエンド",
-      items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"],
+      items: ["Node.js", "NestJS", "Java 17", "Spring Boot", "Quarkus", "Kotlin"],
     },
     {
-      label: "AIとインフラ",
+      label: "クラウド & DevOps",
       items: [
-        "AIエージェントとSDD",
-        "AWS (Lambda / SQS / S3)",
-        "Docker / Kubernetes",
-        "CI/CDパイプライン",
+        "AWS (Lambda, SQS, S3)",
+        "Docker",
+        "Kubernetes",
+        "OpenTelemetry",
+        "CI/CD",
+        "GitHub Actions",
       ],
+    },
+    {
+      label: "データベース",
+      items: ["PostgreSQL", "Redis", "MySQL", "SQLite"],
+    },
+    {
+      label: "アーキテクチャ",
+      items: ["DDD", "Clean Architecture", "Hexagonal", "マイクロフロントエンド"],
     },
   ],
   experience: [
@@ -783,8 +896,23 @@ const ja: LocaleContent = {
       ],
     },
   ],
+  resumeProjects: [
+    {
+      title: "マルチエージェント・コンテンツ基盤",
+      period: "2025年",
+      desc: "調査・原稿・レビュー・編集を担う専門エージェントによる自律パイプライン。LangGraphオーケストレーションによるSEO対応マルチモーダルコンテンツ生成。",
+      tags: ["Python", "LangGraph", "LangChain", "AIエージェント"],
+    },
+    {
+      title: "ポートフォリオサイト",
+      period: "2025 – 2026",
+      desc: "Next.js 16、Tailwind v4、Strapi 5 CMSで構築した多言語ポートフォリオ。AI支援開発ワークフロー、WCAG AAアクセシビリティ、印刷対応履歴書を含む。",
+      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Strapi 5"],
+    },
+  ],
   contact: {
     email: "ruanfailache@gmail.com",
+    phone: "+55 19 99729-7778",
     linkedin: "linkedin.com/in/ruanfailache",
     github: "github.com/ruanfailache",
     location: "ブラジル、サンパウロ州カンピーナス",
@@ -803,7 +931,7 @@ const ja: LocaleContent = {
     readAll: "すべて読む",
     readPost: "記事を読む",
     workKicker: "実績",
-    workTitle: "意味のあるシステムを届けてきた4年間。",
+    workTitle: "意味のあるシステムを届けてきた5年間。",
     workSubtitle:
       "ユーザー向けのマイクロフロントエンドからクラウド基盤まで。クリーンアーキテクチャ、品質、チームの成長を大切にしています。",
     techStack: "技術スタック",
@@ -884,7 +1012,8 @@ const ja: LocaleContent = {
       present: "現在",
       backHome: "サイトへ戻る",
       degree: "ソフトウェアエンジニアリング学士",
-      languageList: "ポルトガル語：母語 · 英語：ビジネス上級（C1）",
+      languageList: "ポルトガル語：母語 · 英語：ビジネス上級（C1） · 日本語：初級（学習中）",
+      projects: "プロジェクト",
     },
   },
 };

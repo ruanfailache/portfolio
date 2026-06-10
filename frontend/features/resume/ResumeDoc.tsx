@@ -19,7 +19,7 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
   return (
     <div className="resume-doc bg-card border-1.5 border-border rounded-2xl px-[52px] py-12 mb-10">
       {/* Header */}
-      <div className="border-b-2 border-border pb-5.5 mb-6.5 print:border-black/20">
+      <div className="border-b-2 border-border pb-5.5 mb-6.5 print:border-0 print:pb-0 print:mb-4">
         <h1 className="font-display font-bold text-[34px] tracking-[-0.02em] text-fg mb-1 print:text-[22pt] print:text-black">
           {content.name}
         </h1>
@@ -27,16 +27,22 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
           {content.role}
         </div>
         <div className="flex flex-wrap gap-x-4.5 gap-y-1 text-[13px] text-fg-mid print:text-[10pt] print:text-black">
-          <span>{content.contact.email}</span>
-          <span className="print:before:content-['·_'] print:before:mx-1">
-            {content.contact.linkedin}
-          </span>
-          <span className="print:before:content-['·_'] print:before:mx-1">
-            {content.contact.github}
-          </span>
-          <span className="print:before:content-['·_'] print:before:mx-1">
-            {content.contact.location}
-          </span>
+          {[
+            content.contact.email,
+            content.contact.phone,
+            content.contact.linkedin,
+            content.contact.github,
+            content.contact.location,
+          ].map((item, i) => (
+            <span key={i} className="flex items-center gap-4.5">
+              {i > 0 && (
+                <span className="hidden print:inline text-black/40" aria-hidden="true">
+                  ·
+                </span>
+              )}
+              {item}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -46,6 +52,28 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
         <p className="text-[14.5px] text-fg-mid leading-[1.7] print:text-[10.5pt] print:text-black print:leading-relaxed">
           {content.intro}
         </p>
+      </section>
+
+      {/* Skills */}
+      <section className="mb-7">
+        <SectionLabel>{R.skills}</SectionLabel>
+        <div className="grid grid-cols-3 gap-x-6 gap-y-4 print:grid-cols-2 print:gap-x-8 print:gap-y-2">
+          {content.stack.map((s, i) => {
+            const color = STACK_COLORS[i % 3];
+            return (
+              <div key={s.label}>
+                <div
+                  className={`text-xs font-bold mb-1.5 print:text-[9pt] print:text-black print:mb-0.5 ${textColorMap[color]}`}
+                >
+                  {s.label}
+                </div>
+                <div className="text-[13px] text-fg-mid leading-[1.7] print:text-[10pt] print:text-black">
+                  {s.items.join(", ")}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       {/* Experience */}
@@ -73,14 +101,12 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
                   )}
                 </div>
 
-                {/* Bullet points */}
                 <ul className="mt-2 flex flex-col gap-1 list-disc list-outside ml-4 text-[13px] text-fg-mid leading-[1.55] print:text-[10pt] print:text-black print:mt-1">
                   {e.bullets.map((b, bi) => (
                     <li key={bi}>{b}</li>
                   ))}
                 </ul>
 
-                {/* Tags — visual only, hidden in print */}
                 <div className="flex flex-wrap gap-1.5 mt-2 print:hidden">
                   {e.tags.map((t) => (
                     <Tag key={t} color={ACCENT_PALETTE[i % 4]}>
@@ -88,10 +114,41 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
                     </Tag>
                   ))}
                 </div>
-                {/* Tags as plain text for ATS */}
                 <div className="hidden print:block text-[9pt] text-black/60 mt-0.5">
                   {e.tags.join(" · ")}
                 </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section className="mb-7">
+        <SectionLabel>{R.projects}</SectionLabel>
+        <div className="flex flex-col gap-4">
+          {content.resumeProjects.map((p, i) => (
+            <div key={i}>
+              <div className="flex items-baseline justify-between gap-4">
+                <div className="font-display font-bold text-[15px] text-fg print:text-[11pt] print:text-black">
+                  {p.title}
+                </div>
+                <div className="text-[12.5px] text-fg-soft font-semibold shrink-0 print:text-[9.5pt] print:text-black/60">
+                  {p.period}
+                </div>
+              </div>
+              <p className="mt-1 text-[13px] text-fg-mid leading-[1.55] print:text-[10pt] print:text-black">
+                {p.desc}
+              </p>
+              <div className="flex flex-wrap gap-1.5 mt-1.5 print:hidden">
+                {p.tags.map((t) => (
+                  <Tag key={t} color={ACCENT_PALETTE[i % 4]}>
+                    {t}
+                  </Tag>
+                ))}
+              </div>
+              <div className="hidden print:block text-[9pt] text-black/60 mt-0.5">
+                {p.tags.join(" · ")}
               </div>
             </div>
           ))}
@@ -111,28 +168,6 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
               <span className="text-fg-mid font-medium print:text-black"> · UNASP</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section className="mb-7">
-        <SectionLabel>{R.skills}</SectionLabel>
-        <div className="grid grid-cols-3 gap-4 print:grid-cols-1 print:gap-2">
-          {content.stack.map((s, i) => {
-            const color = STACK_COLORS[i % 3];
-            return (
-              <div key={s.label}>
-                <div
-                  className={`text-xs font-bold mb-1.5 print:text-[9pt] print:text-black print:mb-0.5 ${textColorMap[color]}`}
-                >
-                  {s.label}
-                </div>
-                <div className="text-[13px] text-fg-mid leading-[1.7] print:text-[10pt] print:text-black">
-                  {s.items.join(", ")}
-                </div>
-              </div>
-            );
-          })}
         </div>
       </section>
 
