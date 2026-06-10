@@ -30,6 +30,7 @@ export interface ExperienceEntry {
   role: string;
   period: string;
   tags: string[];
+  bullets: string[];
 }
 
 export interface Project {
@@ -151,9 +152,13 @@ export interface UI {
     summary: string;
     skills: string;
     experience: string;
+    education: string;
+    languages: string;
     contact: string;
     present: string;
     backHome: string;
+    degree: string;
+    languageList: string;
   };
 }
 
@@ -194,8 +199,7 @@ const en: LocaleContent = {
   role: "Senior Full Stack Developer",
   headline:
     "I build high impact systems that scale, and I bring AI to the teams behind them so they move faster.",
-  subheadline:
-    "Campinas, Brazil · 4 years of experience · Open to contract and full time work",
+  subheadline: "Campinas, Brazil · 4 years of experience · Open to contract and full time work",
   tags: ["Angular", "Java", "Spring Boot", "AWS", "TypeScript", "AI Agents", "CI/CD"],
   heroStats: [
     { value: "4+", label: "Years of experience" },
@@ -236,16 +240,83 @@ const en: LocaleContent = {
     },
     {
       label: "AI & Infra",
-      items: ["AI Agents & SDD", "AWS (Lambda / SQS / S3)", "Docker / Kubernetes", "CI/CD pipelines"],
+      items: [
+        "AI Agents & SDD",
+        "AWS (Lambda / SQS / S3)",
+        "Docker / Kubernetes",
+        "CI/CD pipelines",
+      ],
     },
   ],
   experience: [
-    { company: "Act Digital", client: "BMW", role: "Senior Full Stack Developer", period: "Dec 2025 to now", tags: ["Angular", "Quarkus", "AI Agents", "SDD"] },
-    { company: "CI&T", client: "Bradesco", role: "Senior Full Stack Developer", period: "Sep 2024 to Oct 2025", tags: ["Angular 17", "Java 17", "QA"] },
-    { company: "Encibra", role: "Senior Full Stack Developer", period: "May 2024 to Sep 2024", tags: ["Spring Boot", "AWS", "Mentoring"] },
-    { company: "FADESP", client: "SEFAZ PA", role: "Full Stack Developer", period: "Oct 2023 to May 2024", tags: ["Angular 17", "Java 17"] },
-    { company: "Driven Education", role: "Tutor", period: "May 2022 to May 2023", tags: ["Teaching", "150+ students"] },
-    { company: "Mutual", role: "Front End Developer", period: "Oct 2021 to Apr 2022", tags: ["React", "Redux", "Micro-frontend"] },
+    {
+      company: "Act Digital",
+      client: "BMW",
+      role: "Senior Software Engineer & Technical Lead",
+      period: "Dec 2025 to now",
+      tags: ["AI Agents", "MCP", "Angular", "Quarkus", "SDD"],
+      bullets: [
+        "Led the design of an MCP-based platform to automate the development lifecycle using specialized agents integrated with GitHub Copilot",
+        "Designed a multi-agent architecture covering planning, spec review, development, code review, validation, documentation, and workflow management",
+        "Implemented task delegation, iterative validation, human-in-the-loop checkpoints, and operational guardrails to ensure predictability and quality",
+        "Serving as technical reference for AI-assisted development and Spec-Driven Development adoption within the team",
+      ],
+    },
+    {
+      company: "CI&T",
+      client: "Bradesco",
+      role: "Senior Software Engineer & Technical Lead",
+      period: "Sep 2024 to Oct 2025",
+      tags: ["Angular 17", "Java 17", "Micro-frontends"],
+      bullets: [
+        "Built and maintained Angular micro-frontends and Java services for one of Latin America's largest banking platforms",
+        "Operated in a high-scale, high-regulation environment serving millions of users with strict availability requirements",
+        "Improved delivery quality through technical review processes, early validation, and alignment between engineering, product, and business",
+      ],
+    },
+    {
+      company: "Encibra",
+      role: "Senior Software Engineer",
+      period: "May 2024 to Sep 2024",
+      tags: ["Spring Boot", "AWS", "Redis", "PostgreSQL"],
+      bullets: [
+        "Led backend architecture evolution using Spring Boot, MySQL, Redis, and AWS services",
+        "Implemented distributed caching mechanisms and developed solutions focused on scalability and latency reduction",
+        "Contributed to architectural strategies for sustainable platform growth and operational reliability",
+      ],
+    },
+    {
+      company: "FADESP",
+      client: "SEFAZ PA",
+      role: "Software Engineer",
+      period: "Oct 2023 to May 2024",
+      tags: ["Angular 17", "Java 17", "PostgreSQL"],
+      bullets: [
+        "Worked on the modernization of systems used by the Pará State Secretariat of Finance",
+        "Developed Angular 17 and Java 17 applications within a gradual legacy migration strategy",
+        "Contributed to technology evolution without disrupting existing services in a government environment",
+      ],
+    },
+    {
+      company: "Driven Education",
+      role: "Technical Tutor & Class Coordinator",
+      period: "May 2022 to May 2023",
+      tags: ["JavaScript", "React", "Node.js"],
+      bullets: [
+        "Trained 150+ technology professionals through mentoring sessions, project reviews, and technical guidance",
+        "Taught web development fundamentals, REST APIs, databases, and software engineering best practices",
+      ],
+    },
+    {
+      company: "Mutual",
+      role: "Front End & Mobile Developer",
+      period: "Oct 2021 to Apr 2022",
+      tags: ["React", "React Native", "Redux"],
+      bullets: [
+        "Developed web and mobile applications using React, React Native, and Redux",
+        "Contributed to the evolution of shared component libraries and micro-frontend architectures across multiple products",
+      ],
+    },
   ],
   contact: {
     email: "ruanfailache@gmail.com",
@@ -342,9 +413,13 @@ const en: LocaleContent = {
       summary: "Summary",
       skills: "Skills",
       experience: "Experience",
+      education: "Education",
+      languages: "Languages",
       contact: "Contact",
       present: "Present",
       backHome: "Back to site",
+      degree: "Bachelor's Degree in Software Engineering",
+      languageList: "Portuguese: Native · English: C1 Professional Proficiency",
     },
   },
 };
@@ -388,17 +463,93 @@ const pt: LocaleContent = {
     },
   ],
   stack: [
-    { label: "Frontend", items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"] },
-    { label: "Backend", items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"] },
-    { label: "IA e Infra", items: ["Agentes de IA e SDD", "AWS (Lambda / SQS / S3)", "Docker / Kubernetes", "Pipelines CI/CD"] },
+    {
+      label: "Frontend",
+      items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"],
+    },
+    {
+      label: "Backend",
+      items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"],
+    },
+    {
+      label: "IA e Infra",
+      items: [
+        "Agentes de IA e SDD",
+        "AWS (Lambda / SQS / S3)",
+        "Docker / Kubernetes",
+        "Pipelines CI/CD",
+      ],
+    },
   ],
   experience: [
-    { company: "Act Digital", client: "BMW", role: "Desenvolvedor Full Stack Sênior", period: "Dez 2025 até hoje", tags: ["Angular", "Quarkus", "Agentes de IA", "SDD"] },
-    { company: "CI&T", client: "Bradesco", role: "Desenvolvedor Full Stack Sênior", period: "Set 2024 a Out 2025", tags: ["Angular 17", "Java 17", "QA"] },
-    { company: "Encibra", role: "Desenvolvedor Full Stack Sênior", period: "Mai 2024 a Set 2024", tags: ["Spring Boot", "AWS", "Mentoria"] },
-    { company: "FADESP", client: "SEFAZ PA", role: "Desenvolvedor Full Stack", period: "Out 2023 a Mai 2024", tags: ["Angular 17", "Java 17"] },
-    { company: "Driven Education", role: "Tutor", period: "Mai 2022 a Mai 2023", tags: ["Ensino", "150+ alunos"] },
-    { company: "Mutual", role: "Desenvolvedor Front End", period: "Out 2021 a Abr 2022", tags: ["React", "Redux", "Micro-frontend"] },
+    {
+      company: "Act Digital",
+      client: "BMW",
+      role: "Engenheiro de Software Sênior & Referência Técnica",
+      period: "Dez 2025 até hoje",
+      tags: ["Agentes de IA", "MCP", "Angular", "Quarkus", "SDD"],
+      bullets: [
+        "Liderei a concepção de uma plataforma baseada em MCP para automação do ciclo de desenvolvimento com agentes especializados integrados ao GitHub Copilot",
+        "Projetei arquitetura multiagente com agentes de planejamento, revisão de specs, desenvolvimento, code review, validação técnica, documentação e gestão de fluxo",
+        "Implementei delegação de tarefas, validação iterativa, loops de revisão controlados, guardrails operacionais e checkpoints de aprovação humana",
+        "Atuo como referência técnica na adoção de desenvolvimento assistido por IA e Spec-Driven Development na equipe",
+      ],
+    },
+    {
+      company: "CI&T",
+      client: "Bradesco",
+      role: "Engenheiro de Software Sênior & Referência Técnica",
+      period: "Set 2024 a Out 2025",
+      tags: ["Angular 17", "Java 17", "Micro-frontends"],
+      bullets: [
+        "Construí e mantive micro-frontends Angular e serviços Java em uma das maiores plataformas bancárias da América Latina",
+        "Atuei em ambiente de alta escala e elevada exigência regulatória atendendo milhões de usuários",
+        "Contribuí para melhoria de qualidade por meio de revisões técnicas, validação antecipada e alinhamento entre engenharia, produto e negócio",
+      ],
+    },
+    {
+      company: "Encibra",
+      role: "Engenheiro de Software Sênior",
+      period: "Mai 2024 a Set 2024",
+      tags: ["Spring Boot", "AWS", "Redis", "PostgreSQL"],
+      bullets: [
+        "Liderei a evolução da arquitetura backend utilizando Spring Boot, MySQL, Redis e serviços AWS",
+        "Implementei mecanismos de cache distribuído e soluções focadas em escalabilidade e redução de latência",
+        "Participei da definição de estratégias arquiteturais para crescimento sustentável da plataforma",
+      ],
+    },
+    {
+      company: "FADESP",
+      client: "SEFAZ PA",
+      role: "Engenheiro de Software",
+      period: "Out 2023 a Mai 2024",
+      tags: ["Angular 17", "Java 17", "PostgreSQL"],
+      bullets: [
+        "Participei da modernização de sistemas da Secretaria da Fazenda do Estado do Pará",
+        "Desenvolvi aplicações com Angular 17, Java 17 e PostgreSQL em estratégia de migração gradual de sistemas legados",
+        "Contribuí para a evolução tecnológica da plataforma sem interrupção dos serviços existentes",
+      ],
+    },
+    {
+      company: "Driven Education",
+      role: "Tutor Técnico & Coordenador de Turmas",
+      period: "Mai 2022 a Mai 2023",
+      tags: ["JavaScript", "React", "Node.js"],
+      bullets: [
+        "Atuei na formação de mais de 150 profissionais de tecnologia por meio de mentorias, revisão de projetos e acompanhamento técnico",
+        "Ensinei fundamentos de desenvolvimento web, APIs, bancos de dados e boas práticas de engenharia de software",
+      ],
+    },
+    {
+      company: "Mutual",
+      role: "Desenvolvedor Front-End & Mobile",
+      period: "Out 2021 a Abr 2022",
+      tags: ["React", "React Native", "Redux"],
+      bullets: [
+        "Desenvolvi aplicações web e mobile com React, React Native e Redux",
+        "Participei da evolução de componentes compartilhados e arquiteturas de micro-frontends em múltiplos produtos",
+      ],
+    },
   ],
   contact: {
     email: "ruanfailache@gmail.com",
@@ -495,9 +646,13 @@ const pt: LocaleContent = {
       summary: "Resumo",
       skills: "Habilidades",
       experience: "Experiência",
+      education: "Formação",
+      languages: "Idiomas",
       contact: "Contato",
       present: "Atual",
       backHome: "Voltar ao site",
+      degree: "Bacharelado em Engenharia de Software",
+      languageList: "Português: Nativo · Inglês: Proficiência profissional (C1)",
     },
   },
 };
@@ -540,17 +695,93 @@ const ja: LocaleContent = {
     },
   ],
   stack: [
-    { label: "フロントエンド", items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"] },
-    { label: "バックエンド", items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"] },
-    { label: "AIとインフラ", items: ["AIエージェントとSDD", "AWS (Lambda / SQS / S3)", "Docker / Kubernetes", "CI/CDパイプライン"] },
+    {
+      label: "フロントエンド",
+      items: ["Angular 17+", "React", "TypeScript", "TailwindCSS", "Storybook"],
+    },
+    {
+      label: "バックエンド",
+      items: ["Java 17 + Spring Boot", "Node.js", "NestJS", "Quarkus", "Kotlin"],
+    },
+    {
+      label: "AIとインフラ",
+      items: [
+        "AIエージェントとSDD",
+        "AWS (Lambda / SQS / S3)",
+        "Docker / Kubernetes",
+        "CI/CDパイプライン",
+      ],
+    },
   ],
   experience: [
-    { company: "Act Digital", client: "BMW", role: "シニア・フルスタック開発者", period: "2025年12月 〜 現在", tags: ["Angular", "Quarkus", "AIエージェント", "SDD"] },
-    { company: "CI&T", client: "Bradesco", role: "シニア・フルスタック開発者", period: "2024年9月 〜 2025年10月", tags: ["Angular 17", "Java 17", "QA"] },
-    { company: "Encibra", role: "シニア・フルスタック開発者", period: "2024年5月 〜 2024年9月", tags: ["Spring Boot", "AWS", "メンタリング"] },
-    { company: "FADESP", client: "SEFAZ PA", role: "フルスタック開発者", period: "2023年10月 〜 2024年5月", tags: ["Angular 17", "Java 17"] },
-    { company: "Driven Education", role: "チューター", period: "2022年5月 〜 2023年5月", tags: ["指導", "150名以上の受講者"] },
-    { company: "Mutual", role: "フロントエンド開発者", period: "2021年10月 〜 2022年4月", tags: ["React", "Redux", "マイクロフロントエンド"] },
+    {
+      company: "Act Digital",
+      client: "BMW",
+      role: "シニア・ソフトウェアエンジニア & テクニカルリード",
+      period: "2025年12月 〜 現在",
+      tags: ["AIエージェント", "MCP", "Angular", "Quarkus", "SDD"],
+      bullets: [
+        "GitHub Copilotと統合した専門エージェントによるMCPベースの開発ライフサイクル自動化プラットフォームを設計・主導",
+        "計画・仕様レビュー・開発・コードレビュー・検証・ドキュメント・ワークフロー管理を担うマルチエージェントアーキテクチャを設計",
+        "タスク委譲、反復検証、ヒューマンインザループのチェックポイント、オペレーショナルガードレールを実装",
+        "チーム内でのAI支援開発とSpec-Driven Developmentの導入においてテクニカルリファレンスとして活動",
+      ],
+    },
+    {
+      company: "CI&T",
+      client: "Bradesco",
+      role: "シニア・ソフトウェアエンジニア & テクニカルリード",
+      period: "2024年9月 〜 2025年10月",
+      tags: ["Angular 17", "Java 17", "マイクロフロントエンド"],
+      bullets: [
+        "ラテンアメリカ最大規模の銀行プラットフォームの一つでAngularマイクロフロントエンドとJavaサービスを構築・保守",
+        "数百万ユーザーに対応する高スケール・高規制の環境で稼働",
+        "技術レビュープロセス、早期検証、エンジニアリング・プロダクト・ビジネス間の連携を通じて品質向上に貢献",
+      ],
+    },
+    {
+      company: "Encibra",
+      role: "シニア・ソフトウェアエンジニア",
+      period: "2024年5月 〜 2024年9月",
+      tags: ["Spring Boot", "AWS", "Redis", "PostgreSQL"],
+      bullets: [
+        "Spring Boot、MySQL、Redis、AWSサービスを用いたバックエンドアーキテクチャの進化を主導",
+        "分散キャッシュ機構を実装し、スケーラビリティと低レイテンシに焦点を当てたソリューションを開発",
+        "プラットフォームの持続可能な成長に向けたアーキテクチャ戦略の策定に参加",
+      ],
+    },
+    {
+      company: "FADESP",
+      client: "SEFAZ PA",
+      role: "ソフトウェアエンジニア",
+      period: "2023年10月 〜 2024年5月",
+      tags: ["Angular 17", "Java 17", "PostgreSQL"],
+      bullets: [
+        "パラー州財務局が使用するシステムのモダナイゼーションに参加",
+        "レガシーシステムの段階的移行戦略でAngular 17、Java 17、PostgreSQLを使用したアプリケーションを開発",
+        "行政環境で既存サービスを停止させることなくプラットフォームの技術進化に貢献",
+      ],
+    },
+    {
+      company: "Driven Education",
+      role: "テクニカルチューター & クラスコーディネーター",
+      period: "2022年5月 〜 2023年5月",
+      tags: ["JavaScript", "React", "Node.js"],
+      bullets: [
+        "メンタリング、プロジェクトレビュー、技術指導を通じて150名以上の技術者を育成",
+        "Web開発の基礎、REST API、データベース、ソフトウェアエンジニアリングのベストプラクティスを指導",
+      ],
+    },
+    {
+      company: "Mutual",
+      role: "フロントエンド & モバイル開発者",
+      period: "2021年10月 〜 2022年4月",
+      tags: ["React", "React Native", "Redux"],
+      bullets: [
+        "React、React Native、Reduxを使用したWebおよびモバイルアプリケーションを開発",
+        "複数のプロダクトで使用される共有コンポーネントライブラリとマイクロフロントエンドアーキテクチャの進化に貢献",
+      ],
+    },
   ],
   contact: {
     email: "ruanfailache@gmail.com",
@@ -647,9 +878,13 @@ const ja: LocaleContent = {
       summary: "概要",
       skills: "スキル",
       experience: "経歴",
+      education: "学歴",
+      languages: "言語",
       contact: "連絡先",
       present: "現在",
       backHome: "サイトへ戻る",
+      degree: "ソフトウェアエンジニアリング学士",
+      languageList: "ポルトガル語：母語 · 英語：ビジネス上級（C1）",
     },
   },
 };

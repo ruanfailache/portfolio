@@ -203,5 +203,19 @@ select:focus-visible,
     border: none !important;
     border-radius: 0 !important;
     padding: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    font-size: 10.5pt !important;
+    line-height: 1.5 !important;
+  }
+  /* Force black text throughout; ATS strips color anyway */
+  .resume-doc * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  /* Keep subtle dividers */
+  .resume-doc [class*="border-b"] {
+    border-color: #ccc !important;
   }
 }
