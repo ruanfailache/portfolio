@@ -24,13 +24,13 @@ export default function OpenTo({ content }: { content: LocaleContent }) {
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-6">
-        <h3 className="font-display font-bold text-[15px] mb-[14px] text-fg">{ui.openTo}</h3>
+        <h3 className="font-display font-bold text-[15px] mb-3.5 text-fg">{ui.openTo}</h3>
         <div className="flex flex-col gap-3">
           {ui.openToItems.map((item, i) => {
             const color = OPEN_TO_COLORS[i] ?? "indigo";
             return (
               <div key={item.label} className="flex items-center gap-3">
-                <span className={`w-[10px] h-[10px] rounded-[3px] shrink-0 ${bgMap[color]}`} />
+                <span className={`w-2.5 h-2.5 rounded-[3px] shrink-0 ${bgMap[color]}`} />
                 <div>
                   <div className="text-sm font-semibold text-fg">{item.label}</div>
                   <div className="text-xs text-fg-soft">{item.note}</div>
@@ -45,8 +45,8 @@ export default function OpenTo({ content }: { content: LocaleContent }) {
         <h3 className="font-display font-bold text-[15px] mb-3 text-fg">{ui.findMe}</h3>
         <div className="flex flex-col gap-[9px]">
           {CONTACT_INFO.map((item) => (
-            <div key={item.key} className="flex gap-[10px]">
-              <span className="text-[11px] font-bold text-fg-soft uppercase tracking-[0.06em] w-[60px] shrink-0 pt-[2px]">
+            <div key={item.key} className="flex gap-2.5">
+              <span className="text-2xs font-bold text-fg-soft uppercase tracking-[0.06em] w-[60px] shrink-0 pt-0.5">
                 {ui.contactLabels[item.key]}
               </span>
               {item.href ? (

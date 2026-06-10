@@ -4,6 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { LOCALES, strings, type Locale } from "@/lib/i18n";
 
+function persistLocale(locale: Locale) {
+  try {
+    document.cookie = `rf-lang=${locale};path=/;max-age=31536000`;
+  } catch {}
+}
+
 export default function LangSwitcher({
   currentLocale,
   ariaLabel,
@@ -20,7 +26,9 @@ export default function LangSwitcher({
     const onClickOutside = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
-    const onEscape = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
     document.addEventListener("mousedown", onClickOutside);
     document.addEventListener("keydown", onEscape);
     return () => {
@@ -31,7 +39,7 @@ export default function LangSwitcher({
 
   const switchLocale = (locale: Locale) => {
     setOpen(false);
-    try { document.cookie = `rf-lang=${locale};path=/;max-age=31536000`; } catch {}
+    persistLocale(locale);
     const segments = pathname.split("/");
     segments[1] = locale;
     router.push(segments.join("/"));
@@ -46,20 +54,35 @@ export default function LangSwitcher({
         aria-haspopup="menu"
         aria-controls="lang-menu"
         className={[
-          "flex items-center gap-[5px] h-9 px-[10px] cursor-pointer border-[1.5px] border-border rounded-[9px]",
+          "flex items-center gap-[5px] h-9 px-2.5 cursor-pointer border-1.5 border-border rounded-[9px]",
           "text-fg-mid font-sans text-[13px] font-semibold transition-[background,border-color] duration-150",
           open ? "bg-indigo-pale" : "bg-transparent",
         ].join(" ")}
       >
-        <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          aria-hidden="true"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" strokeLinecap="round" />
+          <path
+            d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"
+            strokeLinecap="round"
+          />
         </svg>
         <span>{strings[currentLocale].code}</span>
       </button>
 
       {open && (
-        <div id="lang-menu" role="menu" className="absolute top-11 right-0 min-w-[150px] bg-card border-[1.5px] border-border rounded-xl shadow-[0_12px_32px_var(--card-shadow)] p-1.5 z-[200] flex flex-col gap-0.5">
+        <div
+          id="lang-menu"
+          role="menu"
+          className="absolute top-11 right-0 min-w-[150px] bg-card border-1.5 border-border rounded-xl shadow-[0_12px_32px_var(--card-shadow)] p-1.5 z-[200] flex flex-col gap-0.5"
+        >
           {LOCALES.map((locale) => {
             const active = locale === currentLocale;
             return (
@@ -75,9 +98,7 @@ export default function LangSwitcher({
                 ].join(" ")}
               >
                 <span>{strings[locale].label}</span>
-                <span className="text-[11px] font-bold opacity-60">
-                  {strings[locale].code}
-                </span>
+                <span className="text-2xs font-bold opacity-60">{strings[locale].code}</span>
               </button>
             );
           })}

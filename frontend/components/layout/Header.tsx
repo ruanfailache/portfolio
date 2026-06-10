@@ -26,13 +26,7 @@ function isPageActive(page: string, pathname: string, locale: Locale): boolean {
   return pathname.startsWith(href);
 }
 
-export default function Header({
-  content,
-  locale,
-}: {
-  content: LocaleContent;
-  locale: Locale;
-}) {
+export default function Header({ content, locale }: { content: LocaleContent; locale: Locale }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobile, setMobile] = useState(false);
   const pathname = usePathname();
@@ -62,18 +56,16 @@ export default function Header({
       <div
         className={[
           "max-w-[1100px] mx-auto h-16 flex items-center justify-between",
-          mobile ? "px-[14px] gap-2" : "px-8 gap-3",
+          mobile ? "px-3.5 gap-2" : "px-8 gap-3",
         ].join(" ")}
       >
         {/* Logo */}
-        <Link href={`/${locale}`} className="flex items-center gap-[10px] no-underline shrink-0">
+        <Link href={`/${locale}`} className="flex items-center gap-2.5 no-underline shrink-0">
           <span className="w-[34px] h-[34px] bg-indigo rounded-[10px] flex items-center justify-center text-white font-display font-bold text-[15px]">
             R
           </span>
           {!mobile && (
-            <span className="font-display font-semibold text-base text-fg">
-              Ruan Failache
-            </span>
+            <span className="font-display font-semibold text-base text-fg">Ruan Failache</span>
           )}
         </Link>
 
@@ -88,7 +80,7 @@ export default function Header({
                 aria-current={active ? "page" : undefined}
                 className={[
                   "font-sans font-medium rounded-lg whitespace-nowrap no-underline transition-[color,background] duration-150",
-                  mobile ? "text-[13px] px-2 py-1.5" : "text-sm px-[14px] py-1.5",
+                  mobile ? "text-[13px] px-2 py-1.5" : "text-sm px-3.5 py-1.5",
                   active ? "text-indigo bg-indigo-pale" : "text-fg-mid bg-transparent",
                 ].join(" ")}
               >
@@ -104,7 +96,7 @@ export default function Header({
             <Link
               href={`/${locale}/resume`}
               className={[
-                "font-sans text-sm font-medium px-[10px] py-1.5 rounded-lg whitespace-nowrap no-underline transition-colors duration-150",
+                "font-sans text-sm font-medium px-2.5 py-1.5 rounded-lg whitespace-nowrap no-underline transition-colors duration-150",
                 pathname.startsWith(`/${locale}/resume`) ? "text-indigo" : "text-fg-mid",
               ].join(" ")}
             >
@@ -112,12 +104,12 @@ export default function Header({
             </Link>
           )}
           <LangSwitcher currentLocale={locale} ariaLabel={content.ui.language} />
-          <ThemeToggle ariaLabels={{ toLight: content.ui.themeToLight, toDark: content.ui.themeToDark }} />
+          <ThemeToggle
+            ariaLabels={{ toLight: content.ui.themeToLight, toDark: content.ui.themeToDark }}
+          />
           {!mobile && (
             <Link href={`/${locale}/contact`} className="no-underline">
-              <PrimaryButton className="py-[9px] px-5 text-sm">
-                {content.ui.hireMe}
-              </PrimaryButton>
+              <PrimaryButton className="py-[9px] px-5 text-sm">{content.ui.hireMe}</PrimaryButton>
             </Link>
           )}
         </div>

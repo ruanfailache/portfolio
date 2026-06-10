@@ -38,7 +38,7 @@ export function GhostButton({
     <button
       type="button"
       onClick={onClick}
-      className={`bg-transparent text-fg border-[1.5px] border-border rounded-[10px] px-6 py-3 font-sans font-semibold text-[15px] cursor-pointer transition-[border-color] duration-150 whitespace-nowrap hover:border-indigo ${className ?? ""}`}
+      className={`bg-transparent text-fg border-1.5 border-border rounded-[10px] px-6 py-3 font-sans font-semibold text-[15px] cursor-pointer transition-[border-color] duration-150 whitespace-nowrap hover:border-indigo ${className ?? ""}`}
     >
       {children}
     </button>

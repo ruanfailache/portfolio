@@ -13,14 +13,14 @@ export default function PostLoading() {
       <Skeleton className="w-[85%] h-11 mb-3" />
       <Skeleton className="w-[65%] h-11 mb-6" />
 
-      <Skeleton className="w-full h-4 mb-[10px]" />
-      <Skeleton className="w-[90%] h-4 mb-[10px]" />
+      <Skeleton className="w-full h-4 mb-2.5" />
+      <Skeleton className="w-[90%] h-4 mb-2.5" />
       <Skeleton className="w-[75%] h-4 mb-10" />
 
       <div className="h-px bg-border mb-10" />
 
       {[100, 95, 88, 92, 70, 80, 96, 85, 60].map((w, i) => (
-        <Skeleton key={i} className={`w-[${w}%] h-4 mb-[14px]`} />
+        <Skeleton key={i} className={`w-[${w}%] h-4 mb-3.5`} />
       ))}
     </div>
   );

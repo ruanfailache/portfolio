@@ -5,7 +5,8 @@ import type { LocaleContent } from "@/lib/i18n";
 import { PrimaryButton } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 
-const inputClass = "w-full px-[14px] py-3 font-sans text-sm text-fg bg-bg-alt border-[1.5px] border-border rounded-[10px] outline-none resize-y transition-[border-color] duration-150 focus:border-indigo";
+const inputClass =
+  "w-full px-3.5 py-3 font-sans text-sm text-fg bg-bg-alt border-1.5 border-border rounded-[10px] outline-none resize-y transition-[border-color] duration-150 focus:border-indigo";
 
 export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
   const [sent, setSent] = useState(false);
@@ -33,24 +34,33 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
         <div className="text-center py-10">
           <div className="w-14 h-14 rounded-full bg-sage-pale flex items-center justify-center mx-auto mb-4">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="var(--sage)">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
             </svg>
           </div>
           <h3 className="font-display font-bold text-xl mb-2">{ui.sentTitle}</h3>
           <p className="text-sm text-fg-mid mb-5">{ui.sentBody}</p>
           <button
             onClick={() => setSent(false)}
-            className="bg-transparent border-[1.5px] border-border rounded-lg px-4 py-2 font-sans text-[13px] text-fg-mid cursor-pointer"
+            className="bg-transparent border-1.5 border-border rounded-lg px-4 py-2 font-sans text-[13px] text-fg-mid cursor-pointer"
           >
             {ui.sendAnother}
           </button>
         </div>
       ) : (
         <>
-          <h3 className="font-display font-bold text-xl mb-[22px] text-fg">{ui.sendTitle}</h3>
+          <h3 className="font-display font-bold text-xl mb-5.5 text-fg">{ui.sendTitle}</h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-              <label htmlFor="contact-about" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.formAbout}</label>
+              <label
+                htmlFor="contact-about"
+                className="block text-[13px] font-semibold text-fg mb-1.5"
+              >
+                {ui.formAbout}
+              </label>
               <select
                 id="contact-about"
                 value={form.type}
@@ -58,11 +68,20 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
                 onChange={(e) => setForm((v) => ({ ...v, type: e.target.value }))}
                 className={`${inputClass} h-11 cursor-pointer`}
               >
-                {ui.opportunityTypes.map((t) => <option key={t} value={t}>{t}</option>)}
+                {ui.opportunityTypes.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
-              <label htmlFor="contact-name" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.nameLabel}</label>
+              <label
+                htmlFor="contact-name"
+                className="block text-[13px] font-semibold text-fg mb-1.5"
+              >
+                {ui.nameLabel}
+              </label>
               <input
                 id="contact-name"
                 type="text"
@@ -74,7 +93,12 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
               />
             </div>
             <div>
-              <label htmlFor="contact-email" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.emailLabel}</label>
+              <label
+                htmlFor="contact-email"
+                className="block text-[13px] font-semibold text-fg mb-1.5"
+              >
+                {ui.emailLabel}
+              </label>
               <input
                 id="contact-email"
                 type="email"
@@ -86,7 +110,12 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
               />
             </div>
             <div>
-              <label htmlFor="contact-subject" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.subjectLabel}</label>
+              <label
+                htmlFor="contact-subject"
+                className="block text-[13px] font-semibold text-fg mb-1.5"
+              >
+                {ui.subjectLabel}
+              </label>
               <input
                 id="contact-subject"
                 type="text"
@@ -96,12 +125,20 @@ export default function ContactForm({ ui }: { ui: LocaleContent["ui"] }) {
                 onChange={(e) => setForm((v) => ({ ...v, subject: e.target.value }))}
                 className={`${inputClass} h-11`}
               />
-              <p className="text-[11px] text-fg-soft mt-1">
-                {ui.willBeSentAs}: <em>{form.type}: {form.subject || "…"}</em>
+              <p className="text-2xs text-fg-soft mt-1">
+                {ui.willBeSentAs}:{" "}
+                <em>
+                  {form.type}: {form.subject || "…"}
+                </em>
               </p>
             </div>
             <div>
-              <label htmlFor="contact-message" className="block text-[13px] font-semibold text-fg mb-1.5">{ui.messageLabel}</label>
+              <label
+                htmlFor="contact-message"
+                className="block text-[13px] font-semibold text-fg mb-1.5"
+              >
+                {ui.messageLabel}
+              </label>
               <textarea
                 id="contact-message"
                 rows={4}

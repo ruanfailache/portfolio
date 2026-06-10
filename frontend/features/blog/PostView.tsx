@@ -26,8 +26,10 @@ export default function PostView({
         ← {content.ui.backToPosts}
       </Link>
 
-      <div className="flex items-center gap-[10px] mb-[18px]">
-        <span className={`text-[11px] font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[color]}`}>
+      <div className="flex items-center gap-2.5 mb-4.5">
+        <span
+          className={`text-2xs font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[color]}`}
+        >
           {post.tag}
         </span>
         <span className="text-[13px] text-fg-soft">
@@ -35,13 +37,11 @@ export default function PostView({
         </span>
       </div>
 
-      <h1 className="font-display font-bold text-[clamp(30px,4.5cqw,44px)] tracking-[-0.025em] leading-[1.15] text-fg mb-[18px]">
+      <h1 className="font-display font-bold text-[clamp(30px,4.5cqw,44px)] tracking-[-0.025em] leading-[1.15] text-fg mb-4.5">
         {post.title}
       </h1>
 
-      <p className="text-[19px] text-fg-mid leading-relaxed mb-9 font-normal">
-        {post.summary}
-      </p>
+      <p className="text-[19px] text-fg-mid leading-relaxed mb-9 font-normal">{post.summary}</p>
 
       <div className="h-px bg-border mb-9" />
 
@@ -55,7 +55,7 @@ export default function PostView({
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="font-display font-bold text-[22px] text-fg mt-9 mb-[14px] tracking-[-0.01em]">
+                <h3 className="font-display font-bold text-[22px] text-fg mt-9 mb-3.5 tracking-[-0.01em]">
                   {children}
                 </h3>
               ),
@@ -63,12 +63,14 @@ export default function PostView({
                 <p className="text-[17px] text-fg-mid leading-[1.75] mb-5">{children}</p>
               ),
               blockquote: ({ children }) => (
-                <blockquote className={`${borderLMap[color]} ${bgPaleMap[color]} border-l-[3px] rounded-[0_12px_12px_0] px-6 py-[18px] my-7 font-display text-[19px] font-medium text-fg leading-[1.5] italic`}>
+                <blockquote
+                  className={`${borderLMap[color]} ${bgPaleMap[color]} border-l-[3px] rounded-[0_12px_12px_0] px-6 py-4.5 my-7 font-display text-[19px] font-medium text-fg leading-[1.5] italic`}
+                >
                   {children}
                 </blockquote>
               ),
               code: ({ children }) => (
-                <code className="font-mono bg-panel text-indigo px-1.5 py-[2px] rounded text-[15px]">
+                <code className="font-mono bg-panel text-indigo px-1.5 py-0.5 rounded text-[15px]">
                   {children}
                 </code>
               ),
@@ -77,11 +79,14 @@ export default function PostView({
                   {children}
                 </pre>
               ),
-              strong: ({ children }) => (
-                <strong className="font-bold text-fg">{children}</strong>
-              ),
+              strong: ({ children }) => <strong className="font-bold text-fg">{children}</strong>,
               a: ({ href, children }) => (
-                <a href={href} className="text-indigo underline" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={href}
+                  className="text-indigo underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {children}
                 </a>
               ),
@@ -91,16 +96,24 @@ export default function PostView({
           </ReactMarkdown>
         ) : (
           post.body.map((block, i) => {
-            if (block.h) return (
-              <h3 key={i} className="font-display font-bold text-[22px] text-fg mt-9 mb-[14px] tracking-[-0.01em]">
-                {block.h}
-              </h3>
-            );
-            if (block.quote) return (
-              <blockquote key={i} className={`${borderLMap[color]} ${bgPaleMap[color]} border-l-[3px] rounded-[0_12px_12px_0] px-6 py-[18px] my-7 font-display text-[19px] font-medium text-fg leading-[1.5] italic`}>
-                {block.quote}
-              </blockquote>
-            );
+            if (block.h)
+              return (
+                <h3
+                  key={i}
+                  className="font-display font-bold text-[22px] text-fg mt-9 mb-3.5 tracking-[-0.01em]"
+                >
+                  {block.h}
+                </h3>
+              );
+            if (block.quote)
+              return (
+                <blockquote
+                  key={i}
+                  className={`${borderLMap[color]} ${bgPaleMap[color]} border-l-[3px] rounded-[0_12px_12px_0] px-6 py-4.5 my-7 font-display text-[19px] font-medium text-fg leading-[1.5] italic`}
+                >
+                  {block.quote}
+                </blockquote>
+              );
             return (
               <p key={i} className="text-[17px] text-fg-mid leading-[1.75] mb-5">
                 {block.p}
@@ -116,7 +129,7 @@ export default function PostView({
           <div className="text-[13px] text-fg-soft">{content.ui.postFooterTagline}</div>
         </div>
         <Link href={`/${locale}/contact`} className="no-underline">
-          <PrimaryButton className="py-[10px] px-5 text-sm">
+          <PrimaryButton className="py-2.5 px-5 text-sm">
             {content.ui.workWithMe} <Arrow />
           </PrimaryButton>
         </Link>

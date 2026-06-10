@@ -9,7 +9,7 @@ export default function CTA({ content, locale }: { content: LocaleContent; local
       <div className="max-w-[1100px] mx-auto px-8">
         <div className="bg-panel rounded-3xl px-10 py-12 grid grid-cols-[1fr_auto] gap-8 items-center transition-[background] duration-300">
           <div>
-            <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-indigo-mid mb-3 font-sans">
+            <div className="text-2xs font-bold tracking-[0.12em] uppercase text-indigo-mid mb-3 font-sans">
               {content.ui.ctaKicker}
             </div>
             <h3 className="font-display font-bold text-[28px] text-panel-fg leading-[1.2] mb-3">

@@ -32,8 +32,20 @@ const SOCIALS = [
     label: "Email",
     href: "mailto:ruanfailache@gmail.com",
     icon: (
-      <svg aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
       </svg>
     ),
   },
@@ -41,15 +53,15 @@ const SOCIALS = [
 
 const varToBorderL: Record<string, string> = {
   "var(--indigo)": "border-l-indigo",
-  "var(--sage)":   "border-l-sage",
-  "var(--rose)":   "border-l-rose",
-  "var(--amber)":  "border-l-amber",
+  "var(--sage)": "border-l-sage",
+  "var(--rose)": "border-l-rose",
+  "var(--amber)": "border-l-amber",
 };
 const varToText: Record<string, string> = {
   "var(--indigo)": "text-indigo",
-  "var(--sage)":   "text-sage",
-  "var(--rose)":   "text-rose",
-  "var(--amber)":  "text-amber",
+  "var(--sage)": "text-sage",
+  "var(--rose)": "text-rose",
+  "var(--amber)": "text-amber",
 };
 
 function tagColor(tag: string) {
@@ -67,21 +79,23 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
         <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-[1fr_420px] gap-16 items-center">
           <div>
             <SectionLabel>{content.role}</SectionLabel>
-            <h1
-              className="reveal font-display font-bold text-[clamp(36px,5cqw,60px)] tracking-[-0.03em] leading-[1.1] text-fg mb-5"
-            >
+            <h1 className="reveal font-display font-bold text-[clamp(36px,5cqw,60px)] tracking-[-0.03em] leading-[1.1] text-fg mb-5">
               Ruan
               <br />
               <span className="text-indigo">Failache</span>
             </h1>
-            <p className="reveal reveal-2 text-[18px] text-fg-mid leading-[1.65] max-w-[480px] mb-[10px]">
+            <p className="reveal reveal-2 text-[18px] text-fg-mid leading-[1.65] max-w-[480px] mb-2.5">
               {content.headline}
             </p>
             <p className="reveal reveal-2 text-sm text-fg-soft leading-[1.6] max-w-[460px] mb-7">
               {content.subheadline}
             </p>
             <div className="reveal reveal-3 flex flex-wrap gap-1.5 mb-8">
-              {content.tags.map((t) => <Tag key={t} color={tagColor(t)}>{t}</Tag>)}
+              {content.tags.map((t) => (
+                <Tag key={t} color={tagColor(t)}>
+                  {t}
+                </Tag>
+              ))}
             </div>
             <div className="reveal reveal-4 flex gap-3 mb-9">
               <Link href={`/${locale}/work`} className="no-underline">
@@ -111,7 +125,17 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
                 href={`/${locale}/resume`}
                 className="text-fg-mid font-sans font-semibold text-[13px] flex items-center gap-1.5 no-underline transition-colors duration-150 hover:text-indigo"
               >
-                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  aria-hidden="true"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                   <path d="M14 2v6h6M9 13h6M9 17h4" />
                 </svg>
@@ -121,7 +145,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
           </div>
 
           {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-[14px]">
+          <div className="grid grid-cols-2 gap-3.5">
             {content.heroStats.map((s, i) => (
               <StatCard key={s.label} value={s.value} label={s.label} color={ACCENT_PALETTE[i]} />
             ))}
@@ -132,20 +156,20 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
       {/* Delivered at */}
       <section className="bg-panel py-8 transition-[background] duration-300">
         <div className="max-w-[1100px] mx-auto px-8">
-          <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-panel-faint mb-[18px] font-sans">
+          <div className="text-2xs font-bold tracking-[0.1em] uppercase text-panel-faint mb-4.5 font-sans">
             {content.ui.deliveredAt}
           </div>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[22px_0]">
             {CLIENTS.map((c) => (
               <div
                 key={c.client}
-                className={`py-[2px] px-5 flex flex-col gap-1 border-l-2 ${varToBorderL[c.color] ?? "border-l-indigo"}`}
+                className={`py-0.5 px-5 flex flex-col gap-1 border-l-2 ${varToBorderL[c.color] ?? "border-l-indigo"}`}
               >
-                <span className="font-display font-bold text-base text-panel-fg">
-                  {c.client}
-                </span>
+                <span className="font-display font-bold text-base text-panel-fg">{c.client}</span>
                 {c.via && (
-                  <span className={`text-[11px] font-medium tracking-[0.02em] ${varToText[c.color] ?? "text-indigo"}`}>
+                  <span
+                    className={`text-2xs font-medium tracking-[0.02em] ${varToText[c.color] ?? "text-indigo"}`}
+                  >
                     {content.ui.via} {c.via}
                   </span>
                 )}

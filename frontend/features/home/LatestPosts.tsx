@@ -45,15 +45,17 @@ export default function LatestPosts({
               className="no-underline"
             >
               <Card hoverable className="flex flex-col p-6 h-full">
-                <div className="flex items-center gap-2 mb-[14px]">
-                  <span className={`text-[11px] font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[post.color]}`}>
+                <div className="flex items-center gap-2 mb-3.5">
+                  <span
+                    className={`text-2xs font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[post.color]}`}
+                  >
                     {post.tag}
                   </span>
                   <span className="text-xs text-fg-soft">
                     {post.date} · {post.read}
                   </span>
                 </div>
-                <h3 className="font-display font-bold text-[17px] text-fg mb-[10px] leading-[1.3]">
+                <h3 className="font-display font-bold text-[17px] text-fg mb-2.5 leading-[1.3]">
                   {post.title}
                 </h3>
                 <p className="text-sm text-fg-mid leading-[1.65] flex-1 mb-4">

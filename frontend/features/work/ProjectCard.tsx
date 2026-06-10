@@ -21,24 +21,26 @@ export default function ProjectCard({
       <Card hoverable>
         <div className="grid grid-cols-[1fr_auto] gap-4 items-center">
           <div>
-            <div className="flex items-center gap-[10px] mb-2 flex-wrap">
-              <h4 className="font-display font-bold text-xl text-fg">
-                {project.title}
-              </h4>
-              <span className={`text-[11px] font-[800] tracking-[0.1em] uppercase ${textColorMap[project.color]}`}>
+            <div className="flex items-center gap-2.5 mb-2 flex-wrap">
+              <h4 className="font-display font-bold text-xl text-fg">{project.title}</h4>
+              <span
+                className={`text-2xs font-[800] tracking-[0.1em] uppercase ${textColorMap[project.color]}`}
+              >
                 {project.status}
               </span>
             </div>
             {"company" in project && (
-              <div className="text-[13px] text-fg-soft mb-3">
-                {(project as Project).company}
-              </div>
+              <div className="text-[13px] text-fg-soft mb-3">{(project as Project).company}</div>
             )}
-            <p className="text-sm text-fg-mid leading-[1.65] mb-[14px]">
+            <p className="text-sm text-fg-mid leading-[1.65] mb-3.5">
               {project.desc.slice(0, 150)}…
             </p>
             <div className="flex flex-wrap gap-1.5 mb-4">
-              {project.tags.slice(0, 5).map((t) => <Tag key={t} color={project.color}>{t}</Tag>)}
+              {project.tags.slice(0, 5).map((t) => (
+                <Tag key={t} color={project.color}>
+                  {t}
+                </Tag>
+              ))}
             </div>
             <span className="text-indigo font-sans font-semibold text-sm flex items-center gap-1.5">
               {ui.viewCase} <Arrow />

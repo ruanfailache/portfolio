@@ -10,22 +10,22 @@ export default function Capabilities({ content }: { content: LocaleContent }) {
         <div className="grid grid-cols-2 gap-16 items-start mb-11">
           <div>
             <SectionLabel>{content.ui.whatIDo}</SectionLabel>
-            <h2 className="font-display font-bold text-[clamp(24px,3.5cqw,34px)] tracking-[-0.02em] leading-[1.2] mb-[18px] text-fg">
+            <h2 className="font-display font-bold text-[clamp(24px,3.5cqw,34px)] tracking-[-0.02em] leading-[1.2] mb-4.5 text-fg">
               {content.ui.whatIDoTitle}
             </h2>
           </div>
-          <p className="text-base text-fg-mid leading-[1.7] pt-2">
-            {content.intro}
-          </p>
+          <p className="text-base text-fg-mid leading-[1.7] pt-2">{content.intro}</p>
         </div>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
           {content.capabilities.map((c) => (
             <Card key={c.title} hoverable className="flex flex-col">
-              <div className={`text-xs font-[800] tracking-[0.08em] uppercase mb-[14px] ${textColorMap[c.color]}`}>
+              <div
+                className={`text-xs font-[800] tracking-[0.08em] uppercase mb-3.5 ${textColorMap[c.color]}`}
+              >
                 {c.label}
               </div>
-              <h3 className="font-display font-bold text-[17px] text-fg mb-[10px] leading-[1.3]">
+              <h3 className="font-display font-bold text-[17px] text-fg mb-2.5 leading-[1.3]">
                 {c.title}
               </h3>
               <p className="text-sm text-fg-mid leading-[1.65]">{c.desc}</p>

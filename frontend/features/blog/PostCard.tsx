@@ -17,20 +17,21 @@ export default function PostCard({
   compact?: boolean;
 }) {
   return (
-    <Link
-      href={`/${locale}/blog/${post.slug ?? ""}`}
-      className="no-underline flex flex-col h-full"
-    >
+    <Link href={`/${locale}/blog/${post.slug ?? ""}`} className="no-underline flex flex-col h-full">
       <Card hoverable className={`flex flex-col h-full ${compact ? "p-6" : "p-7"}`}>
-        <div className="flex items-center gap-2 mb-[14px]">
-          <span className={`text-[11px] font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[post.color]}`}>
+        <div className="flex items-center gap-2 mb-3.5">
+          <span
+            className={`text-2xs font-[800] tracking-[0.08em] uppercase whitespace-nowrap ${textColorMap[post.color]}`}
+          >
             {post.tag}
           </span>
           <span className="text-xs text-fg-soft">
             {post.date} · {post.read}
           </span>
         </div>
-        <h3 className={`font-display font-bold text-fg mb-[10px] leading-[1.3] ${compact ? "text-[17px]" : "text-xl"}`}>
+        <h3
+          className={`font-display font-bold text-fg mb-2.5 leading-[1.3] ${compact ? "text-[17px]" : "text-xl"}`}
+        >
           {post.title}
         </h3>
         <p className="text-sm text-fg-mid leading-[1.65] flex-1 mb-4">

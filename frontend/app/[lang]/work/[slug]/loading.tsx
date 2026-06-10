@@ -5,7 +5,7 @@ export default function CaseStudyLoading() {
     <div className="max-w-[920px] mx-auto px-8 pt-12">
       <Skeleton className="w-[140px] h-[14px] mb-8" />
 
-      <div className="flex gap-[10px] mb-4">
+      <div className="flex gap-2.5 mb-4">
         <Skeleton className="w-20 h-3" />
         <Skeleton className="w-[70px] h-3" />
       </div>
@@ -17,12 +17,12 @@ export default function CaseStudyLoading() {
       <div className="grid grid-cols-[1fr_240px] gap-12">
         <div>
           <Skeleton className="w-[100px] h-[22px] mb-4" />
-          <Skeleton className="w-full h-4 mb-[10px]" />
-          <Skeleton className="w-[95%] h-4 mb-[10px]" />
-          <Skeleton className="w-[85%] h-4 mb-[10px]" />
-          <Skeleton className="w-[90%] h-4 mb-[10px]" />
+          <Skeleton className="w-full h-4 mb-2.5" />
+          <Skeleton className="w-[95%] h-4 mb-2.5" />
+          <Skeleton className="w-[85%] h-4 mb-2.5" />
+          <Skeleton className="w-[90%] h-4 mb-2.5" />
           <Skeleton className="w-[70%] h-4 mb-8" />
-          <div className="h-20 border-[1.5px] border-border rounded-xl" />
+          <div className="h-20 border-1.5 border-border rounded-xl" />
         </div>
 
         <div className="border-l-[1.5px] border-border pl-7">

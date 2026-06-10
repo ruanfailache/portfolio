@@ -14,7 +14,7 @@ export default function ErrorFallback({
       </p>
       <button
         onClick={reset}
-        className="px-5 py-2 rounded-lg border-[1.5px] border-border bg-transparent text-indigo font-sans font-semibold text-sm cursor-pointer"
+        className="px-5 py-2 rounded-lg border-1.5 border-border bg-transparent text-indigo font-sans font-semibold text-sm cursor-pointer"
       >
         Try again
       </button>

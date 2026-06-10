@@ -11,13 +11,13 @@ export default function StatCard({
   color?: AccentColor;
 }) {
   return (
-    <div className={`${bgPaleMap[color]} border-[1.5px] ${borderPaleMap[color]} rounded-2xl py-[26px] px-[22px] flex flex-col gap-1`}>
+    <div
+      className={`${bgPaleMap[color]} border-1.5 ${borderPaleMap[color]} rounded-2xl py-6.5 px-5.5 flex flex-col gap-1`}
+    >
       <div className={`text-[44px] font-bold font-display leading-none ${textColorMap[color]}`}>
         {value}
       </div>
-      <div className="text-[13px] font-semibold text-fg mt-1.5">
-        {label}
-      </div>
+      <div className="text-[13px] font-semibold text-fg mt-1.5">{label}</div>
     </div>
   );
 }

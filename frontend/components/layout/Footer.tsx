@@ -34,34 +34,26 @@ function pageHref(page: string, locale: Locale): string {
   return map[page] ?? `/${locale}`;
 }
 
-export default function Footer({
-  content,
-  locale,
-}: {
-  content: LocaleContent;
-  locale: Locale;
-}) {
+export default function Footer({ content, locale }: { content: LocaleContent; locale: Locale }) {
   return (
     <footer className="bg-panel pt-10 pb-7 mt-20 transition-[background] duration-300">
       <div className="max-w-[1100px] mx-auto px-8">
         <div className="flex justify-between items-center mb-7 flex-wrap gap-4">
-          <span className="font-display font-bold text-[18px] text-panel-fg">
-            Ruan Failache
-          </span>
+          <span className="font-display font-bold text-[18px] text-panel-fg">Ruan Failache</span>
 
           <nav aria-label="Footer" className="flex gap-1 flex-wrap">
             {NAV_PAGES.map((page) => (
               <Link
                 key={page}
                 href={pageHref(page, locale)}
-                className="text-panel-soft font-sans text-[13px] px-[10px] py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
+                className="text-panel-soft font-sans text-[13px] px-2.5 py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
               >
                 {content.ui.nav[page]}
               </Link>
             ))}
             <Link
               href={`/${locale}/resume`}
-              className="text-panel-soft font-sans text-[13px] px-[10px] py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
+              className="text-panel-soft font-sans text-[13px] px-2.5 py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
             >
               {content.ui.resumeNav}
             </Link>
@@ -84,12 +76,8 @@ export default function Footer({
         </div>
 
         <div className="border-t border-panel-foot-line pt-5 flex justify-between items-center flex-wrap gap-2">
-          <span className="text-[13px] text-panel-foot">
-            {content.ui.footerCopyright}
-          </span>
-          <span className="text-[13px] text-panel-foot">
-            {content.ui.footerOpenToWork}
-          </span>
+          <span className="text-[13px] text-panel-foot">{content.ui.footerCopyright}</span>
+          <span className="text-[13px] text-panel-foot">{content.ui.footerOpenToWork}</span>
         </div>
       </div>
     </footer>
