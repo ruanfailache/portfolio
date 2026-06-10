@@ -116,29 +116,6 @@
   --amber-pale: oklch(38% 0.06 85);
 }
 
-/* ─── RESET & BASE ─── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-inter), system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--fg);
-  -webkit-font-smoothing: antialiased;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
-}
-
 /* ─── FOCUS RING ─── */
 a:focus-visible,
 button:focus-visible,

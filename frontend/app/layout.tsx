@@ -16,9 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ruanfailache.com"
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ruanfailache.com"),
   title: {
     default: "Ruan Failache | Senior Full Stack Developer",
     template: "%s | Ruan Failache",
@@ -55,7 +53,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${dmSans.variable} ${inter.variable}`}
+      className={`scroll-smooth ${dmSans.variable} ${inter.variable}`}
     >
       <head>
         {/* Prevent flash of wrong theme before hydration */}
@@ -66,7 +64,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col bg-bg text-fg font-sans antialiased transition-colors duration-300">
+        {children}
+      </body>
     </html>
   );
 }

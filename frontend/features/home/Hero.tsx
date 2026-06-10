@@ -75,8 +75,8 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
   return (
     <>
       {/* Hero section */}
-      <section className="bg-bg pt-[72px] pb-20">
-        <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-[1fr_420px] gap-16 items-center">
+      <section className="bg-bg pt-18 pb-20">
+        <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-center">
           <div>
             <SectionLabel>{content.role}</SectionLabel>
             <h1 className="reveal font-display font-bold text-[clamp(36px,5cqw,60px)] tracking-[-0.03em] leading-[1.1] text-fg mb-5">
@@ -145,7 +145,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
           </div>
 
           {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-3.5">
+          <div className="hidden lg:grid grid-cols-2 gap-3.5">
             {content.heroStats.map((s, i) => (
               <StatCard key={s.label} value={s.value} label={s.label} color={ACCENT_PALETTE[i]} />
             ))}
@@ -159,7 +159,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
           <div className="text-2xs font-bold tracking-[0.1em] uppercase text-panel-faint mb-4.5 font-sans">
             {content.ui.deliveredAt}
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[22px_0]">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-x-0 gap-y-5.5">
             {CLIENTS.map((c) => (
               <div
                 key={c.client}

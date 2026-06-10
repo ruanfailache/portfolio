@@ -19,7 +19,7 @@ export default function LatestPosts({
   const preview = posts.slice(0, 3);
 
   return (
-    <section className="bg-bg py-[72px]">
+    <section className="bg-bg py-18">
       <div className="max-w-[1100px] mx-auto px-8">
         <div className="flex justify-between items-end mb-8 gap-4">
           <div>

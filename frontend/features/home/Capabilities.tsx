@@ -5,9 +5,9 @@ import SectionLabel from "@/components/ui/SectionLabel";
 
 export default function Capabilities({ content }: { content: LocaleContent }) {
   return (
-    <section className="bg-bg-alt py-[72px]">
+    <section className="bg-bg-alt py-18">
       <div className="max-w-[1100px] mx-auto px-8">
-        <div className="grid grid-cols-2 gap-16 items-start mb-11">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mb-8 md:mb-11">
           <div>
             <SectionLabel>{content.ui.whatIDo}</SectionLabel>
             <h2 className="font-display font-bold text-[clamp(24px,3.5cqw,34px)] tracking-[-0.02em] leading-[1.2] mb-4.5 text-fg">

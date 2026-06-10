@@ -30,7 +30,7 @@ export default function WorkLoading() {
             <div key={i} className="border-1.5 border-border rounded-2xl px-7 py-6">
               <Skeleton className="w-[60%] h-[22px] mb-2.5" />
               <Skeleton className="w-[85%] h-[15px] mb-2.5" />
-              <div className="flex gap-2 mt-[14px]">
+              <div className="flex gap-2 mt-3.5">
                 <Skeleton className="w-[60px] h-[22px] rounded-full" />
                 <Skeleton className="w-[70px] h-[22px] rounded-full" />
               </div>
