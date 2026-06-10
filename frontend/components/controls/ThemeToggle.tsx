@@ -1,8 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-function getTheme(): "light" | "dark" {
+function applyTheme(theme: "light" | "dark") {
+  document.documentElement.setAttribute("data-theme", theme);
+  try {
+    localStorage.setItem("rf-theme", theme);
+  } catch {}
+  window.dispatchEvent(new Event("themechange"));
+}
+
+function subscribe(callback: () => void): () => void {
+  window.addEventListener("themechange", callback);
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  const onMQChange = (e: MediaQueryListEvent) => {
+    if (!localStorage.getItem("rf-theme")) {
+      applyTheme(e.matches ? "dark" : "light");
+    }
+  };
+  mq.addEventListener("change", onMQChange);
+  return () => {
+    window.removeEventListener("themechange", callback);
+    mq.removeEventListener("change", onMQChange);
+  };
+}
+
+function getSnapshot(): "light" | "dark" {
   try {
     const saved = localStorage.getItem("rf-theme");
     if (saved === "light" || saved === "dark") return saved;
@@ -12,11 +35,8 @@ function getTheme(): "light" | "dark" {
   }
 }
 
-function applyTheme(theme: "light" | "dark") {
-  document.documentElement.setAttribute("data-theme", theme);
-  try {
-    localStorage.setItem("rf-theme", theme);
-  } catch {}
+function getServerSnapshot(): "light" {
+  return "light";
 }
 
 export default function ThemeToggle({
@@ -24,27 +44,10 @@ export default function ThemeToggle({
 }: {
   ariaLabels: { toLight: string; toDark: string };
 }) {
-  const [theme, setTheme] = useState<"light" | "dark">(() =>
-    typeof window === "undefined" ? "light" : getTheme()
-  );
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem("rf-theme")) {
-        const next = e.matches ? "dark" : "light";
-        setTheme(next);
-        applyTheme(next);
-      }
-    };
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    applyTheme(next);
+    applyTheme(theme === "dark" ? "light" : "dark");
   };
 
   const isDark = theme === "dark";
