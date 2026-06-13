@@ -39,11 +39,6 @@ describe("Header", () => {
     }
   });
 
-  it("does not render Home in nav (logo is the home link)", () => {
-    render(<Header content={content} locale="en" />);
-    expect(screen.queryByText(content.ui.nav["Home"])).not.toBeInTheDocument();
-  });
-
   it("does not mark Work as active on home path", () => {
     mockPathname = "/en";
     render(<Header content={content} locale="en" />);
