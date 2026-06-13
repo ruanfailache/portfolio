@@ -1,9 +1,0 @@
-.next
-node_modules
-.git
-.env*.local
-Portfolio
-README.md
-docker-compose.yml
-Dockerfile
-pnpm-lock.yaml

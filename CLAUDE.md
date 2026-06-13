@@ -46,7 +46,3 @@ Only use `style={{}}` for truly dynamic runtime values (e.g. a computed pixel wi
 
 Frontmatter schema for posts: `title`, `slug`, `date` (ISO), `read`, `tag`, `color`, `summary`.
 Frontmatter schema for projects: `title`, `slug`, `projectType` (`client`|`side`), `company`, `status`, `color`, `desc`, `outcome`, `tags` (array), `order`.
-
-## Docker
-
-`Dockerfile` uses `npm install` — pnpm's minimum-release-age policy breaks clean Docker builds. pnpm stays local-only.
