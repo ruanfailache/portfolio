@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js 16, deployed on Vercel. Supports English, Portuguese, and Japanese.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework** — Next.js 16 (App Router)
+- **Styling** — Tailwind CSS with design tokens via CSS custom properties
+- **Content** — Markdown files with YAML frontmatter (`gray-matter`)
+- **i18n** — Three locales: `en`, `pt`, `ja`
+- **Testing** — Vitest + React Testing Library (co-located with source)
+- **Fonts** — Inter (body), DM Sans (display)
+
+## Project structure
+
+```
+app/[lang]/               ← routes, one folder per page
+  _components/            ← home page components + tests
+  blog/_components/
+  work/_components/
+  contact/_components/
+  resume/_components/
+components/               ← shared primitives (ui/, controls/, layout/)
+lib/                      ← server-only utilities and i18n
+content/
+  posts/{en,pt,ja}/       ← blog post markdown files
+  projects/{en,pt,ja}/    ← project markdown files
+test/
+  setup.ts                ← vitest global setup
+  fixtures/               ← shared test fixtures
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Commands
 
-To learn more about Next.js, take a look at the following resources:
+| Command              | Description                    |
+| -------------------- | ------------------------------ |
+| `pnpm dev`           | Start development server       |
+| `pnpm build`         | Production build               |
+| `pnpm start`         | Start production server        |
+| `pnpm test`          | Run test suite                 |
+| `pnpm test:coverage` | Run tests with coverage report |
+| `pnpm lint`          | Lint source files              |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Blog posts and projects are plain Markdown files under `content/`. Each piece of content needs a file per locale.
 
-## Deploy on Vercel
+Use `/new-content post <slug>` or `/new-content project <slug>` in Claude Code to scaffold all three locale files with the correct frontmatter schema.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Shared primitive** → `components/ui/` via `/new-component <name>`
+- **Route-specific** → `app/[lang]/<route>/_components/` via `/new-feature <name>`
+- **Test for existing component** → `/new-test <path>`
