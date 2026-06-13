@@ -21,7 +21,7 @@ export default function CTA({ content, locale }: { content: LocaleContent; local
           </div>
           <div className="flex flex-col gap-3 shrink-0">
             <Link href={`/${locale}/contact`} className="no-underline">
-              <PrimaryButton className="py-[13px] px-7 whitespace-nowrap">
+              <PrimaryButton className="py-[13px] px-7 w-full justify-center">
                 {content.ui.getInTouch} <Arrow />
               </PrimaryButton>
             </Link>

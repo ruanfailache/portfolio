@@ -97,7 +97,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
                 </Tag>
               ))}
             </div>
-            <div className="reveal reveal-4 flex gap-3 mb-9">
+            <div className="reveal reveal-4 flex flex-wrap gap-3 mb-9">
               <Link href={`/${locale}/work`} className="no-underline">
                 <PrimaryButton>
                   {content.ui.viewMyWork} <Arrow />

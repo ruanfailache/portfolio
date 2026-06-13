@@ -38,7 +38,7 @@ export default function Footer({ content, locale }: { content: LocaleContent; lo
   return (
     <footer className="bg-panel pt-10 pb-7 mt-20 transition-[background] duration-300">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-8">
-        <div className="flex justify-between items-center mb-7 flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-7 gap-4">
           <span className="font-display font-bold text-[18px] text-panel-fg">Ruan Failache</span>
 
           <nav aria-label="Footer" className="flex gap-1 flex-wrap">

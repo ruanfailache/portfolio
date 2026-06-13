@@ -28,19 +28,12 @@ function isPageActive(page: string, pathname: string, locale: Locale): boolean {
 
 export default function Header({ content, locale }: { content: LocaleContent; locale: Locale }) {
   const [scrolled, setScrolled] = useState(false);
-  const [mobile, setMobile] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    const onResize = () => setMobile(window.innerWidth < 640);
-    onResize();
     window.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -53,24 +46,19 @@ export default function Header({ content, locale }: { content: LocaleContent; lo
           : "bg-header-bg shadow-none",
       ].join(" ")}
     >
-      <div
-        className={[
-          "max-w-[1100px] mx-auto h-16 flex items-center justify-between",
-          mobile ? "px-3.5 gap-2" : "px-8 gap-3",
-        ].join(" ")}
-      >
+      <div className="max-w-[1100px] mx-auto h-16 flex items-center justify-between px-3.5 sm:px-8 gap-2 sm:gap-3">
         {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center gap-2.5 no-underline shrink-0">
           <span className="w-[34px] h-[34px] bg-indigo rounded-[10px] flex items-center justify-center text-white font-display font-bold text-[15px]">
             R
           </span>
-          {!mobile && (
-            <span className="font-display font-semibold text-base text-fg">Ruan Failache</span>
-          )}
+          <span className="hidden sm:block font-display font-semibold text-base text-fg">
+            Ruan Failache
+          </span>
         </Link>
 
         {/* Nav */}
-        <nav className={`flex ${mobile ? "gap-px" : "gap-1.5"}`}>
+        <nav className="flex gap-px sm:gap-1.5">
           {NAV_PAGES.map((page) => {
             const active = isPageActive(page, pathname, locale);
             return (
@@ -80,7 +68,7 @@ export default function Header({ content, locale }: { content: LocaleContent; lo
                 aria-current={active ? "page" : undefined}
                 className={[
                   "font-sans font-medium rounded-lg whitespace-nowrap no-underline transition-[color,background] duration-150",
-                  mobile ? "text-[13px] px-2 py-1.5" : "text-sm px-3.5 py-1.5",
+                  "text-[13px] px-2 py-1.5 sm:text-sm sm:px-3.5",
                   active ? "text-indigo bg-indigo-pale" : "text-fg-mid bg-transparent",
                 ].join(" ")}
               >
@@ -91,27 +79,23 @@ export default function Header({ content, locale }: { content: LocaleContent; lo
         </nav>
 
         {/* Actions */}
-        <div className={`flex items-center shrink-0 ${mobile ? "gap-1.5" : "gap-2"}`}>
-          {!mobile && (
-            <Link
-              href={`/${locale}/curriculum`}
-              className={[
-                "font-sans text-sm font-medium px-2.5 py-1.5 rounded-lg whitespace-nowrap no-underline transition-colors duration-150",
-                pathname.startsWith(`/${locale}/curriculum`) ? "text-indigo" : "text-fg-mid",
-              ].join(" ")}
-            >
-              {content.ui.resumeNav}
-            </Link>
-          )}
+        <div className="flex items-center shrink-0 gap-1.5 sm:gap-2">
+          <Link
+            href={`/${locale}/curriculum`}
+            className={[
+              "hidden sm:inline-flex font-sans text-sm font-medium px-2.5 py-1.5 rounded-lg whitespace-nowrap no-underline transition-colors duration-150",
+              pathname.startsWith(`/${locale}/curriculum`) ? "text-indigo" : "text-fg-mid",
+            ].join(" ")}
+          >
+            {content.ui.resumeNav}
+          </Link>
           <LangSwitcher currentLocale={locale} ariaLabel={content.ui.language} />
           <ThemeToggle
             ariaLabels={{ toLight: content.ui.themeToLight, toDark: content.ui.themeToDark }}
           />
-          {!mobile && (
-            <Link href={`/${locale}/contact`} className="no-underline">
-              <PrimaryButton className="py-[9px] px-5 text-sm">{content.ui.hireMe}</PrimaryButton>
-            </Link>
-          )}
+          <Link href={`/${locale}/contact`} className="no-underline hidden sm:inline-flex">
+            <PrimaryButton className="py-[9px] px-5 text-sm">{content.ui.hireMe}</PrimaryButton>
+          </Link>
         </div>
       </div>
     </header>
