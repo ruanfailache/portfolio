@@ -94,10 +94,10 @@ export default function Header({ content, locale }: { content: LocaleContent; lo
         <div className={`flex items-center shrink-0 ${mobile ? "gap-1.5" : "gap-2"}`}>
           {!mobile && (
             <Link
-              href={`/${locale}/resume`}
+              href={`/${locale}/curriculum`}
               className={[
                 "font-sans text-sm font-medium px-2.5 py-1.5 rounded-lg whitespace-nowrap no-underline transition-colors duration-150",
-                pathname.startsWith(`/${locale}/resume`) ? "text-indigo" : "text-fg-mid",
+                pathname.startsWith(`/${locale}/curriculum`) ? "text-indigo" : "text-fg-mid",
               ].join(" ")}
             >
               {content.ui.resumeNav}

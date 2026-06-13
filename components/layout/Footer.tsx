@@ -52,7 +52,7 @@ export default function Footer({ content, locale }: { content: LocaleContent; lo
               </Link>
             ))}
             <Link
-              href={`/${locale}/resume`}
+              href={`/${locale}/curriculum`}
               className="text-panel-soft font-sans text-[13px] px-2.5 py-1 rounded-md whitespace-nowrap no-underline transition-colors duration-150"
             >
               {content.ui.resumeNav}

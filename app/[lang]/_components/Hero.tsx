@@ -122,7 +122,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
               ))}
               <span className="w-px h-4 bg-border" />
               <Link
-                href={`/${locale}/resume`}
+                href={`/${locale}/curriculum`}
                 className="text-fg-mid font-sans font-semibold text-[13px] flex items-center gap-1.5 no-underline transition-colors duration-150 hover:text-indigo"
               >
                 <svg

@@ -445,7 +445,7 @@ const en: LocaleContent = {
     themeToLight: "Switch to light mode",
     themeToDark: "Switch to dark mode",
     language: "Language",
-    resumeNav: "Résumé",
+    resumeNav: "Curriculum",
     viewCase: "View case study",
     caseStudy: "Case Study",
     overview: "Overview",
@@ -456,7 +456,7 @@ const en: LocaleContent = {
     backToWork: "Back to work",
     screenshotHint: "Drop a screenshot of this project here",
     resume: {
-      title: "Résumé",
+      title: "Curriculum",
       download: "Download PDF",
       summary: "Summary",
       skills: "Skills",
