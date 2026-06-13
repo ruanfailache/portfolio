@@ -11,7 +11,6 @@ export default defineConfig({
       provider: "v8",
       include: [
         "lib/i18n.ts",
-        "app/api/**/*.ts",
         "proxy.ts",
         "components/**/*.{ts,tsx}",
         "app/[lang]/**/_components/**/*.{ts,tsx}",
