@@ -1,4 +1,4 @@
 services:
-  cms:
+  portfolio:
     ports:
-      - "1337:1337"
+      - "3000:3000"
