@@ -90,11 +90,11 @@ describe("Header", () => {
   it("adds scroll shadow when scrolled past 8px", () => {
     const { container } = render(<Header content={content} locale="en" />);
     const header = container.querySelector("header")!;
-    expect(header.style.boxShadow).toBe("none");
+    expect(header).toHaveClass("shadow-none");
     act(() => {
       Object.defineProperty(window, "scrollY", { value: 20, writable: true, configurable: true });
       fireEvent.scroll(window);
     });
-    expect(header.style.boxShadow).not.toBe("none");
+    expect(header).not.toHaveClass("shadow-none");
   });
 });

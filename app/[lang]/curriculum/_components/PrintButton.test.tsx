@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import PrintButton from "@/app/[lang]/resume/_components/PrintButton";
+import PrintButton from "@/app/[lang]/curriculum/_components/PrintButton";
 
 beforeEach(() => {
   window.print = vi.fn();

@@ -122,13 +122,10 @@ describe("ThemeToggle", () => {
     expect(screen.getByRole("button", { name: ariaLabels.toDark })).toBeInTheDocument();
   });
 
-  it("changes button color on mouse enter and resets on mouse leave", () => {
+  it("has hover indigo color class", () => {
     render(<ThemeToggle ariaLabels={ariaLabels} />);
     const btn = screen.getByRole("button", { name: ariaLabels.toDark });
-    fireEvent.mouseEnter(btn);
-    expect(btn.style.color).toBe("var(--indigo)");
-    fireEvent.mouseLeave(btn);
-    expect(btn.style.color).toBe("var(--fg-mid)");
+    expect(btn).toHaveClass("hover:text-indigo");
   });
 
   it("removes matchMedia listener on unmount", () => {

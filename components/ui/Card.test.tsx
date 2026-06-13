@@ -15,21 +15,14 @@ describe("Card", () => {
     expect(screen.getByText("content")).toHaveClass("my-class");
   });
 
-  it("does not change transform on hover when hoverable is not set", () => {
+  it("does not have hover translate class when hoverable is not set", () => {
     render(<Card>static</Card>);
-    const el = screen.getByText("static");
-    fireEvent.mouseEnter(el);
-    expect(el.style.transform).toBe("none");
+    expect(screen.getByText("static")).not.toHaveClass("hover:-translate-y-[3px]");
   });
 
-  it("applies translateY on hover and resets on leave when hoverable", () => {
+  it("has hover translate class when hoverable is set", () => {
     render(<Card hoverable>card</Card>);
-    const el = screen.getByText("card");
-    expect(el.style.transform).toBe("none");
-    fireEvent.mouseEnter(el);
-    expect(el.style.transform).toBe("translateY(-3px)");
-    fireEvent.mouseLeave(el);
-    expect(el.style.transform).toBe("none");
+    expect(screen.getByText("card")).toHaveClass("hover:-translate-y-[3px]");
   });
 
   it("calls onClick when clicked", () => {
@@ -39,9 +32,9 @@ describe("Card", () => {
     expect(onClick).toHaveBeenCalledOnce();
   });
 
-  it("sets cursor pointer when onClick is provided", () => {
-    render(<Card onClick={vi.fn()}>clickable</Card>);
-    expect(screen.getByText("clickable").style.cursor).toBe("pointer");
+  it("sets cursor pointer when hoverable", () => {
+    render(<Card hoverable>clickable</Card>);
+    expect(screen.getByText("clickable")).toHaveClass("cursor-pointer");
   });
 
   it("does not set cursor when onClick is not provided", () => {

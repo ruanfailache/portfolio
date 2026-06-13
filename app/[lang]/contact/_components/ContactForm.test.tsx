@@ -51,13 +51,10 @@ describe("ContactForm", () => {
     expect(screen.getByText(/My topic/)).toBeInTheDocument();
   });
 
-  it("resets border color to default on blur", () => {
+  it("has focus indigo border class", () => {
     render(<ContactForm ui={ui} />);
     const input = screen.getByPlaceholderText(ui.namePlaceholder);
-    fireEvent.focus(input);
-    expect(input.style.borderColor).toBe("var(--indigo)");
-    fireEvent.blur(input);
-    expect(input.style.borderColor).toBe("var(--border)");
+    expect(input).toHaveClass("focus:border-indigo");
   });
 
   it("shows placeholder in subject preview when subject is empty", () => {

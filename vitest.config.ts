@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "node",
+    exclude: ["**/node_modules/**", "**/.claude/**"],
     setupFiles: ["./test/setup.ts"],
     coverage: {
       provider: "v8",

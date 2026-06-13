@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import ResumeDoc from "@/app/[lang]/resume/_components/ResumeDoc";
+import ResumeDoc from "@/app/[lang]/curriculum/_components/ResumeDoc";
 import { getContent } from "@/lib/i18n";
 
 const content = getContent("en");

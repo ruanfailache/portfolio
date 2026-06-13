@@ -44,19 +44,16 @@ describe("Tag", () => {
 
   it("renders with a background based on color", () => {
     render(<Tag color="sage">Node.js</Tag>);
-    const el = screen.getByText("Node.js");
-    expect(el.style.background).toBe("var(--sage-pale)");
+    expect(screen.getByText("Node.js")).toHaveClass("bg-sage-pale");
   });
 
   it("renders with foreground color based on color", () => {
     render(<Tag color="rose">Java</Tag>);
-    const el = screen.getByText("Java");
-    expect(el.style.color).toBe("var(--rose)");
+    expect(screen.getByText("Java")).toHaveClass("text-rose");
   });
 
   it("renders different tag colors", () => {
     render(<Tag color="amber">AWS</Tag>);
-    const el = screen.getByText("AWS");
-    expect(el.style.background).toBe("var(--amber-pale)");
+    expect(screen.getByText("AWS")).toHaveClass("bg-amber-pale");
   });
 });

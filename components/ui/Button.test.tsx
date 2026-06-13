@@ -16,19 +16,9 @@ describe("PrimaryButton", () => {
     expect(onClick).toHaveBeenCalledOnce();
   });
 
-  it("applies filter brightness on mouse enter", () => {
+  it("has hover brightness class", () => {
     render(<PrimaryButton>Hover</PrimaryButton>);
-    const btn = screen.getByRole("button");
-    fireEvent.mouseEnter(btn);
-    expect(btn.style.filter).toBe("brightness(0.9)");
-  });
-
-  it("resets filter on mouse leave", () => {
-    render(<PrimaryButton>Hover</PrimaryButton>);
-    const btn = screen.getByRole("button");
-    fireEvent.mouseEnter(btn);
-    fireEvent.mouseLeave(btn);
-    expect(btn.style.filter).toBe("none");
+    expect(screen.getByRole("button")).toHaveClass("hover:brightness-90");
   });
 
   it("merges custom style", () => {
@@ -51,18 +41,8 @@ describe("GhostButton", () => {
     expect(onClick).toHaveBeenCalledOnce();
   });
 
-  it("sets indigo border on mouse enter", () => {
+  it("has hover indigo border class", () => {
     render(<GhostButton>Ghost</GhostButton>);
-    const btn = screen.getByRole("button");
-    fireEvent.mouseEnter(btn);
-    expect(btn.style.borderColor).toBe("var(--indigo)");
-  });
-
-  it("resets border color on mouse leave", () => {
-    render(<GhostButton>Ghost</GhostButton>);
-    const btn = screen.getByRole("button");
-    fireEvent.mouseEnter(btn);
-    fireEvent.mouseLeave(btn);
-    expect(btn.style.borderColor).toBe("var(--border)");
+    expect(screen.getByRole("button")).toHaveClass("hover:border-indigo");
   });
 });

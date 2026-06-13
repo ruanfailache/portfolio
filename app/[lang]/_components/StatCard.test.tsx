@@ -15,29 +15,27 @@ describe("StatCard", () => {
   });
 
   it("defaults to indigo color", () => {
-    const { container } = render(<StatCard value="1" label="Test" />);
-    const value = screen.getByText("1");
-    expect(value.style.color).toBe("var(--indigo)");
+    render(<StatCard value="1" label="Test" />);
+    expect(screen.getByText("1")).toHaveClass("text-indigo");
   });
 
   it("uses sage color when specified", () => {
     render(<StatCard value="2" label="Test" color="sage" />);
-    expect(screen.getByText("2").style.color).toBe("var(--sage)");
+    expect(screen.getByText("2")).toHaveClass("text-sage");
   });
 
   it("uses rose color when specified", () => {
     render(<StatCard value="3" label="Test" color="rose" />);
-    expect(screen.getByText("3").style.color).toBe("var(--rose)");
+    expect(screen.getByText("3")).toHaveClass("text-rose");
   });
 
   it("uses amber color when specified", () => {
     render(<StatCard value="4" label="Test" color="amber" />);
-    expect(screen.getByText("4").style.color).toBe("var(--amber)");
+    expect(screen.getByText("4")).toHaveClass("text-amber");
   });
 
   it("applies background based on color", () => {
     const { container } = render(<StatCard value="X" label="Test" color="sage" />);
-    const card = container.firstChild as HTMLElement;
-    expect(card.style.background).toBe("var(--sage-pale)");
+    expect(container.firstChild as HTMLElement).toHaveClass("bg-sage-pale");
   });
 });
