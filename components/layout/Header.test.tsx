@@ -77,14 +77,12 @@ describe("Header", () => {
     expect(screen.getByText(content.ui.resumeNav)).toBeInTheDocument();
   });
 
-  it("hides brand text and hire me button on mobile", () => {
-    window.innerWidth = 400;
+  it("hides brand text and hire me button on mobile via CSS", () => {
     render(<Header content={content} locale="en" />);
-    act(() => {
-      fireEvent(window, new Event("resize"));
-    });
-    expect(screen.queryByText("Ruan Failache")).not.toBeInTheDocument();
-    expect(screen.queryByText(content.ui.hireMe)).not.toBeInTheDocument();
+    const brandText = screen.getByText("Ruan Failache");
+    expect(brandText).toHaveClass("hidden");
+    const hireMeLink = screen.getByText(content.ui.hireMe).closest("a");
+    expect(hireMeLink).toHaveClass("hidden");
   });
 
   it("adds scroll shadow when scrolled past 8px", () => {
