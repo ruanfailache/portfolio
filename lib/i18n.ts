@@ -361,8 +361,8 @@ const en: LocaleContent = {
     {
       title: "Portfolio Website",
       period: "2025 – 2026",
-      desc: "Multi-locale portfolio built with Next.js 16, Tailwind v4, and Strapi 5 CMS. Features AI-assisted development workflows, WCAG AA accessibility, and print-ready résumé.",
-      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Strapi 5"],
+      desc: "Multi-locale portfolio built with Next.js 16, Tailwind v4, and markdown-based content. Features AI-assisted development workflows, WCAG AA accessibility, and print-ready résumé.",
+      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Vercel"],
     },
   ],
   contact: {
@@ -634,8 +634,8 @@ const pt: LocaleContent = {
     {
       title: "Site Portfólio",
       period: "2025 – 2026",
-      desc: "Portfólio multilíngue construído com Next.js 16, Tailwind v4 e CMS Strapi 5. Cobre fluxos de desenvolvimento assistido por IA, acessibilidade WCAG AA e currículo para impressão.",
-      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Strapi 5"],
+      desc: "Portfólio multilíngue construído com Next.js 16, Tailwind v4 e conteúdo em markdown. Cobre fluxos de desenvolvimento assistido por IA, acessibilidade WCAG AA e currículo para impressão.",
+      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Vercel"],
     },
   ],
   contact: {
@@ -906,8 +906,8 @@ const ja: LocaleContent = {
     {
       title: "ポートフォリオサイト",
       period: "2025 – 2026",
-      desc: "Next.js 16、Tailwind v4、Strapi 5 CMSで構築した多言語ポートフォリオ。AI支援開発ワークフロー、WCAG AAアクセシビリティ、印刷対応履歴書を含む。",
-      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Strapi 5"],
+      desc: "Next.js 16、Tailwind v4、マークダウンコンテンツで構築した多言語ポートフォリオ。AI支援開発ワークフロー、WCAG AAアクセシビリティ、印刷対応履歴書を含む。",
+      tags: ["Next.js 16", "TypeScript", "TailwindCSS v4", "Vercel"],
     },
   ],
   contact: {
