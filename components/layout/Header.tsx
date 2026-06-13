@@ -8,7 +8,7 @@ import { PrimaryButton } from "@/components/ui/Button";
 import ThemeToggle from "@/components/controls/ThemeToggle";
 import LangSwitcher from "@/components/controls/LangSwitcher";
 
-const NAV_PAGES = ["Home", "Work", "Blog", "Contact"] as const;
+const NAV_PAGES = ["Work", "Blog", "Contact"] as const;
 
 function pageHref(page: string, locale: Locale): string {
   const map: Record<string, string> = {

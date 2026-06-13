@@ -34,16 +34,14 @@ describe("Header", () => {
 
   it("renders all nav page labels", () => {
     render(<Header content={content} locale="en" />);
-    for (const page of ["Home", "Work", "Blog", "Contact"]) {
+    for (const page of ["Work", "Blog", "Contact"]) {
       expect(screen.getByText(content.ui.nav[page])).toBeInTheDocument();
     }
   });
 
-  it("marks Home as active on the home path", () => {
-    mockPathname = "/en";
+  it("does not render Home in nav (logo is the home link)", () => {
     render(<Header content={content} locale="en" />);
-    const homeLink = screen.getByText(content.ui.nav["Home"]).closest("a");
-    expect(homeLink).toHaveAttribute("aria-current", "page");
+    expect(screen.queryByText(content.ui.nav["Home"])).not.toBeInTheDocument();
   });
 
   it("does not mark Work as active on home path", () => {
@@ -60,11 +58,11 @@ describe("Header", () => {
     expect(workLink).toHaveAttribute("aria-current", "page");
   });
 
-  it("does not mark Home as active when on work page", () => {
-    mockPathname = "/en/work";
+  it("does not mark Work as active when on blog page", () => {
+    mockPathname = "/en/blog";
     render(<Header content={content} locale="en" />);
-    const homeLink = screen.getByText(content.ui.nav["Home"]).closest("a");
-    expect(homeLink).not.toHaveAttribute("aria-current", "page");
+    const workLink = screen.getByText(content.ui.nav["Work"]).closest("a");
+    expect(workLink).not.toHaveAttribute("aria-current", "page");
   });
 
   it("renders the hire me button on desktop", () => {
