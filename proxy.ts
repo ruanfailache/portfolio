@@ -19,13 +19,14 @@ function generateNonce(): string {
 }
 
 export function buildCsp(nonce: string): string {
+  const dev = process.env.NODE_ENV === "development";
   return [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}'`,
+    `script-src 'self' 'nonce-${nonce}'${dev ? " 'unsafe-eval'" : ""}`,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' data: https:`,
     `font-src 'self'`,
-    `connect-src 'self'`,
+    `connect-src 'self'${dev ? " ws: wss:" : ""}`,
     `object-src 'none'`,
     `base-uri 'self'`,
     `form-action 'self'`,

@@ -59,6 +59,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Prevent flash of wrong theme before hydration */}
         <script
           nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('rf-theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           }}
