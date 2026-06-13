@@ -6,7 +6,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 export default function Capabilities({ content }: { content: LocaleContent }) {
   return (
     <section className="bg-bg-alt py-18">
-      <div className="max-w-[1100px] mx-auto px-8">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mb-8 md:mb-11">
           <div>
             <SectionLabel>{content.ui.whatIDo}</SectionLabel>
@@ -17,7 +17,7 @@ export default function Capabilities({ content }: { content: LocaleContent }) {
           <p className="text-base text-fg-mid leading-[1.7] pt-2">{content.intro}</p>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-4">
           {content.capabilities.map((c) => (
             <Card key={c.title} hoverable className="flex flex-col">
               <div

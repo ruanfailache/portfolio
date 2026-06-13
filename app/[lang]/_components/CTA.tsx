@@ -6,7 +6,7 @@ import Arrow from "@/components/ui/Arrow";
 export default function CTA({ content, locale }: { content: LocaleContent; locale: Locale }) {
   return (
     <section className="bg-bg pt-6 pb-20">
-      <div className="max-w-[1100px] mx-auto px-8">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-8">
         <div className="bg-panel rounded-3xl px-6 py-10 md:px-10 md:py-12 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-8 items-start md:items-center transition-colors duration-300">
           <div>
             <div className="text-2xs font-bold tracking-[0.12em] uppercase text-indigo-mid mb-3 font-sans">

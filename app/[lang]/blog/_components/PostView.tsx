@@ -18,7 +18,7 @@ export default function PostView({
   const color = post.color;
 
   return (
-    <div className="max-w-[760px] mx-auto px-8 pt-12">
+    <div className="max-w-[760px] mx-auto px-4 sm:px-8 pt-12">
       <Link
         href={`/${locale}/blog`}
         className="text-fg-mid font-sans font-semibold text-sm inline-flex items-center gap-1.5 mb-8 no-underline transition-colors duration-150 hover:text-indigo"

@@ -22,7 +22,7 @@ export default function WorkList({
   const displaySideProjects = sideProjects ?? [];
 
   return (
-    <div className="max-w-[1100px] mx-auto px-8 py-16">
+    <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-16">
       <SectionHeading
         label={content.ui.workKicker}
         title={content.ui.workTitle}
@@ -32,7 +32,7 @@ export default function WorkList({
       {/* Tech stack */}
       <div className="mb-16">
         <h3 className="font-display font-bold text-[22px] mb-5 text-fg">{content.ui.techStack}</h3>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-4">
           {content.stack.map((s, i) => {
             const color = STACK_COLORS[i % 3];
             return (

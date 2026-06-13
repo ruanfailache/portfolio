@@ -17,7 +17,7 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
   const R = content.ui.resume;
 
   return (
-    <div className="resume-doc bg-card border-1.5 border-border rounded-2xl px-[52px] py-12 mb-10">
+    <div className="resume-doc bg-card border-1.5 border-border rounded-2xl px-5 py-8 sm:px-10 sm:py-10 md:px-[52px] md:py-12 mb-10">
       {/* Header */}
       <div className="border-b-2 border-border pb-5.5 mb-6.5 print:border-0 print:pb-0 print:mb-4">
         <h1 className="font-display font-bold text-[34px] tracking-[-0.02em] text-fg mb-1 print:text-[22pt] print:text-black">
@@ -57,7 +57,7 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
       {/* Skills */}
       <section className="mb-7">
         <SectionLabel>{R.skills}</SectionLabel>
-        <div className="grid grid-cols-3 gap-x-6 gap-y-4 print:grid-cols-2 print:gap-x-8 print:gap-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4 print:grid-cols-2 print:gap-x-8 print:gap-y-2">
           {content.stack.map((s, i) => {
             const color = STACK_COLORS[i % 3];
             return (
@@ -83,7 +83,7 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
           {content.experience.map((e, i) => (
             <div
               key={`${e.company}-${i}`}
-              className="grid grid-cols-[150px_1fr] gap-4.5 print:grid-cols-1 print:gap-1"
+              className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-2 sm:gap-4.5 print:grid-cols-1 print:gap-1"
             >
               <div className="text-[12.5px] text-fg-soft font-semibold pt-0.5 print:text-[9.5pt] print:text-black/60 print:pt-0 print:mb-0.5">
                 {e.period}
@@ -158,7 +158,7 @@ export default function ResumeDoc({ content }: { content: LocaleContent }) {
       {/* Education */}
       <section className="mb-7">
         <SectionLabel>{R.education}</SectionLabel>
-        <div className="grid grid-cols-[150px_1fr] gap-4.5 print:grid-cols-1 print:gap-1">
+        <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-2 sm:gap-4.5 print:grid-cols-1 print:gap-1">
           <div className="text-[12.5px] text-fg-soft font-semibold pt-0.5 print:text-[9.5pt] print:text-black/60 print:pt-0 print:mb-0.5">
             2024 – 2028
           </div>

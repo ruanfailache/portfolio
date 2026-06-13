@@ -76,7 +76,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
     <>
       {/* Hero section */}
       <section className="bg-bg pt-18 pb-20">
-        <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-center">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-center">
           <div>
             <SectionLabel>{content.role}</SectionLabel>
             <h1 className="reveal font-display font-bold text-[clamp(36px,5cqw,60px)] tracking-[-0.03em] leading-[1.1] text-fg mb-5">
@@ -155,7 +155,7 @@ export default function Hero({ content, locale }: { content: LocaleContent; loca
 
       {/* Delivered at */}
       <section className="bg-panel py-8 transition-[background] duration-300">
-        <div className="max-w-[1100px] mx-auto px-8">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-8">
           <div className="text-2xs font-bold tracking-[0.1em] uppercase text-panel-faint mb-4.5 font-sans">
             {content.ui.deliveredAt}
           </div>

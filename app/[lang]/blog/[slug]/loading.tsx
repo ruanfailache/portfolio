@@ -2,7 +2,7 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function PostLoading() {
   return (
-    <div className="max-w-[720px] mx-auto px-8 py-12">
+    <div className="max-w-[720px] mx-auto px-4 sm:px-8 py-12">
       <Skeleton className="w-[140px] h-[14px] mb-8" />
 
       <div className="flex gap-2 mb-5">

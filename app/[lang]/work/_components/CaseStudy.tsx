@@ -23,7 +23,7 @@ export default function CaseStudy({
   const color = project.color;
 
   return (
-    <div className="max-w-[920px] mx-auto px-8 pt-12">
+    <div className="max-w-[920px] mx-auto px-4 sm:px-8 pt-12">
       <Link
         href={backHref}
         className="text-fg-mid font-sans font-semibold text-sm inline-flex items-center gap-1.5 mb-7 no-underline transition-colors duration-150 hover:text-indigo"
@@ -54,7 +54,7 @@ export default function CaseStudy({
         {content.ui.screenshotHint}
       </div>
 
-      <div className="grid grid-cols-[1fr_240px] gap-12 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_240px] gap-8 md:gap-12 items-start">
         <div>
           <h2 className="font-display font-bold text-[22px] text-fg mb-3.5">
             {content.ui.overview}
@@ -167,7 +167,7 @@ export default function CaseStudy({
           )}
         </div>
 
-        <aside className="flex flex-col gap-5.5 border-l-[1.5px] border-border pl-7">
+        <aside className="flex flex-col gap-5.5 border-t-[1.5px] md:border-t-0 md:border-l-[1.5px] border-border pt-6 md:pt-0 md:pl-7">
           {"company" in project && (
             <div>
               <div className="text-2xs font-[800] tracking-[0.08em] uppercase text-fg-soft mb-2">

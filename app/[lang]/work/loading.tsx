@@ -2,7 +2,7 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function WorkLoading() {
   return (
-    <div className="max-w-[1100px] mx-auto px-8 py-16">
+    <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-16">
       <div className="mb-12">
         <Skeleton className="w-[60px] h-3 mb-3" />
         <Skeleton className="w-[180px] h-9 mb-3.5" />
@@ -11,7 +11,7 @@ export default function WorkLoading() {
 
       <div className="mb-16">
         <Skeleton className="w-[140px] h-[22px] mb-5" />
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-4">
           {[0, 1, 2].map((i) => (
             <div key={i} className="border-1.5 border-border rounded-2xl p-6">
               <Skeleton className="w-20 h-3 mb-4" />

@@ -15,7 +15,7 @@ export default function BlogList({
 }) {
   const displayPosts = posts ?? [];
   return (
-    <div className="max-w-[1100px] mx-auto px-8 py-16">
+    <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-16">
       <SectionHeading
         label={content.ui.blogKicker}
         title={content.ui.blogTitle}
@@ -24,7 +24,7 @@ export default function BlogList({
       {displayPosts.length === 0 ? (
         <EmptyState message={content.ui.noPosts} />
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-4">
           {displayPosts.map((post) => (
             <PostCard
               key={post.slug ?? post.title}

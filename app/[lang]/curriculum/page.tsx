@@ -28,7 +28,7 @@ export default async function ResumePage({ params }: { params: Promise<{ lang: s
   const R = content.ui.resume;
 
   return (
-    <div className="max-w-[860px] mx-auto px-8 pt-11">
+    <div className="max-w-[860px] mx-auto px-4 sm:px-8 pt-11">
       <div className="no-print flex justify-between items-center mb-7 gap-3 flex-wrap">
         <Link
           href={`/${locale}`}
